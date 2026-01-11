@@ -21,7 +21,7 @@
 	{#if popUp}
 		<div
 			transition:fly={{ x: '100%' }}
-			class="fixed right-0 bottom-0 z-10 flex w-full flex-col items-start justify-start gap-2 border-t border-dashed border-(--gray-text) p-4 md:right-5 md:bottom-5 md:max-w-sm md:border"
+			class="fixed right-0 bottom-0 z-10 flex w-full flex-col items-start justify-start gap-2 border-t border-dashed border-(--gray-text) bg-(--background) p-4 md:right-5 md:bottom-5 md:max-w-sm md:border"
 		>
 			<div class="flex w-full items-start justify-between text-(--headings)">
 				<p class="name-header text-base md:text-lg">Interested in a simple portfolio?</p>
