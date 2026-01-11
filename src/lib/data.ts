@@ -23,7 +23,7 @@ export type contactType = {
 	link: string;
 };
 
-export const experiences: experienceType[] = [
+export const experience: experienceType[] = [
 	{
 		id: 1,
 		header: 'Frontend (Primary focus over the last 2 years)',

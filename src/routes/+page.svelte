@@ -37,18 +37,18 @@
 		href="/experience"
 	>
 		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-		Experiences
+		Experience
 	</a>
 	<a
 		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-		href="/experiences"
+		href="/projects"
 	>
 		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
 		Projects
 	</a>
 	<a
 		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-		href="/experiences"
+		href="/contact"
 	>
 		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
 		Contact

@@ -1,18 +1,18 @@
 <script lang="ts">
 	import '@fontsource/libre-baskerville';
-	import { experiences } from '$lib/data';
+	import { experience } from '$lib/data';
 	import { CircleSmall } from '@lucide/svelte';
 	import SvelteSeo from 'svelte-seo';
 </script>
 
 <SvelteSeo
-	title="Experiences | Lukas Jaager"
-	description="Experience page for Lukas Jaager's portfolio, where are listed all of his experiences in coding and work"
+	title="Experience | Lukas Jaager"
+	description="Experience page for Lukas Jaager's portfolio, where are listed all of his experience in coding and work"
 	keywords="portfolio, dev, lukas, jaager, coding"
 />
 
-<h2 class="text-xl font-medium text-(--headings) md:text-2xl">Experiences</h2>
-{#each experiences as exp (exp.id)}
+<h2 class="text-xl font-medium text-(--headings) md:text-2xl">Experience</h2>
+{#each experience as exp (exp.id)}
 	<div class="flex flex-col items-start justify-start gap-2 text-base md:text-lg 2xl:text-xl">
 		<p class="font-semibold text-(--gray-text)">{exp.header}</p>
 		{#each exp.info as inf (inf.length)}
