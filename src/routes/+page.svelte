@@ -15,7 +15,12 @@
 	I studied at Tallinn's Kristiine's Gymnasium.
 	<a class="text-(--purple-text) transition hover:text-(--purple-hover)" href="/experience">
 		Python programming
-	</a> was provided as an elective course, which i took in 10th and 11th grade.
+	</a>
+	was provided as an elective course, which i took in 10th and 11th grade. At around the same time I became
+	interested in web development, which led to the student business
+	<a class="text-(--purple-text) transition hover:text-(--purple-hover)" href="/projects"
+		>NoorteKunst</a
+	>.
 </p>
 
 <p class="mt-6 text-xl font-medium text-(--headings) md:text-2xl">Check out next</p>

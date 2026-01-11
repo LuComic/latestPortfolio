@@ -60,7 +60,7 @@ export const projects: projectType[] = [
 		stack: ['Vanilla HTML', 'CSS', 'JS'],
 		disclaimer: 'I made only the frontend; domain has expired',
 		description:
-			"noorteKunst is a web gallery combined with social media aspects for young starting artists to start or boost their art jounrey.A simple way to stand out (which is basically impossible in social media), grow your portfolio and find fans. Also if you're interested in art, noorteKunst is a great way to find young artists and do things that you can do on every social media platform - like posts, save them and follow artists. (site is only in estonian)",
+			"noorteKunst is a web gallery combined with social media aspects for young starting artists to start or boost their art jounrey. A simple way to stand out (which is basically impossible in social media), grow your portfolio and find fans. Also if you're interested in art, noorteKunst is a great way to find young artists and do things that you can do on every social media platform - like posts, save them and follow artists. (site is only in estonian)",
 		pics: [
 			'/pictures/noortekunst-landing.png',
 			'/pictures/noortekunst-feed.png',
