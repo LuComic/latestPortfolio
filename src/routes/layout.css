@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/rubik';
+
+:root {
+	--gray-text: #737272;
+	--purple-text: #6e66f8;
+	--purple-hover: #4c44eb;
+	--bg-hover: #080808;
+
+	--background: #0a0a0a;
+	--headings: #e5e5e5;
+	--foreground: #b9b9b9;
+}
+
+html,
+body {
+	background-color: var(--background);
+	color: var(--foreground);
+}
+
+body {
+	font-family: 'Rubik Variable', sans-serif;
+}
