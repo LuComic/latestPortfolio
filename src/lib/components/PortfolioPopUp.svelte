@@ -17,8 +17,8 @@
 	});
 </script>
 
-{#if popUp}
-	{#if mounted}
+{#if mounted}
+	{#if popUp}
 		<div
 			transition:fly={{ x: '100%' }}
 			class="fixed right-0 bottom-0 flex w-full flex-col items-start justify-start gap-2 border-t border-dashed border-(--gray-text) p-4 md:right-5 md:bottom-5 md:max-w-sm md:border"
