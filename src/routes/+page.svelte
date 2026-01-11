@@ -24,21 +24,21 @@
 		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
 		href="/experience"
 	>
-		<SquareArrowOutUpRight size={20} />
+		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
 		Experiences
 	</a>
 	<a
 		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
 		href="/experiences"
 	>
-		<SquareArrowOutUpRight size={20} />
+		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
 		Projects
 	</a>
 	<a
 		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
 		href="/experiences"
 	>
-		<SquareArrowOutUpRight size={20} />
+		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
 		Contact
 	</a>
 </div>
