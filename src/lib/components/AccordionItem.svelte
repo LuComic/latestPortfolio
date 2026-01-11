@@ -20,7 +20,7 @@
 		<ChevronRight class={`${isOpen ? 'rotate-90' : 'rotate-0'} transition`} />
 	</button>
 	{#if isOpen}
-		<div class="my-2 flex flex-col gap-4 text-sm md:flex-row md:text-base 2xl:text-lg">
+		<div class="my-2 flex flex-col gap-4 text-base md:flex-row 2xl:text-lg">
 			<div class="flex flex-col items-start justify-start gap-2">
 				<p>{prj.description}</p>
 				<div class="flex items-center justify-start gap-2">

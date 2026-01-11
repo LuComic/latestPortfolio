@@ -12,7 +12,7 @@
 
 <PortfolioPopUp />
 
-<div class="scrollable flex h-screen w-screen flex-col items-center justify-center">
+<div class="scrollable flex h-dvh w-screen flex-col items-center justify-center">
 	<div
 		class="flex h-full w-full grid-cols-5 flex-col items-start justify-start overflow-scroll px-4 pb-4 md:grid md:h-2/3 md:max-w-2/3 md:p-0"
 	>
