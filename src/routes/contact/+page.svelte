@@ -9,11 +9,11 @@
 	{#each socials as soc (soc.id)}
 		<div class="flex items-center justify-start gap-4 transition hover:text-(--purple-text)">
 			{#if soc.media === 'facebook'}
-				<Facebook />
+				<Facebook color="#1877F2" />
 			{:else if soc.media === 'github'}
-				<Github />
+				<Github color="#6E5494" />
 			{:else if soc.media === 'instagram'}
-				<Instagram />
+				<Instagram color="#fa7e1e" />
 			{/if}
 			<a target="_blank" href={soc.link}>{soc.media}</a>
 		</div>
