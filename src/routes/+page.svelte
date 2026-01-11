@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { SquareArrowOutUpRight } from '@lucide/svelte';
+	import SvelteSeo from 'svelte-seo';
 </script>
+
+<SvelteSeo
+	title="About | Lukas Jaager"
+	description="About page for Lukas Jaager's portfolio"
+	keywords="portfolio, dev, lukas, jaager, coding"
+/>
 
 <h2 class="text-xl font-medium text-(--headings) md:text-2xl">About</h2>
 <p class="text-base md:text-lg 2xl:text-xl">

@@ -2,7 +2,14 @@
 	import '@fontsource/libre-baskerville';
 	import { socials } from '$lib/data';
 	import { Instagram, Facebook, Github } from '@lucide/svelte';
+	import SvelteSeo from 'svelte-seo';
 </script>
+
+<SvelteSeo
+	title="Contact | Lukas Jaager"
+	description="Contact page for Lukas Jaager's portfolio, listing his contact information"
+	keywords="portfolio, dev, lukas, jaager, coding"
+/>
 
 <h2 class="text-xl font-medium text-(--headings) md:text-2xl">Contact</h2>
 <div class="flex flex-col items-start justify-start gap-2 text-base md:text-lg 2xl:text-xl">

@@ -2,7 +2,14 @@
 	import '@fontsource/libre-baskerville';
 	import { experiences } from '$lib/data';
 	import { CircleSmall } from '@lucide/svelte';
+	import SvelteSeo from 'svelte-seo';
 </script>
+
+<SvelteSeo
+	title="Experiences | Lukas Jaager"
+	description="Experience page for Lukas Jaager's portfolio, where are listed all of his experiences in coding and work"
+	keywords="portfolio, dev, lukas, jaager, coding"
+/>
 
 <h2 class="text-xl font-medium text-(--headings) md:text-2xl">Experiences</h2>
 {#each experiences as exp (exp.id)}

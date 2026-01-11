@@ -4,6 +4,12 @@
   "workspaces": {
     "": {
       "name": "svelte-test",
+      "dependencies": {
+        "@fontsource-variable/rubik": "^5.2.8",
+        "@fontsource/libre-baskerville": "^5.2.10",
+        "@lucide/svelte": "^0.561.0",
+        "svelte-seo": "^2.0.0",
+      },
       "devDependencies": {
         "@eslint/compat": "^1.4.0",
         "@eslint/js": "^9.39.1",
@@ -101,6 +107,10 @@
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.4.1", "", { "dependencies": { "@eslint/core": "^0.17.0", "levn": "^0.4.1" } }, "sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA=="],
 
+    "@fontsource-variable/rubik": ["@fontsource-variable/rubik@5.2.8", "", {}, "sha512-vGDExLzB4a2Fj9mca5LqNoA2ZKcU9o+x5FEBLte/nxYkCB9hOQwZS6ZlItUv+Ssn7YMzKauGuI/Po+YueFuZbg=="],
+
+    "@fontsource/libre-baskerville": ["@fontsource/libre-baskerville@5.2.10", "", {}, "sha512-Y/bGj4cOdWhAxU4+sBPen3MB5Og3t/WvezVL+05CJ7cvhDQUKpQFUuw/hm1IQKRc9u0lWs8VP2MKDOK2uQtloQ=="],
+
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
     "@humanfs/node": ["@humanfs/node@0.16.7", "", { "dependencies": { "@humanfs/core": "^0.19.1", "@humanwhocodes/retry": "^0.4.0" } }, "sha512-/zUx+yOsIrG4Y43Eh2peDeKCxlRt/gET6aHfaKpuq267qXdYDFViVHfMaLyygZOnl0kGWxFIgsBy8QFuTLUXEQ=="],
@@ -118,6 +128,8 @@
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
+
+    "@lucide/svelte": ["@lucide/svelte@0.561.0", "", { "peerDependencies": { "svelte": "^5" } }, "sha512-vofKV2UFVrKE6I4ewKJ3dfCXSV6iP6nWVmiM83MLjsU91EeJcEg7LoWUABLp/aOTxj1HQNbJD1f3g3L0JQgH9A=="],
 
     "@polka/url": ["@polka/url@1.0.0-next.29", "", {}, "sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww=="],
 
@@ -469,6 +481,8 @@
 
     "sade": ["sade@1.8.1", "", { "dependencies": { "mri": "^1.1.0" } }, "sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A=="],
 
+    "schema-dts": ["schema-dts@1.1.5", "", {}, "sha512-RJr9EaCmsLzBX2NDiO5Z3ux2BVosNZN5jo0gWgsyKvxKIUL5R3swNvoorulAeL9kLB0iTSX7V6aokhla2m7xbg=="],
+
     "semver": ["semver@7.7.3", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q=="],
 
     "set-cookie-parser": ["set-cookie-parser@2.7.2", "", {}, "sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw=="],
@@ -490,6 +504,8 @@
     "svelte-check": ["svelte-check@4.3.5", "", { "dependencies": { "@jridgewell/trace-mapping": "^0.3.25", "chokidar": "^4.0.1", "fdir": "^6.2.0", "picocolors": "^1.0.0", "sade": "^1.7.4" }, "peerDependencies": { "svelte": "^4.0.0 || ^5.0.0-next.0", "typescript": ">=5.0.0" }, "bin": { "svelte-check": "bin/svelte-check" } }, "sha512-e4VWZETyXaKGhpkxOXP+B/d0Fp/zKViZoJmneZWe/05Y2aqSKj3YN2nLfYPJBQ87WEiY4BQCQ9hWGu9mPT1a1Q=="],
 
     "svelte-eslint-parser": ["svelte-eslint-parser@1.4.1", "", { "dependencies": { "eslint-scope": "^8.2.0", "eslint-visitor-keys": "^4.0.0", "espree": "^10.0.0", "postcss": "^8.4.49", "postcss-scss": "^4.0.9", "postcss-selector-parser": "^7.0.0" }, "peerDependencies": { "svelte": "^3.37.0 || ^4.0.0 || ^5.0.0" }, "optionalPeers": ["svelte"] }, "sha512-1eqkfQ93goAhjAXxZiu1SaKI9+0/sxp4JIWQwUpsz7ybehRE5L8dNuz7Iry7K22R47p5/+s9EM+38nHV2OlgXA=="],
+
+    "svelte-seo": ["svelte-seo@2.0.0", "", { "dependencies": { "schema-dts": "^1.1.5" }, "peerDependencies": { "svelte": "5" } }, "sha512-taLhDc7tqxKLhUlVEqzK4McowtQtmCtyJFs4cuH68rBWJF9TYBpIkjWQM6mnOIu9Zxq9jqMO+EvRqiNK4TzADw=="],
 
     "tailwindcss": ["tailwindcss@4.1.18", "", {}, "sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw=="],
 

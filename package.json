@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@fontsource-variable/rubik": "^5.2.8",
 		"@fontsource/libre-baskerville": "^5.2.10",
-		"@lucide/svelte": "^0.561.0"
+		"@lucide/svelte": "^0.561.0",
+		"svelte-seo": "^2.0.0"
 	}
 }
