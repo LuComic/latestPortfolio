@@ -31,7 +31,7 @@
 			<div class="relative flex flex-col items-start justify-start gap-6 pb-20">
 				{@render children()}
 				<div
-					class="pointer-events-none sticky bottom-0 left-0 z-10 h-30 w-full bg-linear-to-t from-(--background) to-transparent"
+					class="pointer-events-none sticky bottom-0 left-0 h-30 w-full bg-linear-to-t from-(--background) to-transparent"
 				></div>
 			</div>
 		</div>
