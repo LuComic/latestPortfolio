@@ -2,7 +2,17 @@
 	import { projects } from '$lib/data';
 	import AccordionItem from '$lib/components/AccordionItem.svelte';
 	import SvelteSeo from 'svelte-seo';
+
+	let preloadImages = $derived(
+		projects.reduce((imgs, prj) => [...imgs, ...prj.pics], [] as string[])
+	);
 </script>
+
+<svelte:head>
+	{#each preloadImages as img}
+		<link rel="preload" as="image" href={img} />
+	{/each}
+</svelte:head>
 
 <SvelteSeo
 	title="Projects | Lukas Jaager"
