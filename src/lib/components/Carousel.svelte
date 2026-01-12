@@ -95,7 +95,7 @@
 			<img
 				src={pics[imageCounter]}
 				alt="project pic"
-				class="aspect-video h-auto w-full object-contain md:w-3/4"
+				class="h-auto w-full object-contain md:w-3/4"
 			/>
 			{@render moveButtons(false)}
 		</div>

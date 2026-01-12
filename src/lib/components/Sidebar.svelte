@@ -36,7 +36,7 @@
 
 <!--Nav for mobile-->
 <button
-	class="fixed top-5 right-5 z-10 block md:hidden"
+	class="fixed top-3 right-3 z-10 block p-2 md:hidden"
 	onclick={(e) => {
 		isOpen = true;
 		e.stopPropagation();
@@ -44,6 +44,7 @@
 >
 	<Menu />
 </button>
+
 {#if isOpen}
 	<nav
 		class="fixed top-0 left-0 z-20 flex h-full w-1/2 flex-col items-center justify-center gap-8 border-r-2 border-dashed border-(--gray-text) bg-(--background) px-4 text-xl font-medium md:hidden"

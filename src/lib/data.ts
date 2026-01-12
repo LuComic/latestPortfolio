@@ -29,7 +29,7 @@ export const experience: experienceType[] = [
 		header: 'Frontend (Primary focus over the last 2 years)',
 		info: ['HTML, CSS, JS and TS', 'Svelte 5', 'Next.js the basics'],
 		links: [
-			{ name: 'Python Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }
+			{ name: 'Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }
 		]
 	},
 	{
