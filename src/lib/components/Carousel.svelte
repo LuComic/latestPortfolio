@@ -82,9 +82,7 @@
 
 <!--Fullscreen image-->
 {#if fullScreen}
-	<div
-		class="fixed top-0 left-0 z-30 flex h-screen w-screen items-center justify-center bg-black/60 px-2"
-	>
+	<div class="fixed inset-0 z-30 flex items-center justify-center bg-black/60 px-2">
 		<button
 			class="fixed top-5 right-5 cursor-pointer text-(--headings) transition hover:text-(--gray-text)"
 			onclick={() => (fullScreen = false)}
