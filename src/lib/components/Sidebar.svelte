@@ -32,6 +32,9 @@
 	<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}
 		>Contact</a
 	>
+	<a href="/portfolio" class="w-full transition" aria-current={page.url.pathname === '/portfolio'}
+		>For You</a
+	>
 </nav>
 
 <!--Nav for mobile-->
@@ -64,6 +67,9 @@
 		>
 		<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}
 			>Contact</a
+		>
+		<a href="/portfolio" class="w-full transition" aria-current={page.url.pathname === '/portfolio'}
+			>For You</a
 		>
 	</nav>
 {/if}

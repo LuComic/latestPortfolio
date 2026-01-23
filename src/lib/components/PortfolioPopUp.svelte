@@ -9,7 +9,7 @@
 	let mounted = $state(false);
 
 	$effect(() => {
-		if (page.url.pathname === '/contact') {
+		if (page.url.pathname === '/portfolio') {
 			popUp = false;
 		}
 
@@ -33,10 +33,10 @@
 				</button>
 			</div>
 			<span class="text-sm md:text-lg">
-				<a href="/contact" class=" text-(--purple-text) transition hover:text-(--purple-hover)">
-					Contact me
+				<a href="/portfolio" class=" text-(--purple-text) transition hover:text-(--purple-hover)">
+					Click here
 				</a>
-				{' '}for more information
+				{' '}to see more
 			</span>
 		</div>
 
