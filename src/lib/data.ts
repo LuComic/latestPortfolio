@@ -122,7 +122,7 @@ export const socials: contactType[] = [
 export const portfolioList: portfolioType[] = [
 	{
 		id: 1,
-		header: 'Why would i need a portfolio?',
+		header: 'Why would I need a portfolio?',
 		item: [
 			{
 				info: 'Strong first impression',
