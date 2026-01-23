@@ -23,7 +23,7 @@
 		<p class="font-semibold text-(--gray-text)">{port.header}</p>
 		{#each port.item as listItem (listItem.info)}
 			<div class="ml-4 flex items-center justify-start gap-2">
-				<CircleSmall />
+				<CircleSmall class="min-w-6" />
 				<p>{listItem.info}</p>
 			</div>
 			{#if listItem.subInfo}

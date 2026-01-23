@@ -16,14 +16,14 @@
 		<p class="font-semibold text-(--gray-text)">{exp.header}</p>
 		{#each exp.info as inf (inf)}
 			<div class="ml-4 flex items-center justify-start gap-2">
-				<CircleSmall />
+				<CircleSmall class="min-w-6" />
 				<p>{inf}</p>
 			</div>
 		{/each}
 		{#if exp.links && exp.links.length > 0}
 			{#each exp.links as link (link.name)}
 				<div class="ml-4 flex items-center justify-start gap-2">
-					<CircleSmall />
+					<CircleSmall class="min-w-6" />
 					<a
 						class="text-(--purple-text) transition hover:text-(--purple-hover)"
 						target="_blank"
