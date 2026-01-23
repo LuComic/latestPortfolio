@@ -11,7 +11,7 @@
 
 <h2 class="text-xl font-medium text-(--headings) md:text-2xl">About</h2>
 <p class="text-base md:text-lg 2xl:text-xl">
-	Highshcool student based in Estonia. I'm constantly learning web development, mainly frontend, in
+	Highschool student based in Estonia. I'm constantly learning web development, mainly frontend, in
 	my free time but learned Python in school <a
 		href="/experience"
 		class="text-(--purple-text) transition hover:text-(--purple-hover)">(Certificates)</a

@@ -50,7 +50,7 @@ export const experience: experienceType[] = [
 	},
 	{
 		id: 3,
-		header: 'Currently studying',
+		header: 'Currently learning/interested in',
 		info: ['Golang']
 	},
 	{
