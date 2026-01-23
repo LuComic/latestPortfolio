@@ -8,6 +8,15 @@ export type experienceType = {
 	}[];
 };
 
+export type portfolioType = {
+	id: number;
+	header: string;
+	item: {
+		info: string;
+		subInfo?: string;
+	}[];
+};
+
 export type projectType = {
 	id: number;
 	name: string;
@@ -28,9 +37,7 @@ export const experience: experienceType[] = [
 		id: 1,
 		header: 'Frontend (Primary focus over the last 2 years)',
 		info: ['HTML, CSS, JS and TS', 'Svelte 5', 'Next.js the basics'],
-		links: [
-			{ name: 'Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }
-		]
+		links: [{ name: 'Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }]
 	},
 	{
 		id: 2,
@@ -109,5 +116,62 @@ export const socials: contactType[] = [
 		id: 3,
 		media: 'github',
 		link: 'https://github.com/LuComic'
+	}
+];
+
+export const portfolioList: portfolioType[] = [
+	{
+		id: 1,
+		header: 'Why would i need a portfolio?',
+		item: [
+			{
+				info: 'Strong first impression',
+				subInfo:
+					'People usually search each other before actually meeting. Having a portfolio makes you look more credible and serious.'
+			},
+			{
+				info: 'Presenting yourself',
+				subInfo:
+					'A portfolio gives you full control over your story, achievements, and how you’re perceived.'
+			},
+			{
+				info: 'Standing out',
+				subInfo:
+					'Amongst other artists, freelancers, students, designers and more, having a portfolio will help you stand out and look more professional.'
+			},
+			{
+				info: 'And a lot more, so why not?'
+			}
+		]
+	},
+	{
+		id: 2,
+		header: 'Features',
+		item: [
+			{
+				info: 'Your portfolio could have a simple and clean design like this one, or you could provide some of your own ideas and sites for inspiration.'
+			},
+			{
+				info: "You can decide how to customise the site however you'd like. Just message me, tell me what you'd like removed/added and I'll get working."
+			},
+			{
+				info: 'The site will be connected to a Convex database which allows you to edit your information at any time, anywhere and instantly.'
+			}
+		]
+	},
+	{
+		id: 3,
+		header: 'Time and pricing',
+		item: [
+			{
+				info: "Depending on the amount of pages you'd like, creating a portfolio like this one will take a maximum of one week."
+			},
+			{
+				info: "For smaller changes later on, after you've messaged me I'll do my best to add the changes as fast as possible."
+			},
+			{
+				info: 'Pricing will also depend on the amount of pages, customisation and more (overall complexity), that will be discussed beforehand.'
+			}
+		]
 	}
 ];

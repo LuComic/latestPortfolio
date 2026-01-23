@@ -12,7 +12,7 @@
 />
 
 <h2 class="text-xl font-medium text-(--headings) md:text-2xl">Contact</h2>
-<div class="flex flex-col items-start justify-start gap-2 text-base md:text-lg 2xl:text-xl">
+<div class="flex flex-col items-start justify-start gap-4 text-base md:text-lg 2xl:text-xl">
 	{#each socials as soc (soc.id)}
 		<div class="flex items-center justify-start gap-4 transition hover:text-(--purple-text)">
 			{#if soc.media === 'facebook'}

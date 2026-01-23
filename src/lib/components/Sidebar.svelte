@@ -3,7 +3,6 @@
 	import '@fontsource/libre-baskerville';
 	import { fly } from 'svelte/transition';
 	import { Menu, X } from '@lucide/svelte';
-	import { stopPropagation } from 'svelte/legacy';
 
 	let isOpen = $state(false);
 
@@ -23,18 +22,22 @@
 	class="sticky top-0 left-0 hidden h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium md:flex"
 >
 	<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
-	<a href="/experience" class="w-full transition" aria-current={page.url.pathname === '/experience'}
-		>Experience</a
+	<a
+		href="/experience"
+		class="w-full transition"
+		aria-current={page.url.pathname === '/experience'}
 	>
-	<a href="/projects" class="w-full transition" aria-current={page.url.pathname === '/projects'}
-		>Projects</a
-	>
-	<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}
-		>Contact</a
-	>
-	<a href="/portfolio" class="w-full transition" aria-current={page.url.pathname === '/portfolio'}
-		>For You</a
-	>
+		Experience
+	</a>
+	<a href="/projects" class="w-full transition" aria-current={page.url.pathname === '/projects'}>
+		Projects
+	</a>
+	<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
+		Contact
+	</a>
+	<a href="/portfolio" class="w-full transition" aria-current={page.url.pathname === '/portfolio'}>
+		For You
+	</a>
 </nav>
 
 <!--Nav for mobile-->

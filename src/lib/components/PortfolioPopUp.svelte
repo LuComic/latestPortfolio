@@ -8,12 +8,14 @@
 	let popUp = $state(true);
 	let mounted = $state(false);
 
+	onMount(() => {
+		mounted = true;
+	});
+
 	$effect(() => {
 		if (page.url.pathname === '/portfolio') {
 			popUp = false;
 		}
-
-		onMount(() => (mounted = true));
 	});
 </script>
 
