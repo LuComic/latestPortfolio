@@ -14,15 +14,15 @@
 
 <div class="scrollable flex h-dvh w-screen flex-col items-center justify-center">
 	<div
-		class="flex h-full w-full grid-cols-5 flex-col items-start justify-start overflow-scroll px-4 pb-4 md:grid md:h-2/3 md:max-w-2/3 md:p-0"
+		class="flex h-full w-full grid-cols-5 flex-col items-start justify-start overflow-scroll px-4 pb-4 lg:grid lg:h-2/3 lg:max-w-2/3 lg:p-0"
 	>
 		<Sidebar />
 		<div
-			class="col-span-4 flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) md:border-l-2 md:pl-4"
+			class="col-span-4 flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) lg:border-l-2 lg:pl-4"
 		>
 			<a
 				href="/"
-				class="name-header mb-4 w-full bg-(--background) py-4 text-2xl text-(--headings) md:py-0 md:text-3xl"
+				class="name-header mb-4 w-full bg-(--background) py-4 text-2xl text-(--headings) lg:py-0 lg:text-3xl"
 			>
 				<h1>
 					Lukas Jääger, <span class="text-(--gray-text)">Frontend Developer</span>

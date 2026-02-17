@@ -19,7 +19,7 @@
 
 <!--Nav for desktop-->
 <nav
-	class="sticky top-0 left-0 hidden h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium md:flex"
+	class="sticky top-0 left-0 hidden h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium lg:flex"
 >
 	<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
 	<a
@@ -42,7 +42,7 @@
 
 <!--Nav for mobile-->
 <button
-	class="fixed top-3 right-3 z-10 block p-2 md:hidden"
+	class="fixed top-3 right-3 z-10 block cursor-pointer p-2 lg:hidden"
 	onclick={(e) => {
 		isOpen = true;
 		e.stopPropagation();
@@ -53,7 +53,7 @@
 
 {#if isOpen}
 	<nav
-		class="fixed top-0 left-0 z-20 flex h-full w-1/2 flex-col items-center justify-center gap-8 border-r-2 border-dashed border-(--gray-text) bg-(--background) px-4 text-xl font-medium md:hidden"
+		class="fixed top-0 left-0 z-20 flex h-full w-1/2 flex-col items-center justify-center gap-8 border-r-2 border-dashed border-(--gray-text) bg-(--background) px-4 text-xl font-medium lg:hidden"
 		transition:fly={{ x: '-100%', duration: 300 }}
 	>
 		<button class="fixed top-5 left-5">
