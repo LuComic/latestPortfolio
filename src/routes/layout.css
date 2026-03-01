@@ -18,6 +18,12 @@ body {
 	color: var(--foreground);
 }
 
+@media (min-width: 600px) {
+	html {
+		overscroll-behavior-y: none;
+	}
+}
+
 body {
 	font-family: 'Rubik Variable', sans-serif;
 }

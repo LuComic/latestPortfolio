@@ -53,7 +53,7 @@
 
 {#if isOpen}
 	<nav
-		class="fixed top-0 left-0 z-20 flex h-full w-1/2 flex-col items-center justify-center gap-8 border-r-2 border-dashed border-(--gray-text) bg-(--background) px-4 text-xl font-medium lg:hidden"
+		class="fixed top-0 left-0 z-20 flex h-full w-2/3 flex-col items-center justify-center gap-8 border-r-2 border-dashed border-(--gray-text) bg-(--background) px-4 text-xl font-medium lg:hidden"
 		transition:fly={{ x: '-100%', duration: 300 }}
 	>
 		<button class="fixed top-5 left-5">
