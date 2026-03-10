@@ -18,7 +18,7 @@
 
 <SvelteSeo
 	title="Thoughts | Lukas Jaager"
-	description="Thoughts page for Lukas Jaager's portfolio, where are just some of my random thoughts"
+	description="Thoughts page for Lukas Jaager's portfolio, where are just some random written down thoughts"
 	keywords="portfolio, dev, lukas, jaager, thoughts, blog"
 />
 
