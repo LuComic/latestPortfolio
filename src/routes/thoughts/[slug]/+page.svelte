@@ -18,7 +18,7 @@
 />
 
 <div class="flex flex-col">
-	<div class="mb-4 flex items-center justify-start gap-2">
+	<div class="my-4 flex items-center justify-start gap-2">
 		<a href="/thoughts">
 			<ChevronLeft size={28} class="transition hover:text-(--purple-text)" />
 		</a>

@@ -1,4 +1,4 @@
-# Good series and detective correlation
+# Good Series and Detective Correlation
 
 I just noticed how some of the best TV shows/series I've watched are in some way police or detective themed. There are three main examples I'll bring and all of them are highly rated as well. Note that this is not a review, so I'm not going deep into each one.
 
