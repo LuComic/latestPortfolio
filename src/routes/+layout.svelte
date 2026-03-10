@@ -4,6 +4,7 @@
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import '@fontsource/libre-baskerville';
 	import PortfolioPopUp from '$lib/components/PortfolioPopUp.svelte';
+	import { page } from '$app/state';
 
 	let { children } = $props();
 </script>
@@ -20,14 +21,16 @@
 		<div
 			class="col-span-4 flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) lg:border-l-2 lg:pl-4"
 		>
-			<a
-				href="/"
-				class="name-header mb-4 w-full bg-(--background) py-4 text-2xl text-(--headings) lg:py-0 lg:text-3xl"
-			>
-				<h1>
-					Lukas Jääger, <span class="text-(--gray-text)">Frontend Developer</span>
-				</h1>
-			</a>
+			{#if !page.url.pathname.includes('/thoughts/')}
+				<a
+					href="/"
+					class="name-header mb-4 w-full bg-(--background) py-4 text-2xl text-(--headings) lg:py-0 lg:text-3xl"
+				>
+					<h1>
+						Lukas Jääger, <span class="text-(--gray-text)">Frontend Developer</span>
+					</h1>
+				</a>
+			{/if}
 			<div class="relative flex flex-col items-start justify-start gap-6">
 				{@render children()}
 				<div

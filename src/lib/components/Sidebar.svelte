@@ -38,6 +38,13 @@
 	<a href="/portfolio" class="w-full transition" aria-current={page.url.pathname === '/portfolio'}>
 		For You
 	</a>
+	<a
+		href="/thoughts"
+		class="w-full transition"
+		aria-current={page.url.pathname.includes('/thoughts')}
+	>
+		Thoughts
+	</a>
 </nav>
 
 <!--Nav for mobile-->
@@ -65,15 +72,26 @@
 			class="w-full transition"
 			aria-current={page.url.pathname === '/experience'}>Experience</a
 		>
-		<a href="/projects" class="w-full transition" aria-current={page.url.pathname === '/projects'}
-			>Projects</a
+		<a href="/projects" class="w-full transition" aria-current={page.url.pathname === '/projects'}>
+			Projects
+		</a>
+		<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
+			Contact
+		</a>
+		<a
+			href="/portfolio"
+			class="w-full transition"
+			aria-current={page.url.pathname === '/portfolio'}
 		>
-		<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}
-			>Contact</a
+			For You
+		</a>
+		<a
+			href="/thoughts"
+			class="w-full transition"
+			aria-current={page.url.pathname.includes('/thoughts')}
 		>
-		<a href="/portfolio" class="w-full transition" aria-current={page.url.pathname === '/portfolio'}
-			>For You</a
-		>
+			Thoughts
+		</a>
 	</nav>
 {/if}
 

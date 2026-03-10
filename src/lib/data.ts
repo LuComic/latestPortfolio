@@ -1,3 +1,9 @@
+export type thoughtType = {
+	href: string;
+	date: string;
+	content: string;
+};
+
 export type experienceType = {
 	id: number;
 	header: string;
@@ -168,5 +174,18 @@ export const portfolioList: portfolioType[] = [
 				info: 'Pricing will also depend on the amount of pages, customisation and more (overall complexity), that will be discussed beforehand.'
 			}
 		]
+	}
+];
+
+export const thoughts: thoughtType[] = [
+	{
+		href: 'peptides_and_sams_warning',
+		date: '10.03.2026',
+		content: 'peptides.md'
+	},
+	{
+		href: 'best_series',
+		date: '11.03.2026',
+		content: 'series.md'
 	}
 ];
