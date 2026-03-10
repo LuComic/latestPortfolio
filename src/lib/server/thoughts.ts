@@ -1,6 +1,3 @@
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
-
 import { thoughts, type thoughtType } from '$lib/data';
 
 export type ThoughtLink = {
@@ -33,9 +30,13 @@ export type ThoughtPreview = thoughtType & {
 	title: string;
 };
 
-const thoughtsDirectory = join(process.cwd(), 'static', 'thoughts');
 const linksHeadingPattern = /^##?\s+links\s*$/i;
 const inlineTokenPattern = /\[([^\]]+)\]\(([^)]+)\)|<([^>\n]+)>/g;
+const thoughtFiles = import.meta.glob('../../../static/thoughts/*.md', {
+	query: '?raw',
+	import: 'default',
+	eager: true
+}) as Record<string, string>;
 
 function trimEmptyLines(lines: string[]) {
 	let start = 0;
@@ -159,12 +160,18 @@ function parseThoughtMarkdown(markdown: string) {
 	};
 }
 
-async function readThoughtContent(filename: string) {
-	return readFile(join(thoughtsDirectory, filename), 'utf8');
+function readThoughtContent(filename: string) {
+	const entry = Object.entries(thoughtFiles).find(([path]) => path.endsWith(`/${filename}`));
+
+	if (!entry) {
+		throw new Error(`Thought markdown file not found: ${filename}`);
+	}
+
+	return entry[1];
 }
 
 async function parseThought(thought: thoughtType): Promise<ParsedThought> {
-	const markdown = await readThoughtContent(thought.content);
+	const markdown = readThoughtContent(thought.content);
 	const parsed = parseThoughtMarkdown(markdown);
 
 	return {

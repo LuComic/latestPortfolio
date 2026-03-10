@@ -4,6 +4,16 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	function toTimestamp(date: string) {
+		const [day, month, year] = date.split('.').map(Number);
+
+		return new Date(year, month - 1, day).getTime();
+	}
+
+	const sortedThoughts = $derived(
+		[...data.thoughts].sort((a, b) => toTimestamp(b.date) - toTimestamp(a.date))
+	);
 </script>
 
 <SvelteSeo
@@ -17,7 +27,7 @@
 	Some random and possibly unfinished thoughts I've had and felt like writing down.
 </p>
 <div class="flex w-full flex-col items-start justify-start gap-4">
-	{#each data.thoughts as thought (thought.href)}
+	{#each sortedThoughts as thought (thought.href)}
 		<a
 			class="flex w-max cursor-pointer items-center justify-start gap-4 text-base text-(--gray-text) underline-offset-4 transition hover:underline md:text-lg 2xl:text-xl"
 			href={'/thoughts/' + thought.href}
