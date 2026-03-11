@@ -1,7 +1,7 @@
 # Peptides and Sam's Warning
 
 A while back I watched <ThePrimeagen's video titled "Sam Altman said what?">. The key takeaway was
-that Sam warned us about some possible dangers of AI in 2026, and one of them was a new
+that Sam Altman warned us about some possible dangers of AI in 2026, and one of them was a new
 bioweapon. That kind of straightforwardness left me basically speechless, and ThePrimeagen's
 "What?!" summed it up pretty well. However, I just kind of forgot about it, until now.
 
