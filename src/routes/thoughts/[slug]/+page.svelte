@@ -62,7 +62,7 @@
 </div>
 
 {#if thought.links.length > 0}
-	<div class="flex flex-col gap-2 text-base md:text-lg 2xl:text-xl">
+	<div class="flex flex-col gap-2 text-lg md:text-xl 2xl:text-2xl">
 		<p class="text-(--gray-text)" id="links">Links</p>
 		{#each thought.links as link}
 			<a
