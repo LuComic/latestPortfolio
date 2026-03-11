@@ -187,5 +187,10 @@ export const thoughts: thoughtType[] = [
 		href: 'best_series',
 		date: '11.03.2026',
 		content: 'series.md'
+	},
+	{
+		href: 'running_and_dissociation',
+		date: '11.03.2026',
+		content: 'dissociation.md'
 	}
 ];

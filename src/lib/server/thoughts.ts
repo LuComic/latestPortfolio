@@ -11,6 +11,14 @@ export type ThoughtToken =
 			content: string;
 	  }
 	| {
+			type: 'italic';
+			content: string;
+	  }
+	| {
+			type: 'bold';
+			content: string;
+	  }
+	| {
 			type: 'links-anchor';
 			content: string;
 	  }
@@ -31,7 +39,7 @@ export type ThoughtPreview = thoughtType & {
 };
 
 const linksHeadingPattern = /^##?\s+links\s*$/i;
-const inlineTokenPattern = /\[([^\]]+)\]\(([^)]+)\)|<([^>\n]+)>/g;
+const inlineTokenPattern = /\[([^\]]+)\]\(([^)]+)\)|<([^>\n]+)>|\*\*([^*\n]+)\*\*|\*([^*\n]+)\*/g;
 const thoughtFiles = import.meta.glob('../../../static/thoughts/*.md', {
 	query: '?raw',
 	import: 'default',
@@ -53,7 +61,7 @@ function trimEmptyLines(lines: string[]) {
 	return lines.slice(start, end);
 }
 
-function parseInlineLinks(text: string): ThoughtToken[] {
+function parseInlineTokens(text: string): ThoughtToken[] {
 	const tokens: ThoughtToken[] = [];
 	let lastIndex = 0;
 
@@ -71,6 +79,16 @@ function parseInlineLinks(text: string): ThoughtToken[] {
 			tokens.push({
 				type: 'links-anchor',
 				content: match[3].trim()
+			});
+		} else if (match[4]) {
+			tokens.push({
+				type: 'bold',
+				content: match[4]
+			});
+		} else if (match[5]) {
+			tokens.push({
+				type: 'italic',
+				content: match[5]
 			});
 		} else {
 			tokens.push({
@@ -102,7 +120,7 @@ function toParagraphs(lines: string[]) {
 			return;
 		}
 
-		paragraphs.push(parseInlineLinks(paragraphLines.join(' ')));
+		paragraphs.push(parseInlineTokens(paragraphLines.join(' ')));
 		paragraphLines = [];
 	};
 

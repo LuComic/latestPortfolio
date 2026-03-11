@@ -49,6 +49,10 @@
 					<a href="#links" class="underline decoration-(--purple-text) underline-offset-3">
 						{token.content}
 					</a>
+				{:else if token.type === 'bold'}
+					<strong>{token.content}</strong>
+				{:else if token.type === 'italic'}
+					<em>{token.content}</em>
 				{:else}
 					{token.content}
 				{/if}
