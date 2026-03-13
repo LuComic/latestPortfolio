@@ -17,8 +17,8 @@
 	keywords="portfolio, dev, lukas, jaager, thoughts, blog"
 />
 
-<div class="flex flex-col">
-	<div class="my-4 flex items-center justify-start gap-2">
+<div class="flex flex-col gap-2">
+	<div class="mt-4 flex items-center justify-start gap-2">
 		<a href="/thoughts">
 			<ChevronLeft size={28} class="transition hover:text-(--purple-text)" />
 		</a>
@@ -32,7 +32,7 @@
 	</p>
 </div>
 
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-6">
 	{#each thought.paragraphs as paragraph}
 		<p class="text-lg leading-relaxed md:text-xl 2xl:text-2xl">
 			{#each paragraph as token}
