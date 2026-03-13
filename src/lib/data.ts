@@ -192,5 +192,10 @@ export const thoughts: thoughtType[] = [
 		href: 'running_and_dissociation',
 		date: '11.03.2026',
 		content: 'dissociation.md'
-	}
+	},
+	{
+		href: 'frontend_unproductivity',
+		date: '14.03.2026',
+		content: 'frontend-unproductivity.md'
+	},
 ];
