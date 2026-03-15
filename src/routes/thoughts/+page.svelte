@@ -29,12 +29,14 @@
 <div class="flex w-full flex-col items-start justify-start gap-4">
 	{#each sortedThoughts as thought (thought.href)}
 		<a
-			class="flex w-max cursor-pointer items-center justify-start gap-4 text-base text-(--gray-text) underline-offset-4 transition hover:underline md:text-lg 2xl:text-xl"
+			class="outer flex w-max cursor-pointer items-center justify-start gap-2 text-base text-(--gray-text) underline-offset-4 transition hover:underline md:text-lg 2xl:text-xl"
 			href={'/thoughts/' + thought.href}
 		>
 			<p class="font-semibold text-(--gray-text)">
 				{thought.title}
 			</p>
+			<span class="text-sm">{thought.date}</span>
+			<span class="text-sm text-(--purple-text)/60">{thought.wordCount}</span>
 			<ChevronRight />
 		</a>
 	{/each}

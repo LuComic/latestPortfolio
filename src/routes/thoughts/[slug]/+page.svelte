@@ -6,6 +6,7 @@
 	let { data }: { data: PageData } = $props();
 
 	const thought = $derived(data.thought);
+	const wordCount = $derived(thought.wordCount);
 	const description = $derived(
 		thought.paragraphs[0]?.map((token) => token.content).join('') ?? 'Thought by Lukas Jaager'
 	);
@@ -18,7 +19,7 @@
 />
 
 <div class="flex flex-col gap-2">
-	<div class="mt-4 flex items-center justify-start gap-2">
+	<div class="mt-4 mb-2 flex items-center justify-start gap-2">
 		<a href="/thoughts">
 			<ChevronLeft size={28} class="transition hover:text-(--purple-text)" />
 		</a>
@@ -28,8 +29,12 @@
 	</div>
 
 	<p class="text-base text-(--gray-text) md:text-lg 2xl:text-xl">
-		By Lukas Jääger - {thought.date}
+		Lukas Jääger - {thought.date}
 	</p>
+
+	<span class="text-base text-(--gray-text) md:text-lg 2xl:text-xl">
+		{wordCount} words
+	</span>
 </div>
 
 <div class="flex flex-col gap-6">

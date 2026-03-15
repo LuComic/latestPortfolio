@@ -32,10 +32,12 @@ export type ParsedThought = thoughtType & {
 	title: string;
 	paragraphs: ThoughtToken[][];
 	links: ThoughtLink[];
+	wordCount: number;
 };
 
 export type ThoughtPreview = thoughtType & {
 	title: string;
+	wordCount: number;
 };
 
 const linksHeadingPattern = /^##?\s+links\s*$/i;
@@ -138,6 +140,22 @@ function toParagraphs(lines: string[]) {
 	return paragraphs;
 }
 
+function countWords(text: string) {
+	return text.match(/\S+/g)?.length ?? 0;
+}
+
+function countParagraphWords(paragraphs: ThoughtToken[][]) {
+	let total = 0;
+
+	for (const paragraph of paragraphs) {
+		for (const token of paragraph) {
+			total += countWords(token.content);
+		}
+	}
+
+	return total;
+}
+
 function parseThoughtMarkdown(markdown: string) {
 	const lines = markdown.replace(/\r\n/g, '\n').split('\n');
 	const titleLineIndex = lines.findIndex((line) => line.trim() !== '');
@@ -146,7 +164,8 @@ function parseThoughtMarkdown(markdown: string) {
 		return {
 			title: '',
 			paragraphs: [],
-			links: []
+			links: [],
+			wordCount: 0
 		};
 	}
 
@@ -164,17 +183,19 @@ function parseThoughtMarkdown(markdown: string) {
 	);
 	const linkLines =
 		linksHeadingIndex === -1 ? [] : trimEmptyLines(lines.slice(linksHeadingIndex + 1));
+	const paragraphs = toParagraphs(bodyLines);
 
 	return {
 		title,
-		paragraphs: toParagraphs(bodyLines),
+		paragraphs,
 		links: linkLines
 			.map((line) => line.trim().match(/^\[([^\]]+)\]\(([^)]+)\)$/))
 			.filter((match): match is RegExpMatchArray => match !== null)
 			.map((match) => ({
 				label: match[1].trim(),
 				href: match[2].trim()
-			}))
+			})),
+		wordCount: countParagraphWords(paragraphs)
 	};
 }
 
@@ -201,11 +222,12 @@ async function parseThought(thought: thoughtType): Promise<ParsedThought> {
 export async function getThoughtPreviews(): Promise<ThoughtPreview[]> {
 	return Promise.all(
 		thoughts.map(async (thought) => {
-			const { title } = await parseThought(thought);
+			const { title, wordCount } = await parseThought(thought);
 
 			return {
 				...thought,
-				title
+				title,
+				wordCount
 			};
 		})
 	);
