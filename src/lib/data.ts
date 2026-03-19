@@ -197,5 +197,10 @@ export const thoughts: thoughtType[] = [
 		href: 'frontend-unproductivity',
 		date: '14.03.2026',
 		content: 'frontend-unproductivity.md'
+	},
+	{
+		href: 'why-i-like-twin-peaks-so-much',
+		date: '19.03.2026',
+		content: 'why-i-like-twin-peaks-so-much.md'
 	}
 ];
