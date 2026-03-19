@@ -179,12 +179,12 @@ export const portfolioList: portfolioType[] = [
 
 export const thoughts: thoughtType[] = [
 	{
-		href: 'peptides_and_sams_warning',
+		href: 'peptides-and-sams-warning',
 		date: '10.03.2026',
 		content: 'peptides.md'
 	},
 	{
-		href: 'best_series',
+		href: 'best-series',
 		date: '11.03.2026',
 		content: 'series.md'
 	},
@@ -194,8 +194,8 @@ export const thoughts: thoughtType[] = [
 		content: 'dissociation.md'
 	},
 	{
-		href: 'frontend_unproductivity',
+		href: 'frontend-unproductivity',
 		date: '14.03.2026',
 		content: 'frontend-unproductivity.md'
-	},
+	}
 ];
