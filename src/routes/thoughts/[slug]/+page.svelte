@@ -2,6 +2,7 @@
 	import SvelteSeo from 'svelte-seo';
 	import type { PageData } from './$types';
 	import { ChevronLeft } from '@lucide/svelte';
+	import OtherThoughts from '$lib/components/OtherThoughts.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -81,6 +82,9 @@
 		{/each}
 	</div>
 {/if}
+
+<h2 class="mt-4 text-xl font-medium text-(--headings) md:text-2xl">Other thoughts</h2>
+<OtherThoughts thoughts={data.allThoughts} currentThought={data.thought} />
 
 <style>
 	.name-header {
