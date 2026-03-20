@@ -202,5 +202,10 @@ export const thoughts: thoughtType[] = [
 		href: 'why-i-like-twin-peaks-so-much',
 		date: '19.03.2026',
 		content: 'why-i-like-twin-peaks-so-much.md'
+	},
+	{
+		href: 'taking-rare-chances',
+		date: '20.03.2026',
+		content: 'taking-rare-chances.md'
 	}
 ];
