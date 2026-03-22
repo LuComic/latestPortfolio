@@ -122,7 +122,7 @@ function toParagraphs(lines: string[]) {
 			return;
 		}
 
-		paragraphs.push(parseInlineTokens(paragraphLines.join(' ')));
+		paragraphs.push(parseInlineTokens(paragraphLines.join('\n')));
 		paragraphLines = [];
 	};
 

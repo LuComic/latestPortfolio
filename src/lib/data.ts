@@ -207,5 +207,10 @@ export const thoughts: thoughtType[] = [
 		href: 'taking-rare-chances',
 		date: '20.03.2026',
 		content: 'taking-rare-chances.md'
+	},
+	{
+		href: 'explaining-as-an-idea',
+		date: '22.03.2026',
+		content: 'explaining-as-a-pitch.md'
 	}
 ];

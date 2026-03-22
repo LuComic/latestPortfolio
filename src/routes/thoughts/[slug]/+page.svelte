@@ -9,7 +9,8 @@
 	const thought = $derived(data.thought);
 	const wordCount = $derived(thought.wordCount);
 	const description = $derived(
-		thought.paragraphs[0]?.map((token) => token.content).join('') ?? 'Thought by Lukas Jaager'
+		thought.paragraphs[0]?.map((token) => token.content).join('').replace(/\s+/g, ' ').trim() ??
+			'Thought by Lukas Jaager'
 	);
 </script>
 
@@ -40,7 +41,7 @@
 
 <div class="flex flex-col gap-6">
 	{#each thought.paragraphs as paragraph}
-		<p class="text-lg leading-relaxed md:text-xl 2xl:text-2xl">
+		<p class="text-lg leading-relaxed whitespace-pre-line md:text-xl 2xl:text-2xl">
 			{#each paragraph as token}
 				{#if token.type === 'link'}
 					<a
