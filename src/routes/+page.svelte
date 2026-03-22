@@ -18,8 +18,7 @@
 	>. I also do track and field and am really interested in music.
 	<br />
 	<br />
-	I'm currently in 12th grade, studying at MURG (Mustamäe State Upper Secondary School). In middle school
-	I studied at Tallinn's Kristiine's Gymnasium.
+	I'm currently in 12th grade, so the end of high school is near.
 	<a class="text-(--purple-text) transition hover:text-(--purple-hover)" href="/experience">
 		Python programming
 	</a>
