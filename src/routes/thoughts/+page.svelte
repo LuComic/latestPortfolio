@@ -32,12 +32,14 @@
 			class="outer flex w-full cursor-pointer items-center justify-start gap-2 text-base text-(--gray-text) underline-offset-4 transition hover:underline md:text-lg 2xl:text-xl"
 			href={'/thoughts/' + thought.href}
 		>
-			<p class="font-semibold text-(--gray-text)">
+			<p class="w-full font-semibold text-(--gray-text) md:w-auto">
 				{thought.title}
 			</p>
 			<ChevronRight />
-			<span class="ml-auto text-sm">{thought.date}</span>
-			<span class="text-sm text-(--purple-text)/60">{thought.wordCount}</span>
+			<div class="ml-auto flex w-[100px] min-w-[100px] items-center justify-center gap-2">
+				<span class="text-sm">{thought.date}</span>
+				<span class="text-sm text-(--purple-text)/60">{thought.wordCount}</span>
+			</div>
 		</a>
 	{/each}
 </div>
