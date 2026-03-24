@@ -154,9 +154,6 @@ export const portfolioList: portfolioType[] = [
 			},
 			{
 				info: "You can decide how to customise the site however you'd like. Just message me, tell me what you'd like removed/added and I'll get working."
-			},
-			{
-				info: 'The site will be connected to a Convex database which allows you to edit your information at any time, anywhere and instantly.'
 			}
 		]
 	},

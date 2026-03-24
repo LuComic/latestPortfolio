@@ -52,4 +52,11 @@
 		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
 		Contact
 	</a>
+	<a
+		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+		href="/thoughts"
+	>
+		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+		My thoughts
+	</a>
 </div>
