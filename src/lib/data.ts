@@ -42,7 +42,7 @@ export const experience: experienceType[] = [
 	{
 		id: 1,
 		header: 'Frontend (Primary focus over the last 2 years)',
-		info: ['HTML, CSS, JS and TS', 'Svelte 5', 'Next.js the basics'],
+		info: ['Svelte 5', 'Next.js', 'HTML, CSS, JS and TS'],
 		links: [{ name: 'Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }]
 	},
 	{
@@ -62,6 +62,20 @@ export const experience: experienceType[] = [
 ];
 
 export const projects: projectType[] = [
+	{
+		id: 4,
+		name: 'Pageboard',
+		stack: ['Next.js', 'Convex', 'Tailwind'],
+		disclaimer: 'https://www.pageboard.app',
+		description:
+			'Pageboard is a client communication and collaboration tool for freelancers and small teams to keep projects clear, structured and easy to follow. Instead of scattered messages and constant hand holding, you can build shared project pages where clients can review progress, leave feedback, answer questions, choose between options and stay in loop all the time. It also includes reusable templates, live updates, join-by-code access and different interactive components to make the whole project feel more organised and professional.',
+		pics: [
+			'/pictures/pb.png',
+			'/pictures/pref-pb.png',
+			'/pictures/ideas-pb.png',
+			'/pictures/prog-pb.png'
+		]
+	},
 	{
 		id: 1,
 		name: 'NoorteKunst',
