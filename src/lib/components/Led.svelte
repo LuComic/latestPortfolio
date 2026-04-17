@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { COLORS } from '../../routes/(projects)/one_portfolio/ledColors';
+	import { COLORS } from '../../routes/(projects)/one-portfolio/ledColors';
 
 	// Forces a re-render on each interval so generateColor() runs again.
 	let colorTick = $state(0);

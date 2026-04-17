@@ -18,11 +18,11 @@
 			<h3
 				class={`overall-font flex items-center justify-start ${screenWidth > 900 ? 'gap-6' : 'gap-2'} rounded-full bg-white/10 px-6 py-2 ${screenWidth > 900 ? 'text-lg' : 'text-base'}`}
 			>
-				<a href="/one_portfolio">John Doe</a>
-				<a href="/one_portfolio_page" class="john-hover text-gray-500">About</a>
-				<a href="/one_portfolio_page" class="john-hover text-gray-500">Experience</a>
-				<a href="/one_portfolio_page" class="john-hover text-gray-500">Education</a>
-				<a href="/one_portfolio_page" class="john-hover text-gray-500">Contact</a>
+				<a href="/one-portfolio">John Doe</a>
+				<a href="/one-portfolio-page" class="john-hover text-gray-500">About</a>
+				<a href="/one-portfolio-page" class="john-hover text-gray-500">Experience</a>
+				<a href="/one-portfolio-page" class="john-hover text-gray-500">Education</a>
+				<a href="/one-portfolio-page" class="john-hover text-gray-500">Contact</a>
 			</h3>
 			<h1 class="john-text mt-20 text-4xl">About</h1>
 			<p class="text-xl text-gray-500">

@@ -19,15 +19,15 @@
 				<span class="john-text overall-font text-6xl text-gray-500">One cool individual</span>
 			</div>
 			<div class="mt-4 flex min-h-0 flex-col items-end gap-6 text-2xl text-gray-500">
-				<a href="/one_portfolio_page" class="john-hover underline-offset-4 hover:underline">About</a
+				<a href="/one-portfolio-page" class="john-hover underline-offset-4 hover:underline">About</a
 				>
-				<a href="/one_portfolio_page" class="john-hover underline-offset-4 hover:underline"
+				<a href="/one-portfolio-page" class="john-hover underline-offset-4 hover:underline"
 					>Experience</a
 				>
-				<a href="/one_portfolio_page" class="john-hover underline-offset-4 hover:underline"
+				<a href="/one-portfolio-page" class="john-hover underline-offset-4 hover:underline"
 					>Education</a
 				>
-				<a href="/one_portfolio_page" class="john-hover underline-offset-4 hover:underline"
+				<a href="/one-portfolio-page" class="john-hover underline-offset-4 hover:underline"
 					>Contact</a
 				>
 			</div>
@@ -45,10 +45,10 @@
 		<div
 			class="overall-font mt-4 flex min-h-0 flex-1 flex-col items-start gap-6 text-2xl text-gray-500"
 		>
-			<a href="/one_portfolio_page" class="underline-offset-4 hover:underline">About</a>
-			<a href="/one_portfolio_page" class="underline-offset-4 hover:underline">Experience</a>
-			<a href="/one_portfolio_page" class="underline-offset-4 hover:underline">Education</a>
-			<a href="/one_portfolio_page" class="underline-offset-4 hover:underline">Contact</a>
+			<a href="/one-portfolio-page" class="underline-offset-4 hover:underline">About</a>
+			<a href="/one-portfolio-page" class="underline-offset-4 hover:underline">Experience</a>
+			<a href="/one-portfolio-page" class="underline-offset-4 hover:underline">Education</a>
+			<a href="/one-portfolio-page" class="underline-offset-4 hover:underline">Contact</a>
 		</div>
 	</div>
 {/if}
