@@ -5,8 +5,10 @@
     "": {
       "name": "svelte-test",
       "dependencies": {
+        "@fontsource-variable/domine": "^5.2.8",
         "@fontsource-variable/rubik": "^5.2.8",
         "@fontsource/libre-baskerville": "^5.2.10",
+        "@fontsource/poppins": "^5.2.7",
         "@lucide/svelte": "^0.561.0",
         "svelte-seo": "^2.0.0",
       },
@@ -107,9 +109,13 @@
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.4.1", "", { "dependencies": { "@eslint/core": "^0.17.0", "levn": "^0.4.1" } }, "sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA=="],
 
+    "@fontsource-variable/domine": ["@fontsource-variable/domine@5.2.8", "", {}, "sha512-bpV6wA5fyA0DNlsgrqvQ0L3QZnYzI/JV1QmXUSOL8hK1M63139yGSFpQf11gGdJfpb71UdpquCRMEp/oVJUPWg=="],
+
     "@fontsource-variable/rubik": ["@fontsource-variable/rubik@5.2.8", "", {}, "sha512-vGDExLzB4a2Fj9mca5LqNoA2ZKcU9o+x5FEBLte/nxYkCB9hOQwZS6ZlItUv+Ssn7YMzKauGuI/Po+YueFuZbg=="],
 
     "@fontsource/libre-baskerville": ["@fontsource/libre-baskerville@5.2.10", "", {}, "sha512-Y/bGj4cOdWhAxU4+sBPen3MB5Og3t/WvezVL+05CJ7cvhDQUKpQFUuw/hm1IQKRc9u0lWs8VP2MKDOK2uQtloQ=="],
+
+    "@fontsource/poppins": ["@fontsource/poppins@5.2.7", "", {}, "sha512-6uQyPmseo4FgI97WIhA4yWRlNaoLk4vSDK/PyRwdqqZb5zAEuc+Kunt8JTMcsHYUEGYBtN15SNkMajMdqUSUmg=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
