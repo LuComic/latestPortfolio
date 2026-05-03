@@ -35,6 +35,15 @@
 				{#if prj.disclaimer}
 					<p>*{prj.disclaimer}*</p>
 				{/if}
+				{#if prj.siteLink}
+					<a
+						class="text-(--purple-text) transition hover:text-(--purple-hover)"
+						target="_blank"
+						href={prj.siteLink}
+					>
+						{prj.siteLink}
+					</a>
+				{/if}
 			</div>
 			<Carousel pics={prj.pics} />
 		</div>

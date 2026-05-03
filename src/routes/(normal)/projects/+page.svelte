@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-	{#each preloadImages as img}
+	{#each preloadImages as img (img)}
 		<link rel="preload" as="image" href={img} />
 	{/each}
 </svelte:head>

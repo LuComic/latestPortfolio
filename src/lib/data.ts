@@ -29,6 +29,7 @@ export type projectType = {
 	stack: string[];
 	description: string;
 	disclaimer?: string;
+	siteLink?: string;
 	pics: string[];
 };
 
@@ -66,7 +67,7 @@ export const projects: projectType[] = [
 		id: 4,
 		name: 'Pageboard',
 		stack: ['Next.js', 'Convex', 'Tailwind'],
-		disclaimer: 'https://www.pageboard.app',
+		siteLink: 'https://www.pageboard.app',
 		description:
 			'Pageboard is a client communication and collaboration tool for freelancers and small teams to keep projects clear, structured and easy to follow. Instead of scattered messages and constant hand holding, you can build shared project pages where clients can review progress, leave feedback, answer questions, choose between options and stay in loop all the time. It also includes reusable templates, live updates, join-by-code access and different interactive components to make the whole project feel more organised and professional.',
 		pics: [
