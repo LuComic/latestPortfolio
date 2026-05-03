@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '@fontsource/libre-baskerville';
 	import { socials } from '$lib/data';
-	import { Instagram, Facebook, Github } from '@lucide/svelte';
+	import { Instagram, Facebook, Github, X } from '@lucide/svelte';
 	import SvelteSeo from 'svelte-seo';
 </script>
 
@@ -21,6 +21,8 @@
 				<Github color="#6E5494" />
 			{:else if soc.media === 'instagram'}
 				<Instagram color="#fa7e1e" />
+			{:else if soc.media === 'X'}
+				<X color="#fa7e1e" />
 			{/if}
 			<a target="_blank" href={soc.link}>{soc.media}</a>
 		</div>

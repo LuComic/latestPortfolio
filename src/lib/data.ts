@@ -34,7 +34,7 @@ export type projectType = {
 
 export type contactType = {
 	id: number;
-	media: 'instagram' | 'github' | 'facebook';
+	media: 'instagram' | 'github' | 'facebook' | 'X';
 	link: string;
 };
 
@@ -131,6 +131,11 @@ export const socials: contactType[] = [
 		id: 3,
 		media: 'github',
 		link: 'https://github.com/LuComic'
+	},
+	{
+		id: 4,
+		media: 'X',
+		link: 'https://x.com/LuComic3'
 	}
 ];
 
