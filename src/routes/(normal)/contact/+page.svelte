@@ -23,6 +23,8 @@
 				<Instagram color="#fa7e1e" />
 			{:else if soc.media === 'X'}
 				<Bird color="#E7E9EA" />
+			{:else if soc.media === 'Linkedin'}
+				<span class="w-6 text-center text-xl text-[#0A66C2]">in</span>
 			{/if}
 			<a target="_blank" href={soc.link}>{soc.media}</a>
 		</div>

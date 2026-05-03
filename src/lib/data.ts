@@ -35,7 +35,7 @@ export type projectType = {
 
 export type contactType = {
 	id: number;
-	media: 'instagram' | 'github' | 'facebook' | 'X';
+	media: 'instagram' | 'github' | 'facebook' | 'X' | 'Linkedin';
 	link: string;
 };
 
@@ -137,6 +137,11 @@ export const socials: contactType[] = [
 		id: 4,
 		media: 'X',
 		link: 'https://x.com/LuComic3'
+	},
+	{
+		id: 5,
+		media: 'Linkedin',
+		link: 'https://www.linkedin.com/in/lukas-jääger-6a0747307/'
 	}
 ];
 
