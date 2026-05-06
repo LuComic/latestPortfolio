@@ -94,7 +94,7 @@ export const projects: projectType[] = [
 		id: 2,
 		name: 'StreamList',
 		stack: ['Next.js', 'Tailwind'],
-		disclaimer: "I made only the frontend; TalTech's project",
+		disclaimer: "I made only the frontend and connected the movie DB; TalTech's project",
 		description:
 			"A site similar to Letterboxd, but with a new intuitive UI and a more userfriendly alternative, with analytics and more. Add movies AND SHOWS (which isn't possible in Letterboxd) to either 'Watched' or 'Watchlist', rate them, leave an overview etc. You can even create your own groups which you can share with friends, to share what each of you likes.",
 		pics: [
