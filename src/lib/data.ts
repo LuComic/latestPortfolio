@@ -234,5 +234,10 @@ export const thoughts: thoughtType[] = [
 		href: 'explaining-as-an-idea',
 		date: '22.03.2026',
 		content: 'explaining-as-a-pitch.md'
+	},
+	{
+		href: 'creating-and-testing-my-project',
+		date: '10.05.2026',
+		content: 'creating-and-testing-my-project.md'
 	}
 ];

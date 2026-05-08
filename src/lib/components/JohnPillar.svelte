@@ -7,7 +7,7 @@
 	style:grid-template-columns="repeat(3, minmax(0, 1fr))"
 	style:grid-template-rows="repeat(20, minmax(0, 1fr))"
 >
-	{#each Array.from(Array(60).keys()) as _}
+	{#each Array.from(Array(60).keys()) as _ (_)}
 		<Led />
 	{/each}
 </div>

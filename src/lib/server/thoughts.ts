@@ -28,9 +28,14 @@ export type ThoughtToken =
 			href: string;
 	  };
 
+export type ThoughtParagraph = {
+	style: 'body' | 'heading';
+	tokens: ThoughtToken[];
+};
+
 export type ParsedThought = thoughtType & {
 	title: string;
-	paragraphs: ThoughtToken[][];
+	paragraphs: ThoughtParagraph[];
 	links: ThoughtLink[];
 	wordCount: number;
 };
@@ -41,6 +46,7 @@ export type ThoughtPreview = thoughtType & {
 };
 
 const linksHeadingPattern = /^##?\s+links\s*$/i;
+const subheadingPattern = /^##\s+(.+)$/;
 const inlineTokenPattern = /\[([^\]]+)\]\(([^)]+)\)|<([^>\n]+)>|\*\*([^*\n]+)\*\*|\*([^*\n]+)\*/g;
 const thoughtFiles = import.meta.glob('../../../static/thoughts/*.md', {
 	query: '?raw',
@@ -114,7 +120,7 @@ function parseInlineTokens(text: string): ThoughtToken[] {
 }
 
 function toParagraphs(lines: string[]) {
-	const paragraphs: ThoughtToken[][] = [];
+	const paragraphs: ThoughtParagraph[] = [];
 	let paragraphLines: string[] = [];
 
 	const pushParagraph = () => {
@@ -122,17 +128,33 @@ function toParagraphs(lines: string[]) {
 			return;
 		}
 
-		paragraphs.push(parseInlineTokens(paragraphLines.join('\n')));
+		paragraphs.push({
+			style: 'body',
+			tokens: parseInlineTokens(paragraphLines.join('\n'))
+		});
 		paragraphLines = [];
 	};
 
 	for (const line of lines) {
-		if (line.trim() === '') {
+		const trimmedLine = line.trim();
+
+		if (trimmedLine === '') {
 			pushParagraph();
 			continue;
 		}
 
-		paragraphLines.push(line.trim());
+		const subheadingMatch = trimmedLine.match(subheadingPattern);
+
+		if (subheadingMatch) {
+			pushParagraph();
+			paragraphs.push({
+				style: 'heading',
+				tokens: parseInlineTokens(subheadingMatch[1].trim())
+			});
+			continue;
+		}
+
+		paragraphLines.push(trimmedLine);
 	}
 
 	pushParagraph();
@@ -144,11 +166,11 @@ function countWords(text: string) {
 	return text.match(/\S+/g)?.length ?? 0;
 }
 
-function countParagraphWords(paragraphs: ThoughtToken[][]) {
+function countParagraphWords(paragraphs: ThoughtParagraph[]) {
 	let total = 0;
 
 	for (const paragraph of paragraphs) {
-		for (const token of paragraph) {
+		for (const token of paragraph.tokens) {
 			total += countWords(token.content);
 		}
 	}

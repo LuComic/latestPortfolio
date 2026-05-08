@@ -9,8 +9,11 @@
 	const thought = $derived(data.thought);
 	const wordCount = $derived(thought.wordCount);
 	const description = $derived(
-		thought.paragraphs[0]?.map((token) => token.content).join('').replace(/\s+/g, ' ').trim() ??
-			'Thought by Lukas Jaager'
+		thought.paragraphs[0]?.tokens
+			.map((token) => token.content)
+			.join('')
+			.replace(/\s+/g, ' ')
+			.trim() ?? 'Thought by Lukas Jaager'
 	);
 </script>
 
@@ -25,24 +28,30 @@
 		<a href="/thoughts">
 			<ChevronLeft size={28} class="transition hover:text-(--purple-text)" />
 		</a>
-		<h1 class="name-header w-full bg-(--background) text-2xl text-(--headings) lg:py-0 lg:text-3xl">
+		<h1
+			class="name-header w-full bg-(--background) text-2xl text-(--headings) lg:py-0 lg:text-3xl 2xl:text-4xl"
+		>
 			{thought.title}
 		</h1>
 	</div>
 
-	<p class="text-base text-(--gray-text) md:text-lg 2xl:text-xl">
+	<p class="text-base text-(--gray-text) lg:text-lg 2xl:text-xl">
 		Lukas Jääger - {thought.date}
 	</p>
 
-	<span class="text-base text-(--gray-text) md:text-lg 2xl:text-xl">
+	<span class="text-base text-(--gray-text) lg:text-lg 2xl:text-xl">
 		{wordCount} words
 	</span>
 </div>
 
 <div class="flex flex-col gap-6">
-	{#each thought.paragraphs as paragraph}
-		<p class="text-lg leading-relaxed whitespace-pre-line md:text-xl 2xl:text-2xl">
-			{#each paragraph as token}
+	{#each thought.paragraphs as paragraph (paragraph)}
+		<p
+			class={paragraph.style === 'heading'
+				? 'text-xl font-medium lg:text-2xl 2xl:text-3xl'
+				: 'text-lg leading-relaxed whitespace-pre-line lg:text-xl 2xl:text-2xl'}
+		>
+			{#each paragraph.tokens as token (token)}
 				{#if token.type === 'link'}
 					<a
 						href={token.href}
@@ -69,9 +78,9 @@
 </div>
 
 {#if thought.links.length > 0}
-	<div class="flex flex-col gap-2 text-lg md:text-xl 2xl:text-2xl">
+	<div class="flex flex-col gap-2 text-lg lg:text-xl 2xl:text-2xl">
 		<p class="text-(--gray-text)" id="links">Links</p>
-		{#each thought.links as link}
+		{#each thought.links as link (link)}
 			<a
 				target="_blank"
 				rel="noreferrer"
@@ -84,7 +93,7 @@
 	</div>
 {/if}
 
-<h2 class="mt-4 text-xl font-medium text-(--headings) md:text-2xl">Other thoughts</h2>
+<h2 class="mt-4 text-xl font-medium text-(--headings) lg:text-2xl 2xl:text-3xl">Other thoughts</h2>
 <OtherThoughts thoughts={data.allThoughts} currentThought={data.thought} />
 
 <style>
