@@ -36,7 +36,7 @@
 				{thought.title}
 			</p>
 			<ChevronRight />
-			<div class="ml-auto flex w-[100px] min-w-[100px] items-center justify-center gap-2">
+			<div class="ml-auto flex w-25 min-w-25 items-center justify-center gap-2">
 				<span class="text-sm">{thought.date}</span>
 				<span class="text-sm text-(--purple-text)/60">{thought.wordCount}</span>
 			</div>

@@ -13,7 +13,7 @@
 			.map((token) => token.content)
 			.join('')
 			.replace(/\s+/g, ' ')
-			.trim() ?? 'Thought by Lukas Jaager'
+			.trim() ?? 'A thought by Lukas Jaager'
 	);
 </script>
 
@@ -78,14 +78,14 @@
 </div>
 
 {#if thought.links.length > 0}
-	<div class="flex flex-col gap-2 text-xl font-medium lg:text-2xl 2xl:text-3xl">
-		<p class="text-(--gray-text)" id="links">Links</p>
+	<div class="flex flex-col gap-2">
+		<p class="mb-4 text-xl font-medium lg:text-2xl 2xl:text-3xl" id="links">Links</p>
 		{#each thought.links as link (link)}
 			<a
 				target="_blank"
 				rel="noreferrer"
 				href={link.href}
-				class="text-(--purple-text) transition hover:text-(--purple-hover)"
+				class="text-lg text-(--purple-text) transition hover:text-(--purple-hover) lg:text-xl 2xl:text-2xl"
 			>
 				{link.label}
 			</a>
