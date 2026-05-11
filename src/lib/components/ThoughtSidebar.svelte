@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { ChevronRight, CornerDownLeft, Minimize2 } from '@lucide/svelte';
 	import {
 		getOtherThoughtItems,
 		getThoughtTocItems,
-		thoughtsExpanded,
+		measureThoughtMinimap,
+		type MinimapItem,
 		type SidebarItem
 	} from '$lib/thoughtState.svelte';
 
@@ -23,8 +25,16 @@
 	let tocOpen = $state(false);
 	let linksOpen = $state(false);
 	let thoughtsOpen = $state(false);
+	let minimap = $state<HTMLDivElement>();
+	let minimapItems: MinimapItem[] = $state([]);
+	let minimapHeight = $state(48);
 	let thought = $derived(page.data.thought);
 	let tocItems: SidebarItem[] = $derived(getThoughtTocItems(thought?.paragraphs));
+	let hasThoughtHeadings = $derived(
+		tocItems.some(
+			(item) => item.label.trim().toLowerCase() !== thought?.title?.trim().toLowerCase()
+		)
+	);
 	let linkItems: SidebarItem[] = $derived(thought?.links ?? []);
 	let otherThoughtItems: SidebarItem[] = $derived(
 		getOtherThoughtItems(page.data.allThoughts, thought?.href)
@@ -43,6 +53,35 @@
 				break;
 		}
 	};
+
+	const measureMinimap = async () => {
+		const layout = await measureThoughtMinimap(minimap, tocItems, linkItems, thought?.title);
+		if (!layout) return;
+
+		minimapHeight = layout.height;
+		minimapItems = layout.items;
+	};
+
+	$effect(() => {
+		if (thought) {
+			measureMinimap();
+		}
+	});
+
+	onMount(() => {
+		measureMinimap();
+		window.addEventListener('resize', measureMinimap);
+
+		const container = minimap?.closest('.overflow-scroll') as HTMLElement | null;
+		const observer = new ResizeObserver(measureMinimap);
+		if (container) observer.observe(container);
+		if (container?.firstElementChild) observer.observe(container.firstElementChild);
+
+		return () => {
+			window.removeEventListener('resize', measureMinimap);
+			observer.disconnect();
+		};
+	});
 </script>
 
 {#snippet section(
@@ -100,13 +139,26 @@
 			Minimize
 		</button>
 	</div>
-	<div class="relative h-auto min-h-20 w-full overflow-hidden border border-(--gray-text)">
-		<span class="absolute top-1 left-0 z-20 h-px w-1/3 bg-white"></span>
-		<span
-			class="absolute left-0 z-20 h-1 w-full bg-(--purple-text)/65"
-			style={`top: clamp(0px, ${percent}%, calc(100% - 0.25rem))`}
-		></span>
-	</div>
+	{#if hasThoughtHeadings}
+		<div
+			bind:this={minimap}
+			class="relative w-full overflow-hidden border border-(--gray-text)"
+			style={`height: ${minimapHeight}px`}
+		>
+			{#each minimapItems as item (item.href)}
+				<a
+					href={item.href}
+					aria-label={`Jump to ${item.href.slice(1)}`}
+					class={`${item.style === 'heading' ? 'w-1/2' : 'w-1/4'} absolute left-0 z-10 h-px bg-white transition hover:bg-(--purple-text)`}
+					style={`top: clamp(0px, ${item.top}%, calc(100% - 1px))`}
+				></a>
+			{/each}
+			<span
+				class="absolute left-0 z-20 h-1 w-full bg-(--purple-text)/65"
+				style={`top: clamp(0px, ${percent}%, calc(100% - 0.25rem))`}
+			></span>
+		</div>
+	{/if}
 	<div class="flex w-full flex-col gap-2">
 		{@render section('Table of contents', tocItems, toggleItem('toc'), tocOpen, false, true)}
 		{@render section('Links', linkItems, toggleItem('links'), linksOpen, true)}

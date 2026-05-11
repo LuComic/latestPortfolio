@@ -60,10 +60,6 @@ The next day, I had gipidy look over the project again and find places to improv
 
 Since Repoty maps the current project and finds links, etc., it's better for bigger projects and tasks like finding a bug or diagnosing something. It'll be worse for smaller projects and for implementing something from scratch, because in these cases Repoty will be just extra steps the model has to take unnecessarily.
 
-### This is a subheader
-
-bazinga
-
 For the test, gipidy created three cases - positive (something Repoty would be good at), negative (bad), and neutral. I was really hoping for something better, but the results were still disappointing:
 
 **Positive**

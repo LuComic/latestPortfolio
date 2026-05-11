@@ -40,33 +40,18 @@
 			class={`sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium ${thoughtBigScreen ? 'pt-4' : null}`}
 		>
 			{#if thoughtBigScreen}
-				<div class="flex w-full flex-col gap-2">
-					<button
-						class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg font-normal hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
-						onclick={() => toggleThoughts()}
-					>
-						<CornerDownRight size={22} />
-						Open thought
-					</button>
-					<button
-						class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg font-normal hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
-						onclick={() => {
-							toggleSize();
-							closeThoughts();
-						}}
-					>
-						<Minimize2 size={22} />
-						Minimize
-					</button>
-				</div>
-			{:else if expandable}
+				<button class="special" onclick={() => toggleThoughts()}>Open thought</button>
 				<button
-					class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg font-normal hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
-					onclick={() => (thoughtsExpanded.open = true)}
+					class="special"
+					onclick={() => {
+						toggleSize();
+						closeThoughts();
+					}}
 				>
-					<Maximize2 size={22} />
-					Maximize
+					Minimize
 				</button>
+			{:else if expandable}
+				<button class="special" onclick={() => (thoughtsExpanded.open = true)}>Maximize</button>
 			{/if}
 			<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
 			<a
@@ -165,11 +150,18 @@
 		color: var(--headings);
 	}
 
-	a[aria-current='false'] {
+	.special {
+		width: 100%;
+		text-align: left;
+	}
+
+	a[aria-current='false'],
+	.special {
 		color: var(--gray-text);
 	}
 
-	a:hover {
+	a:hover,
+	.special:hover {
 		font-family: 'Libre Baskerville', serif;
 		color: var(--headings);
 	}

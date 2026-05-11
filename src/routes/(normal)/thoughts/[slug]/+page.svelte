@@ -56,9 +56,9 @@
 				? sectionId(index)
 				: undefined}
 			class={paragraph.style === 'heading'
-				? 'text-xl font-medium lg:text-2xl 2xl:text-3xl'
+				? 'text-xl font-medium underline underline-offset-4 lg:text-2xl 2xl:text-3xl'
 				: paragraph.style === 'subheading'
-					? 'font-medium'
+					? 'text-lg leading-relaxed font-medium whitespace-pre-line underline underline-offset-4 lg:text-xl 2xl:text-2xl'
 					: 'text-lg leading-relaxed whitespace-pre-line lg:text-xl 2xl:text-2xl'}
 		>
 			{#each paragraph.tokens as token (token)}
@@ -103,7 +103,9 @@
 	</div>
 {/if}
 
-<h2 class="mt-4 text-xl font-medium text-(--headings) lg:text-2xl 2xl:text-3xl">Other thoughts</h2>
+<h2 id="other-thoughts" class="mt-4 text-xl font-medium text-(--headings) lg:text-2xl 2xl:text-3xl">
+	Other thoughts
+</h2>
 <OtherThoughts thoughts={data.allThoughts} currentThought={data.thought} />
 
 <style>
