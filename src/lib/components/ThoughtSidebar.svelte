@@ -1,6 +1,19 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { ChevronRight, CornerDownLeft, Minimize2 } from '@lucide/svelte';
 	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
+
+	type ThoughtParagraph = {
+		style: 'body' | 'heading' | 'subheading';
+		tokens: { content: string }[];
+	};
+
+	type SidebarItem = {
+		label: string;
+		href: string;
+		style?: 'heading' | 'subheading';
+		indexLabel?: string;
+	};
 
 	let {
 		percent,
@@ -17,6 +30,38 @@
 	let tocOpen = $derived(thoughtsExpanded.toc);
 	let linksOpen = $derived(thoughtsExpanded.links);
 	let thoughtsOpen = $derived(thoughtsExpanded.others);
+	let thought = $derived(page.data.thought);
+	let tocItems: SidebarItem[] = $derived.by(() => {
+		let headingIndex = 0;
+		let subheadingIndex = 0;
+
+		return (
+			(thought?.paragraphs as ThoughtParagraph[] | undefined)
+				?.map((paragraph, index) => ({ paragraph, index }))
+				.filter(
+					({ paragraph }) => paragraph.style === 'heading' || paragraph.style === 'subheading'
+				)
+				.map(({ paragraph, index }) => {
+					if (paragraph.style === 'heading') {
+						headingIndex += 1;
+						subheadingIndex = 0;
+					} else {
+						subheadingIndex += 1;
+					}
+
+					return {
+						label: paragraph.tokens.map((token) => token.content).join(''),
+						href: `#thought-section-${index}`,
+						style: paragraph.style as 'heading' | 'subheading',
+						indexLabel:
+							paragraph.style === 'heading'
+								? `${headingIndex}.`
+								: `${headingIndex}.${subheadingIndex}.`
+					};
+				}) ?? []
+		);
+	});
+	let linkItems: SidebarItem[] = $derived(thought?.links ?? []);
 
 	const toggleItem = (section: 'toc' | 'links' | 'thoughts') => () => {
 		switch (section) {
@@ -35,9 +80,11 @@
 
 {#snippet section(
 	title: string,
-	items: { label: string; href: string }[],
+	items: SidebarItem[],
 	toggle: () => void,
-	value: boolean
+	value: boolean,
+	external = false,
+	showIndexes = false
 )}
 	<div class="flex w-full flex-col gap-2">
 		<button
@@ -51,11 +98,12 @@
 		{#if value}
 			{#each items as link (link)}
 				<a
-					target="_blank"
-					rel="noreferrer"
+					target={external ? '_blank' : undefined}
+					rel={external ? 'noreferrer' : undefined}
 					href={link.href}
-					class="ml-2 text-lg text-(--purple-text) transition hover:text-(--purple-hover) lg:text-xl 2xl:text-2xl"
+					class={`text-(--gray-text) underline-offset-4 hover:underline  ${link.style === 'subheading' ? 'ml-6' : 'ml-2'} text-base lg:text-lg 2xl:text-xl`}
 				>
+					{showIndexes ? link.indexLabel : null}
 					{link.label}
 				</a>
 			{/each}
@@ -85,29 +133,14 @@
 			Minimize
 		</button>
 	</div>
-	<div class="relative aspect-9/12 w-full border">
+	<div class="relative h-auto min-h-10 w-full border border-(--gray-text)">
+		<span class="absolute top-1 left-0 z-20 h-px w-1/3 bg-white"></span>
 		<span class="absolute left-0 z-20 h-1 w-full bg-(--purple-text)/65" style={`top: ${percent}%`}
 		></span>
 	</div>
 	<div class="flex w-full flex-col gap-2">
-		{@render section(
-			'Table of contents',
-			[
-				{ label: 'bazinga', href: 'ooga' },
-				{ label: 'real', href: 'fake' }
-			],
-			toggleItem('toc'),
-			tocOpen
-		)}
-		{@render section(
-			'Links',
-			[
-				{ label: 'bazinga', href: 'ooga' },
-				{ label: 'real', href: 'fake' }
-			],
-			toggleItem('links'),
-			linksOpen
-		)}
+		{@render section('Table of contents', tocItems, toggleItem('toc'), tocOpen, false, true)}
+		{@render section('Links', linkItems, toggleItem('links'), linksOpen, true)}
 		{@render section(
 			'Other thoughts',
 			[

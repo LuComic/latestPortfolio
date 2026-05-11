@@ -16,6 +16,8 @@
 			.replace(/\s+/g, ' ')
 			.trim() ?? 'A thought by Lukas Jaager'
 	);
+
+	const sectionId = (index: number) => `thought-section-${index}`;
 </script>
 
 <SvelteSeo
@@ -48,11 +50,16 @@
 </div>
 
 <div class="flex flex-col gap-6">
-	{#each thought.paragraphs as paragraph (paragraph)}
+	{#each thought.paragraphs as paragraph, index (paragraph)}
 		<p
+			id={paragraph.style === 'heading' || paragraph.style === 'subheading'
+				? sectionId(index)
+				: undefined}
 			class={paragraph.style === 'heading'
 				? 'text-xl font-medium lg:text-2xl 2xl:text-3xl'
-				: 'text-lg leading-relaxed whitespace-pre-line lg:text-xl 2xl:text-2xl'}
+				: paragraph.style === 'subheading'
+					? 'font-medium'
+					: 'text-lg leading-relaxed whitespace-pre-line lg:text-xl 2xl:text-2xl'}
 		>
 			{#each paragraph.tokens as token (token)}
 				{#if token.type === 'link'}

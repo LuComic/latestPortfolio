@@ -29,7 +29,7 @@ export type ThoughtToken =
 	  };
 
 export type ThoughtParagraph = {
-	style: 'body' | 'heading';
+	style: 'body' | 'heading' | 'subheading';
 	tokens: ThoughtToken[];
 };
 
@@ -46,7 +46,8 @@ export type ThoughtPreview = thoughtType & {
 };
 
 const linksHeadingPattern = /^##?\s+links\s*$/i;
-const subheadingPattern = /^##\s+(.+)$/;
+const headingPattern = /^##\s+(.+)$/;
+const subheadingPattern = /^###\s+(.+)$/;
 const inlineTokenPattern = /\[([^\]]+)\]\(([^)]+)\)|<([^>\n]+)>|\*\*([^*\n]+)\*\*|\*([^*\n]+)\*/g;
 const thoughtFiles = import.meta.glob('../../../static/thoughts/*.md', {
 	query: '?raw',
@@ -143,12 +144,23 @@ function toParagraphs(lines: string[]) {
 			continue;
 		}
 
+		const headingMatch = trimmedLine.match(headingPattern);
+
+		if (headingMatch) {
+			pushParagraph();
+			paragraphs.push({
+				style: 'heading',
+				tokens: parseInlineTokens(headingMatch[1].trim())
+			});
+			continue;
+		}
+
 		const subheadingMatch = trimmedLine.match(subheadingPattern);
 
 		if (subheadingMatch) {
 			pushParagraph();
 			paragraphs.push({
-				style: 'heading',
+				style: 'subheading',
 				tokens: parseInlineTokens(subheadingMatch[1].trim())
 			});
 			continue;

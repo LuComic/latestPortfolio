@@ -21,7 +21,7 @@
 		height = container.scrollHeight - container.clientHeight;
 	};
 
-	let percent = $derived(height ? Math.max(0, Math.min(100, (scroll / height) * 100)) : 0);
+	let percent = $derived(height ? Math.max(0, Math.min(100, (scroll / height) * 100) - 10) : 0);
 
 	let width = $state(0);
 	let bigScreen = $derived(thoughtsExpanded.open);
