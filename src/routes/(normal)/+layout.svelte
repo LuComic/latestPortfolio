@@ -5,6 +5,7 @@
 	import '@fontsource/libre-baskerville';
 	import PortfolioPopUp from '$lib/components/PortfolioPopUp.svelte';
 	import { page } from '$app/state';
+	import ThoughtSidebar from '$lib/components/ThoughtSidebar.svelte';
 
 	let { children } = $props();
 
@@ -19,15 +20,23 @@
 	const measure = () => {
 		height = container.scrollHeight - container.clientHeight;
 	};
+
+	let percent = $derived((scroll / height) * 100);
+
+	let width = $state(0);
+	let bigScreen = true;
+	const thoughtBigScreen = $derived(
+		width >= 1024 && bigScreen && page.url.pathname.includes('/thoughts/')
+	);
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-
+<svelte:window bind:innerWidth={width} />
 <PortfolioPopUp />
 
 <div class="scrollable flex h-dvh w-screen flex-col items-center justify-center">
 	<div
-		class="flex h-full w-full grid-cols-5 flex-col items-start justify-start overflow-scroll px-4 pb-4 lg:grid lg:h-2/3 lg:max-w-2/3 lg:p-0"
+		class={`flex h-full w-full flex-col items-start justify-start overflow-scroll px-4 pb-4 lg:grid ${!thoughtBigScreen ? 'grid-cols-5 lg:h-2/3 lg:max-w-2/3 lg:p-0' : 'grid-cols-6'}`}
 		bind:this={container}
 		onscroll={() => {
 			registerScroll();
@@ -35,6 +44,9 @@
 		}}
 	>
 		<Sidebar />
+		{#if thoughtBigScreen}
+			<ThoughtSidebar {percent} />
+		{/if}
 		<div
 			class="col-span-4 flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) lg:border-l-2 lg:pl-4"
 		>
@@ -47,10 +59,10 @@
 						Lukas Jääger, <span class="text-(--gray-text)">Frontend Developer</span>
 					</h1>
 				</a>
-			{:else}
+			{:else if !thoughtBigScreen}
 				<div
 					class="fixed top-0 left-0 z-20 h-1 bg-(--purple-text)/65 md:sticky"
-					style={`width: ${(scroll / height) * 100}%`}
+					style={`width: ${percent}%`}
 				></div>
 			{/if}
 			<div class="relative flex flex-col items-start justify-start gap-6">

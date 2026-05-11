@@ -15,6 +15,8 @@
 			.replace(/\s+/g, ' ')
 			.trim() ?? 'A thought by Lukas Jaager'
 	);
+
+	let thoughtBigScreen = true;
 </script>
 
 <SvelteSeo
@@ -24,7 +26,9 @@
 />
 
 <div class="flex flex-col gap-2">
-	<div class="mt-4 mb-2 flex items-center justify-start gap-2 lg:mt-0">
+	<div
+		class={`mt-4 mb-2 flex items-center justify-start gap-2  ${!thoughtBigScreen ? 'lg:mt-0' : null}`}
+	>
 		<a href="/thoughts">
 			<ChevronLeft size={28} class="transition hover:text-(--purple-text)" />
 		</a>
