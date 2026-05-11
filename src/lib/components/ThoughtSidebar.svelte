@@ -1,19 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { ChevronRight, CornerDownLeft, Minimize2 } from '@lucide/svelte';
-	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
-
-	type ThoughtParagraph = {
-		style: 'body' | 'heading' | 'subheading';
-		tokens: { content: string }[];
-	};
-
-	type SidebarItem = {
-		label: string;
-		href: string;
-		style?: 'heading' | 'subheading';
-		indexLabel?: string;
-	};
+	import {
+		getOtherThoughtItems,
+		getThoughtTocItems,
+		thoughtsExpanded,
+		type SidebarItem
+	} from '$lib/thoughtState.svelte';
 
 	let {
 		percent,
@@ -27,52 +20,26 @@
 		closeThoughts: () => void;
 	} = $props();
 
-	let tocOpen = $derived(thoughtsExpanded.toc);
-	let linksOpen = $derived(thoughtsExpanded.links);
-	let thoughtsOpen = $derived(thoughtsExpanded.others);
+	let tocOpen = $state(false);
+	let linksOpen = $state(false);
+	let thoughtsOpen = $state(false);
 	let thought = $derived(page.data.thought);
-	let tocItems: SidebarItem[] = $derived.by(() => {
-		let headingIndex = 0;
-		let subheadingIndex = 0;
-
-		return (
-			(thought?.paragraphs as ThoughtParagraph[] | undefined)
-				?.map((paragraph, index) => ({ paragraph, index }))
-				.filter(
-					({ paragraph }) => paragraph.style === 'heading' || paragraph.style === 'subheading'
-				)
-				.map(({ paragraph, index }) => {
-					if (paragraph.style === 'heading') {
-						headingIndex += 1;
-						subheadingIndex = 0;
-					} else {
-						subheadingIndex += 1;
-					}
-
-					return {
-						label: paragraph.tokens.map((token) => token.content).join(''),
-						href: `#thought-section-${index}`,
-						style: paragraph.style as 'heading' | 'subheading',
-						indexLabel:
-							paragraph.style === 'heading'
-								? `${headingIndex}.`
-								: `${headingIndex}.${subheadingIndex}.`
-					};
-				}) ?? []
-		);
-	});
+	let tocItems: SidebarItem[] = $derived(getThoughtTocItems(thought?.paragraphs));
 	let linkItems: SidebarItem[] = $derived(thought?.links ?? []);
+	let otherThoughtItems: SidebarItem[] = $derived(
+		getOtherThoughtItems(page.data.allThoughts, thought?.href)
+	);
 
 	const toggleItem = (section: 'toc' | 'links' | 'thoughts') => () => {
 		switch (section) {
 			case 'toc':
-				thoughtsExpanded.toc = !thoughtsExpanded.toc;
+				tocOpen = !tocOpen;
 				break;
 			case 'links':
-				thoughtsExpanded.links = !thoughtsExpanded.links;
+				linksOpen = !linksOpen;
 				break;
 			case 'thoughts':
-				thoughtsExpanded.others = !thoughtsExpanded.others;
+				thoughtsOpen = !thoughtsOpen;
 				break;
 		}
 	};
@@ -101,7 +68,7 @@
 					target={external ? '_blank' : undefined}
 					rel={external ? 'noreferrer' : undefined}
 					href={link.href}
-					class={`text-(--gray-text) underline-offset-4 hover:underline  ${link.style === 'subheading' ? 'ml-6' : 'ml-2'} text-base lg:text-lg 2xl:text-xl`}
+					class={`${link.style === 'more' ? 'text-(--purple-text) hover:text-(--purple-hover)' : 'text-(--gray-text) underline-offset-4 hover:underline'} ${link.style === 'subheading' ? 'ml-6' : 'ml-2'} text-base transition lg:text-lg 2xl:text-xl`}
 				>
 					{showIndexes ? link.indexLabel : null}
 					{link.label}
@@ -133,22 +100,16 @@
 			Minimize
 		</button>
 	</div>
-	<div class="relative h-auto min-h-10 w-full border border-(--gray-text)">
+	<div class="relative h-auto min-h-20 w-full overflow-hidden border border-(--gray-text)">
 		<span class="absolute top-1 left-0 z-20 h-px w-1/3 bg-white"></span>
-		<span class="absolute left-0 z-20 h-1 w-full bg-(--purple-text)/65" style={`top: ${percent}%`}
+		<span
+			class="absolute left-0 z-20 h-1 w-full bg-(--purple-text)/65"
+			style={`top: clamp(0px, ${percent}%, calc(100% - 0.25rem))`}
 		></span>
 	</div>
 	<div class="flex w-full flex-col gap-2">
 		{@render section('Table of contents', tocItems, toggleItem('toc'), tocOpen, false, true)}
 		{@render section('Links', linkItems, toggleItem('links'), linksOpen, true)}
-		{@render section(
-			'Other thoughts',
-			[
-				{ label: 'bazinga', href: 'ooga' },
-				{ label: 'real', href: 'fake' }
-			],
-			toggleItem('thoughts'),
-			thoughtsOpen
-		)}
+		{@render section('Other thoughts', otherThoughtItems, toggleItem('thoughts'), thoughtsOpen)}
 	</div>
 </aside>
