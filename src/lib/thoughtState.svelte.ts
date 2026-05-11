@@ -1,4 +1,5 @@
 import { tick } from 'svelte';
+import { SvelteSet } from 'svelte/reactivity';
 
 export const thoughtsExpanded = $state({
 	open: false
@@ -34,7 +35,7 @@ export function getThoughtMinimapSourceItems(
 	thoughtTitle: string | undefined
 ) {
 	const normalizedThoughtTitle = thoughtTitle?.trim().toLowerCase();
-	const seen = new Set<string>();
+	const seen = new SvelteSet<string>();
 	const items = [
 		...tocItems
 			.filter((item) => item.label.trim().toLowerCase() !== normalizedThoughtTitle)
@@ -64,7 +65,8 @@ function getThoughtMinimapLayout(
 
 	const items = sourceItems
 		.map((item) => {
-			const element = document.getElementById(item.href.slice(1));
+			const id = item.href.slice(1);
+			const element = container.querySelector(`[id="${CSS.escape(id)}"]`);
 			if (!element) return null;
 
 			const elementTop = element.getBoundingClientRect().top - containerTop + container.scrollTop;
