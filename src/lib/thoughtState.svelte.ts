@@ -1,3 +1,6 @@
 export const thoughtsExpanded = $state({
-	open: false
+	open: false,
+	toc: false,
+	links: false,
+	others: false
 });
