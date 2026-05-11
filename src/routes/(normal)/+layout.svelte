@@ -5,7 +5,7 @@
 	import '@fontsource/libre-baskerville';
 	import PortfolioPopUp from '$lib/components/PortfolioPopUp.svelte';
 	import { page } from '$app/state';
-	import ThoughtSidebar from '$lib/components/ThoughtSidebar.svelte';
+	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
 
 	let { children } = $props();
 
@@ -24,7 +24,7 @@
 	let percent = $derived((scroll / height) * 100);
 
 	let width = $state(0);
-	let bigScreen = true;
+	let bigScreen = $derived(thoughtsExpanded.open);
 	const thoughtBigScreen = $derived(
 		width >= 1024 && bigScreen && page.url.pathname.includes('/thoughts/')
 	);
@@ -43,12 +43,9 @@
 			measure();
 		}}
 	>
-		<Sidebar />
-		{#if thoughtBigScreen}
-			<ThoughtSidebar {percent} />
-		{/if}
+		<Sidebar {percent} {thoughtBigScreen} />
 		<div
-			class="col-span-4 flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) lg:border-l-2 lg:pl-4"
+			class={`flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) lg:border-l-2 lg:pl-4 ${thoughtBigScreen ? 'col-span-5' : 'col-span-4'}`}
 		>
 			{#if !page.url.pathname.includes('/thoughts/')}
 				<a

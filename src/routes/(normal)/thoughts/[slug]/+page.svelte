@@ -3,6 +3,7 @@
 	import type { PageData } from './$types';
 	import { ChevronLeft } from '@lucide/svelte';
 	import OtherThoughts from '$lib/components/OtherThoughts.svelte';
+	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -15,8 +16,6 @@
 			.replace(/\s+/g, ' ')
 			.trim() ?? 'A thought by Lukas Jaager'
 	);
-
-	let thoughtBigScreen = true;
 </script>
 
 <SvelteSeo
@@ -27,7 +26,7 @@
 
 <div class="flex flex-col gap-2">
 	<div
-		class={`mt-4 mb-2 flex items-center justify-start gap-2  ${!thoughtBigScreen ? 'lg:mt-0' : null}`}
+		class={`mt-4 mb-2 flex items-center justify-start gap-2  ${!thoughtsExpanded.open ? 'lg:mt-0' : null}`}
 	>
 		<a href="/thoughts">
 			<ChevronLeft size={28} class="transition hover:text-(--purple-text)" />

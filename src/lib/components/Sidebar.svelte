@@ -2,8 +2,11 @@
 	import { page } from '$app/state';
 	import '@fontsource/libre-baskerville';
 	import { fly } from 'svelte/transition';
-	import { Menu, X } from '@lucide/svelte';
+	import { CornerDownRight, Maximize2, Menu, Minimize2, X } from '@lucide/svelte';
+	import ThoughtSidebar from './ThoughtSidebar.svelte';
+	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
 
+	let { percent, thoughtBigScreen }: { percent: number; thoughtBigScreen: boolean } = $props();
 	let isOpen = $state(false);
 
 	$effect(() => {
@@ -17,46 +20,84 @@
 	});
 
 	let width = $state(0);
+	let thoughts = $state(false);
 
-	let thoughtBigScreen = true;
+	const toggleThoughts = () => (thoughts = !thoughts);
+	const toggleSize = () => (thoughtsExpanded.open = !thoughtsExpanded.open);
+
+	const expandable = $derived(width >= 1024 && page.url.pathname.includes('/thoughts/'));
 </script>
 
 <svelte:window bind:innerWidth={width} />
 
 <!--Nav for desktop-->
 {#if width >= 1024}
-	<nav
-		class={`sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium ${thoughtBigScreen ? 'pt-4' : null}`}
-	>
-		<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
-		<a
-			href="/experience"
-			class="w-full transition"
-			aria-current={page.url.pathname === '/experience'}
+	{#if thoughtBigScreen && thoughts}
+		<ThoughtSidebar {percent} {toggleThoughts} {toggleSize} />
+	{:else}
+		<nav
+			class={`sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium ${thoughtBigScreen ? 'pt-4' : null}`}
 		>
-			Experience
-		</a>
-		<a href="/projects" class="w-full transition" aria-current={page.url.pathname === '/projects'}>
-			Projects
-		</a>
-		<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
-			Contact
-		</a>
-		<a
-			href="/portfolio"
-			class="w-full transition"
-			aria-current={page.url.pathname === '/portfolio'}
-		>
-			For You
-		</a>
-		<a
-			href="/thoughts"
-			class="w-full transition"
-			aria-current={page.url.pathname.includes('/thoughts')}
-		>
-			Thoughts
-		</a>
-	</nav>
+			{#if thoughtBigScreen}
+				<div class="flex w-full flex-col gap-2">
+					<button
+						class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg font-normal hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
+						onclick={() => toggleThoughts()}
+					>
+						<CornerDownRight size={22} />
+						Open thought
+					</button>
+					<button
+						class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg font-normal hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
+						onclick={() => toggleSize()}
+					>
+						<Minimize2 size={22} />
+						Minimize
+					</button>
+				</div>
+			{:else if expandable}
+				<button
+					class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg font-normal hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
+					onclick={() => (thoughtsExpanded.open = true)}
+				>
+					<Maximize2 size={22} />
+					Maximize
+				</button>
+			{/if}
+			<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
+			<a
+				href="/experience"
+				class="w-full transition"
+				aria-current={page.url.pathname === '/experience'}
+			>
+				Experience
+			</a>
+			<a
+				href="/projects"
+				class="w-full transition"
+				aria-current={page.url.pathname === '/projects'}
+			>
+				Projects
+			</a>
+			<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
+				Contact
+			</a>
+			<a
+				href="/portfolio"
+				class="w-full transition"
+				aria-current={page.url.pathname === '/portfolio'}
+			>
+				For You
+			</a>
+			<a
+				href="/thoughts"
+				class="w-full transition"
+				aria-current={page.url.pathname.includes('/thoughts')}
+			>
+				Thoughts
+			</a>
+		</nav>
+	{/if}
 {:else}
 	<!--Nav for mobile-->
 	<button
