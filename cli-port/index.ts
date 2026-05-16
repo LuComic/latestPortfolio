@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { thoughts, thoughtType } from '../src/lib/data';
 
 const args = process.argv;
 const myArgs = args.slice(2);
@@ -23,21 +22,30 @@ function createFile(words: string[]) {
 	const outputDir = path.join(os.homedir(), 'Documents/GitHub/pro-portfolio/static/thoughts');
 	const outputFilePath = path.join(outputDir, file);
 
-	fs.writeFile(outputFilePath, '#' + title, 'utf8', (err) => {
+	fs.writeFile(outputFilePath, '# ' + title, 'utf8', (err) => {
 		if (err) {
 			console.error('Error writing file:', err);
 			return;
 		}
-		console.log('File written successfully!');
+		console.log('Markdown file written successfully!');
 	});
 
-	const newThought: thoughtType = {
-		href: slug,
-		date: date,
-		content: file
-	};
+	const dataFilePath = path.join(process.cwd(), 'src/lib/data.ts');
+	const dataFile = fs.readFileSync(dataFilePath, 'utf8');
 
-	thoughts.push(newThought);
+	const newThoughtEntry = `\t{\n\t\thref: '${slug}',\n\t\tdate: '${date}',\n\t\tcontent: '${file}'\n\t}`;
+	const updatedDataFile = dataFile.replace(
+		/(export const thoughts: thoughtType\[\] = \[[\s\S]*?)(\n\];)/,
+		`$1,\n${newThoughtEntry}$2`
+	);
+
+	fs.writeFile(dataFilePath, updatedDataFile, 'utf8', (err) => {
+		if (err) {
+			console.error('Error writing data file:', err);
+			return;
+		}
+		console.log('Thought added to src/lib/data.ts');
+	});
 }
 
 if (words.length > 0) {
