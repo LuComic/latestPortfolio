@@ -36,7 +36,7 @@
 
 <div class="scrollable flex h-dvh w-screen flex-col items-center justify-center">
 	<div
-		class={`flex h-full w-full flex-col items-start justify-start overflow-scroll px-4 pb-4 lg:grid ${!thoughtBigScreen ? 'grid-cols-5 lg:h-2/3 lg:max-w-2/3 lg:p-0' : 'grid-cols-6'}`}
+		class={`flex h-full w-full flex-col items-start justify-start overflow-scroll px-4 pb-4 lg:grid ${!thoughtBigScreen ? 'grid-cols-5 lg:h-2/3 lg:max-w-3/4 lg:p-0 xl:max-w-2/3' : 'grid-cols-6'}`}
 		bind:this={container}
 		onscroll={() => {
 			registerScroll();

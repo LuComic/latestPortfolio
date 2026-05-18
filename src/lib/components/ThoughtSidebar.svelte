@@ -95,7 +95,7 @@
 	<div class="flex w-full flex-col gap-2">
 		<button
 			onclick={toggle}
-			class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
+			class="flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-2 py-1 text-left text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
 		>
 			{title}
 			<ChevronRight class={`${value ? 'rotate-90' : null}`} />
@@ -121,14 +121,14 @@
 >
 	<div class="flex w-full flex-col gap-2">
 		<button
-			class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
+			class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-left text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
 			onclick={() => toggleThoughts()}
 		>
 			<CornerDownLeft size={22} />
 			Back
 		</button>
 		<button
-			class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
+			class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-left text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
 			onclick={() => {
 				toggleSize();
 				closeThoughts();

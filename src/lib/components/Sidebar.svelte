@@ -40,10 +40,7 @@
 			class={`sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium ${thoughtBigScreen ? 'pt-4' : null}`}
 		>
 			{#if thoughtBigScreen}
-				<button class="special" onclick={() => toggleThoughts()}
-					>Open thought
-					<ArrowUpRight size={18} color="currentColor" />
-				</button>
+				<button class="special" onclick={() => toggleThoughts()}>Open thought</button>
 				<button
 					class="special"
 					onclick={() => {
@@ -52,13 +49,9 @@
 					}}
 				>
 					Minimize
-					<Minimize2 size={18} color="currentColor" />
 				</button>
 			{:else if expandable}
-				<button class="special" onclick={() => (thoughtsExpanded.open = true)}>
-					Maximize
-					<Maximize2 size={18} color="currentColor" />
-				</button>
+				<button class="special" onclick={() => (thoughtsExpanded.open = true)}> Maximize </button>
 			{/if}
 			<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
 			<a
@@ -160,9 +153,6 @@
 	.special {
 		width: 100%;
 		text-align: left;
-		display: flex;
-		align-items: center;
-		gap: 6px;
 	}
 
 	a[aria-current='false'],

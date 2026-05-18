@@ -26,20 +26,21 @@
 <p class="text-base md:text-lg 2xl:text-xl">
 	Some random and possibly unfinished thoughts I've had and felt like writing down.
 </p>
-<div class="flex w-full flex-col items-start justify-start gap-4">
+<div class="flex w-full min-w-0 flex-col items-start justify-start gap-4">
 	{#each sortedThoughts as thought (thought.href)}
 		<a
-			class="outer flex w-full cursor-pointer items-center justify-start gap-2 text-base text-(--gray-text) underline-offset-4 transition hover:underline md:text-lg 2xl:text-xl"
+			class="flex w-full min-w-0 flex-wrap items-start justify-start gap-x-2 gap-y-1 text-base text-(--gray-text) underline-offset-4 transition hover:underline md:text-lg 2xl:text-xl"
 			href={'/thoughts/' + thought.href}
 		>
-			<p class="w-full font-semibold text-(--gray-text) md:w-auto">
+			<p class="min-w-0 flex-1 basis-0 font-semibold wrap-break-word text-(--gray-text)">
 				{thought.title}
 			</p>
-			<ChevronRight />
-			<div class="ml-auto flex w-25 min-w-25 items-center justify-center gap-2">
-				<span class="text-sm">{thought.date}</span>
-				<span class="text-sm text-(--purple-text)/60">{thought.wordCount}</span>
-			</div>
+			<span
+				class="ml-auto inline-flex flex-wrap items-center justify-end gap-x-2 gap-y-1 text-sm sm:flex-nowrap"
+			>
+				<span>{thought.date}</span>
+				<span class="text-(--purple-text)/60">{thought.wordCount}</span>
+			</span>
 		</a>
 	{/each}
 </div>
