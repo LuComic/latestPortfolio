@@ -1,6 +1,5 @@
 <script lang="ts">
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import '@fontsource/libre-baskerville';
 	import PortfolioPopUp from '$lib/components/PortfolioPopUp.svelte';
@@ -30,7 +29,10 @@
 	);
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+	<link rel="icon" href="/favicon.ico" sizes="any" />
+	<link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+</svelte:head>
 <svelte:window bind:innerWidth={width} />
 <PortfolioPopUp />
 
