@@ -5,8 +5,8 @@
 </script>
 
 <SvelteSeo
-	title="For You | Lukas Jaager"
-	description="Providing a portfolio service as a part of Lukas Jaager's portfolio site"
+	title="For You | Lukas Jääger"
+	description="Providing a portfolio service as a part of Lukas Jääger's portfolio site"
 	keywords="portfolio, dev, lukas, jaager, coding, service"
 />
 

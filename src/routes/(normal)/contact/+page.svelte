@@ -6,8 +6,8 @@
 </script>
 
 <SvelteSeo
-	title="Contact | Lukas Jaager"
-	description="Contact page for Lukas Jaager's portfolio, listing his contact information"
+	title="Contact | Lukas Jääger"
+	description="Contact page for Lukas Jääger's portfolio, listing his contact information"
 	keywords="portfolio, dev, lukas, jaager, coding"
 />
 

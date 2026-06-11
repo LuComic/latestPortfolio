@@ -4,8 +4,8 @@
 </script>
 
 <SvelteSeo
-	title="About | Lukas Jaager"
-	description="About page for Lukas Jaager's portfolio"
+	title="About | Lukas Jääger"
+	description="About page for Lukas Jääger's portfolio"
 	keywords="portfolio, dev, lukas, jaager, coding"
 />
 

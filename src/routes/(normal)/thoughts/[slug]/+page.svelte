@@ -14,14 +14,14 @@
 			.map((token) => token.content)
 			.join('')
 			.replace(/\s+/g, ' ')
-			.trim() ?? 'A thought by Lukas Jaager'
+			.trim() ?? 'A thought by Lukas Jääger'
 	);
 
 	const sectionId = (index: number) => `thought-section-${index}`;
 </script>
 
 <SvelteSeo
-	title={`${thought.title} | Lukas Jaager`}
+	title={`${thought.title} | Lukas Jääger`}
 	{description}
 	keywords="portfolio, dev, lukas, jaager, thoughts, blog"
 />

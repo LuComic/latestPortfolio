@@ -15,8 +15,8 @@
 </svelte:head>
 
 <SvelteSeo
-	title="Projects | Lukas Jaager"
-	description="Projects page for Lukas Jaager's portfolio describing some of his projects"
+	title="Projects | Lukas Jääger"
+	description="Projects page for Lukas Jääger's portfolio describing some of his projects"
 	keywords="portfolio, dev, lukas, jaager, coding"
 />
 

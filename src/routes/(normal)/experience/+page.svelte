@@ -5,8 +5,8 @@
 </script>
 
 <SvelteSeo
-	title="Experience | Lukas Jaager"
-	description="Experience page for Lukas Jaager's portfolio, where are listed all of his experience in coding and work"
+	title="Experience | Lukas Jääger"
+	description="Experience page for Lukas Jääger's portfolio, where are listed all of his experience in coding and work"
 	keywords="portfolio, dev, lukas, jaager, coding"
 />
 

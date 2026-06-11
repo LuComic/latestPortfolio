@@ -30,6 +30,7 @@
 </script>
 
 <svelte:head>
+	<meta property="og:site_name" content="Lukas Jääger" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
 </svelte:head>

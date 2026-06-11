@@ -17,8 +17,8 @@
 </script>
 
 <SvelteSeo
-	title="Thoughts | Lukas Jaager"
-	description="Thoughts page for Lukas Jaager's portfolio, where are just some random written down thoughts"
+	title="Thoughts | Lukas Jääger"
+	description="Thoughts page for Lukas Jääger's portfolio, where are just some random written down thoughts"
 	keywords="portfolio, dev, lukas, jaager, thoughts, blog"
 />
 
