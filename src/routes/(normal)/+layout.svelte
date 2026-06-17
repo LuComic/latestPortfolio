@@ -61,7 +61,7 @@
 				</a>
 			{:else if !thoughtBigScreen}
 				<div
-					class="fixed top-0 left-0 z-20 h-1 bg-(--purple-text)/65 md:sticky"
+					class="fixed top-0 left-0 z-20 h-1 bg-(--purple-text)/65 lg:sticky"
 					style={`width: ${percent}%`}
 				></div>
 			{/if}
