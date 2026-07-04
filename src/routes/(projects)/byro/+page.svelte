@@ -368,9 +368,7 @@
 		class="fixed top-0 bottom-0 left-1/2 z-1 grid h-svh w-4/5 -translate-x-1/2 grid-cols-1 content-center items-center gap-10 overflow-hidden py-7 sm:py-10 md:grid-cols-2 md:gap-16 md:py-14 xl:gap-26 xl:py-18"
 	>
 		<section class="w-full">
-			<h1
-				class="m-0 w-max font-['Alcyone'] text-8xl leading-none font-medium tracking-normal md:text-9xl"
-			>
+			<h1 class="m-0 w-max font-sans text-8xl leading-none font-medium tracking-normal md:text-9xl">
 				byro
 			</h1>
 			<p
@@ -396,297 +394,286 @@
 	<div class="relative z-2 flex flex-col">
 		{#each sections as section, index (section.id)}
 			<section
-				class={`landing-section flex min-h-[50dvh] w-full flex-col gap-3 rounded-t-3xl bg-white/20 px-6 pt-4 pb-4 shadow-xl backdrop-blur-2xl sm:gap-5 sm:px-10 md:rounded-t-4xl md:px-20 md:pt-15 ${
+				class={`landing-section flex min-h-[50dvh] w-full flex-col gap-3 rounded-t-3xl bg-white/20 px-6 pt-4 pb-15 shadow-2xl backdrop-blur-2xl sm:gap-5 sm:px-10 md:rounded-t-4xl md:px-20 md:pt-15 ${
 					index === 0 ? '' : '-mt-5'
 				}`}
 				id={section.id}
 			>
 				{#if section.title !== 'Contact'}
 					<h2
-						class="m-0 flex w-full max-w-full items-center gap-3 font-['Alcyone'] text-2xl font-bold tracking-normal text-balance wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+						class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold tracking-normal text-balance wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
 					>
 						<span class="text-(--accent)">></span>
 						{section.title}
 					</h2>
 				{/if}
-				<div class="min-h-0 flex-1">
-					{#if section.title === 'Testimonials'}
-						<p
-							class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+				{#if section.title === 'Testimonials'}
+					<p
+						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+					>
+						Managing the image of businesses. Results and ratings speak for themselves. Click a
+						brand to see more.
+					</p>
+					<div class={`grid w-full gap-6 pt-6 sm:py-10 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
+						<div
+							class={`relative flex min-h-[58dvh] w-full min-w-0 flex-col justify-center gap-7 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-10 lg:min-h-[60dvh] ${
+								selectedBrand ? 'lg:col-span-2' : ''
+							}`}
+							aria-label="Client brand marquee"
 						>
-							Managing the image of businesses. Results and ratings speak for themselves. Click a
-							brand to see more.
-						</p>
-						<div class={`grid w-full gap-6 py-6 sm:py-10 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
-							<div
-								class={`relative flex min-h-[58dvh] w-full min-w-0 flex-col justify-center gap-7 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-10 lg:min-h-[60dvh] ${
-									selectedBrand ? 'lg:col-span-2' : ''
-								}`}
-								aria-label="Client brand marquee"
-							>
-								{#each marqueeRows as row, rowIndex (row)}
-									<div class="flex min-w-max overflow-visible">
-										<div
-											class={`flex min-w-max items-center gap-8 motion-reduce:animate-none sm:gap-12 ${
-												rowIndex === 0
-													? 'animate-[brand-marquee_26s_linear_infinite]'
-													: 'animate-[brand-marquee-reverse_30s_linear_infinite]'
-											}`}
-										>
-											{#each [...row, ...row] as brand, brandIndex (`${rowIndex}-${brand.name}-${brandIndex}`)}
-												<button
-													class={`cursor-pointer border-0 bg-transparent px-2 py-1 text-center font-['Alcyone'] text-4xl leading-none font-semibold whitespace-nowrap text-(--ink) no-underline transition duration-150 hover:-translate-y-1 hover:text-(--brand-accent) focus-visible:-translate-y-1 focus-visible:text-(--brand-accent) focus-visible:outline-0 sm:text-5xl lg:text-6xl ${
-														selectedBrand?.name === brand.name ? 'text-(--brand-accent)' : ''
-													}`}
-													style={`--brand-accent: ${brand.color};`}
-													aria-label={`Show ${brand.name} stats`}
-													aria-pressed={selectedBrand?.name === brand.name}
-													onclick={() => (selectedBrand = brand)}
-												>
-													{brand.name}
-												</button>
-											{/each}
-										</div>
-									</div>
-								{/each}
-							</div>
-
-							{#if selectedBrand}
-								<aside
-									class="flex min-h-70 min-w-0 flex-col justify-between gap-6 lg:min-h-[70dvh] lg:py-2"
-									style={`--brand-accent: ${selectedBrand.color};`}
-								>
-									<div class="grid gap-5">
-										<div class="flex items-start justify-between gap-4">
-											<div class="flex w-full min-w-0 items-center justify-between">
-												<h3
-													class="m-0 font-['Alcyone'] text-4xl leading-none font-bold wrap-break-word text-(--brand-accent) sm:text-5xl"
-												>
-													{selectedBrand.name}
-												</h3>
-												<button
-													class="shrink-0 border-0 bg-transparent text-2xl text-(--muted) transition hover:text-(--ink) focus-visible:outline-2 focus-visible:outline-(--accent) sm:text-3xl"
-													aria-label="Close company stats"
-													onclick={() => (selectedBrand = null)}
-												>
-													Close
-												</button>
-											</div>
-										</div>
-
-										<dl class="m-0 grid gap-3">
-											{#each selectedBrand.stats as stat (stat.label)}
-												<div class="border-t border-(--muted)/20 pt-3">
-													<dt class="text-sm leading-tight font-bold text-(--muted)">
-														{stat.label}
-													</dt>
-													<dd
-														class="m-0 mt-1 text-3xl leading-none font-extrabold text-(--ink) sm:text-4xl"
-													>
-														{stat.value}
-													</dd>
-												</div>
-											{/each}
-										</dl>
-									</div>
-
-									<p class="m-0 text-base font-medium text-(--muted) md:text-lg">
-										LinkedIn performance created through Byro-managed content and positioning.
-									</p>
-								</aside>
-							{/if}
-						</div>
-					{:else if section.title === 'How it works'}
-						<div class="flex h-full w-full flex-col md:grid md:grid-cols-2 xl:grid-cols-4">
-							<div
-								class="flex flex-col border-b border-(--muted)/40 py-2 pr-2 md:gap-1 md:border-r md:border-b-0"
-							>
-								<span class="text-lg font-medium md:text-xl">
-									<span class="inline text-(--accent)">1.</span>
-									Gathering info
-								</span>
-								<p class="text-(--muted)">{placeholder}</p>
-							</div>
-							<div
-								class="flex flex-col border-b border-(--muted)/40 px-3 py-2 md:gap-1 md:border-b-0 xl:border-r"
-							>
-								<span class="text-lg font-medium md:text-xl">
-									<span class="inline text-(--accent)">2.</span>
-									Quick interviews
-								</span>
-								<p class="text-(--muted)">{placeholder}</p>
-							</div>
-							<div
-								class="flex flex-col border-b border-(--muted)/40 px-3 py-2 md:gap-1 md:border-r md:border-b-0"
-							>
-								<span class="text-lg font-medium md:text-xl">
-									<span class="inline text-(--accent)">3.</span>
-									A persona file
-								</span>
-								<p class="text-(--muted)">{placeholder}</p>
-							</div>
-							<div class="flex flex-col py-2 pl-3 md:gap-1">
-								<span class="text-lg font-medium md:text-xl">
-									<span class="inline text-(--accent)">4.</span>
-									Posting and creating
-								</span>
-								<p class="text-(--muted)">{placeholder}</p>
-							</div>
-						</div>
-					{:else if section.title === 'Pricing'}
-						<div class="flex h-full w-full flex-col md:grid md:grid-cols-3">
-							<div
-								class="flex flex-col gap-3 border-b border-(--muted)/40 py-2 pr-3 md:border-r md:border-b-0"
-							>
-								<span class="text-xl font-medium md:text-2xl">
-									<span class="inline text-(--accent)">#</span>
-									Small Start Up
-								</span>
-								<ul class="flex flex-col gap-1">
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">5-10 member teams</span>
-									</li>
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">Something else</span>
-									</li>
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">Even more stuff</span>
-									</li>
-								</ul>
-								<button
-									class="mt-6 w-full rounded-full border-2 border-(--accent) bg-(--accent) py-1 font-medium text-white hover:opacity-90"
-								>
-									XX€ / month
-								</button>
-							</div>
-							<div
-								class="flex flex-col gap-3 border-b border-(--muted)/40 px-3 py-2 md:border-r md:border-b-0"
-							>
-								<span class="text-xl font-medium md:text-2xl">
-									<span class="inline text-(--accent)">##</span>
-									Large enterprise
-								</span>
-								<ul class="flex flex-col gap-1">
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">5-10 member teams</span>
-									</li>
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">Something else</span>
-									</li>
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">Even more stuff</span>
-									</li>
-								</ul>
-								<button
-									class="mt-6 w-full rounded-full border-2 border-(--accent) bg-white py-1 font-medium text-(--ink) hover:bg-white/60"
-								>
-									XX€ / month
-								</button>
-							</div>
-							<div class="flex flex-col gap-3 py-2 pl-3">
-								<span class="text-xl font-medium md:text-2xl">
-									<span class="inline text-(--accent)">###</span>
-									Something else
-								</span>
-								<ul class="flex flex-col gap-1">
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">5-10 member teams</span>
-									</li>
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">Something else</span>
-									</li>
-									<li class="-ml-2 flex items-center">
-										<Asterisk class="text-(--accent)" />
-										<span class="text-lg md:text-xl">Even more stuff</span>
-									</li>
-								</ul>
-								<button
-									class="mt-6 w-full rounded-full border-2 border-(--accent) bg-white py-1 font-medium text-(--ink) hover:bg-white/60"
-								>
-									Contact
-								</button>
-							</div>
-						</div>
-					{:else if section.title === 'Contact'}
-						<footer class="flex h-full min-h-full flex-col justify-between gap-8 md:gap-10">
-							<div class="grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
-								<div class="flex min-w-0 flex-col gap-5">
-									<a
-										class="m-0 w-max font-['Alcyone'] text-4xl leading-none font-medium tracking-normal text-inherit no-underline md:text-6xl"
-										href={byroPath}
+							{#each marqueeRows as row, rowIndex (row)}
+								<div class="flex min-w-max overflow-visible">
+									<div
+										class={`flex min-w-max items-center gap-8 motion-reduce:animate-none sm:gap-12 ${
+											rowIndex === 0
+												? 'animate-[brand-marquee_26s_linear_infinite]'
+												: 'animate-[brand-marquee-reverse_30s_linear_infinite]'
+										}`}
 									>
-										Byro
-									</a>
-									<p class="m-0 max-w-85 text-base font-medium text-(--muted) md:text-xl">
-										A cleaner workspace for briefs, drafts, and decisions.
-									</p>
-									<a
-										class="inline-flex w-max max-w-full items-center gap-2 font-semibold wrap-break-word text-(--ink) hover:opacity-80"
-										href="mailto:hello@byro.example"
-									>
-										<Mail class="shrink-0 text-(--accent)" size={20} />
-										hello@byro.example
-									</a>
-									<div class="flex flex-wrap gap-x-4 gap-y-2 pt-1">
-										{#each socialLinks as socialLink (socialLink)}
-											<a
-												class="text-sm font-semibold text-(--muted) no-underline hover:text-(--accent) md:text-base"
-												href="#contact"
+										{#each [...row, ...row] as brand, brandIndex (`${rowIndex}-${brand.name}-${brandIndex}`)}
+											<button
+												class={`cursor-pointer border-0 bg-transparent px-2 py-1 text-center font-sans text-4xl leading-none font-semibold whitespace-nowrap text-(--ink) no-underline transition duration-150 hover:-translate-y-1 hover:text-(--brand-accent) focus-visible:-translate-y-1 focus-visible:text-(--brand-accent) focus-visible:outline-0 sm:text-5xl lg:text-6xl ${
+													selectedBrand?.name === brand.name ? 'text-(--brand-accent)' : ''
+												}`}
+												style={`--brand-accent: ${brand.color};`}
+												aria-label={`Show ${brand.name} stats`}
+												aria-pressed={selectedBrand?.name === brand.name}
+												onclick={() => (selectedBrand = brand)}
 											>
-												{socialLink}
-											</a>
+												{brand.name}
+											</button>
 										{/each}
 									</div>
 								</div>
+							{/each}
+						</div>
 
-								<div class="grid gap-6 sm:grid-cols-3">
-									{#each footerColumns as column (column.title)}
-										<nav class="min-w-0" aria-label={column.title}>
-											<p class="m-0 text-xs font-bold tracking-normal text-(--accent) md:text-sm">
-												{column.title}
-											</p>
-											<ul class="mt-3 flex list-none flex-col gap-2 p-0">
-												{#each column.links as link (link)}
-													<li>
-														<a
-															class="text-base font-medium text-(--ink) no-underline hover:text-(--accent) md:text-lg"
-															href="#contact"
-														>
-															{link}
-														</a>
-													</li>
-												{/each}
-											</ul>
-										</nav>
+						{#if selectedBrand}
+							<aside
+								class="flex min-h-70 min-w-0 flex-col justify-between gap-6 lg:min-h-[70dvh] lg:py-2"
+								style={`--brand-accent: ${selectedBrand.color};`}
+							>
+								<div class="grid gap-5">
+									<div class="flex items-start justify-between gap-4">
+										<div class="flex w-full min-w-0 items-center justify-between">
+											<h3
+												class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--brand-accent) sm:text-5xl"
+											>
+												{selectedBrand.name}
+											</h3>
+											<button
+												class="shrink-0 border-0 bg-transparent text-2xl text-(--muted) transition hover:text-(--ink) focus-visible:outline-2 focus-visible:outline-(--accent) sm:text-3xl"
+												aria-label="Close company stats"
+												onclick={() => (selectedBrand = null)}
+											>
+												Close
+											</button>
+										</div>
+									</div>
+
+									<dl class="m-0 grid gap-3">
+										{#each selectedBrand.stats as stat (stat.label)}
+											<div class="border-t border-(--muted)/20 pt-3">
+												<dt class="text-sm leading-tight font-bold text-(--muted)">
+													{stat.label}
+												</dt>
+												<dd
+													class="m-0 mt-1 text-3xl leading-none font-extrabold text-(--ink) sm:text-4xl"
+												>
+													{stat.value}
+												</dd>
+											</div>
+										{/each}
+									</dl>
+								</div>
+
+								<p class="m-0 text-base font-medium text-(--muted) md:text-lg">
+									LinkedIn performance created through Byro-managed content and positioning.
+								</p>
+							</aside>
+						{/if}
+					</div>
+				{:else if section.title === 'How it works'}
+					<div class="flex h-full w-full flex-col md:grid md:grid-cols-2 xl:grid-cols-4">
+						<div
+							class="flex flex-col border-b border-(--muted)/40 pb-2 md:gap-1 md:border-r md:border-b-0 md:pr-3 xl:py-0"
+						>
+							<span class="text-lg font-medium md:text-xl">
+								<span class="inline text-(--accent)">1.</span>
+								Gathering info
+							</span>
+							<p class="text-(--muted)">{placeholder}</p>
+						</div>
+						<div
+							class="flex flex-col border-b border-(--muted)/40 py-2 md:gap-1 md:border-b-0 md:pt-0 md:pl-3 xl:border-r xl:py-0 xl:pr-3"
+						>
+							<span class="text-lg font-medium md:text-xl">
+								<span class="inline text-(--accent)">2.</span>
+								Quick interviews
+							</span>
+							<p class="text-(--muted)">{placeholder}</p>
+						</div>
+						<div
+							class="flex flex-col border-b border-(--muted)/40 py-2 md:gap-1 md:border-r md:border-b-0 md:pr-3 md:pb-0 xl:py-0 xl:pl-3"
+						>
+							<span class="text-lg font-medium md:text-xl">
+								<span class="inline text-(--accent)">3.</span>
+								A persona file
+							</span>
+							<p class="text-(--muted)">{placeholder}</p>
+						</div>
+						<div class="flex flex-col pt-2 md:gap-1 md:pl-3 xl:py-0">
+							<span class="text-lg font-medium md:text-xl">
+								<span class="inline text-(--accent)">4.</span>
+								Posting and creating
+							</span>
+							<p class="text-(--muted)">{placeholder}</p>
+						</div>
+					</div>
+				{:else if section.title === 'Pricing'}
+					<div class="flex min-h-0 w-full flex-1 flex-col md:grid md:grid-cols-3">
+						<div
+							class="flex h-full flex-col gap-3 border-b border-(--muted)/40 py-4 pr-3 md:border-r md:border-b-0 md:py-0"
+						>
+							<span class="text-xl font-medium md:text-2xl">Small Start Up</span>
+							<ul class="flex flex-col gap-1">
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">5-10 member teams</span>
+								</li>
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">Something else</span>
+								</li>
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">Even more stuff</span>
+								</li>
+							</ul>
+							<button
+								class="mt-auto w-full rounded-full border-2 border-(--accent) bg-(--accent) py-1 font-medium text-white hover:opacity-90"
+							>
+								XX€ / month
+							</button>
+						</div>
+						<div
+							class="flex h-full flex-col gap-3 border-b border-(--muted)/40 px-3 py-4 md:border-r md:border-b-0 md:py-0"
+						>
+							<span class="text-xl font-medium md:text-2xl">Large enterprise</span>
+							<ul class="flex flex-col gap-1">
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">5-10 member teams</span>
+								</li>
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">Something else</span>
+								</li>
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">Even more stuff</span>
+								</li>
+							</ul>
+							<button
+								class="mt-auto w-full rounded-full border-2 border-(--accent) bg-(--accent) py-1 font-medium text-white hover:opacity-90"
+							>
+								XX€ / month
+							</button>
+						</div>
+						<div class="flex h-full flex-col gap-3 pt-4 pb-0 pl-3 md:py-0">
+							<span class="text-xl font-medium md:text-2xl">Something else</span>
+							<ul class="flex flex-col gap-1">
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">5-10 member teams</span>
+								</li>
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">Something else</span>
+								</li>
+								<li class="-ml-1 flex items-center">
+									<Asterisk class="text-(--accent)" />
+									<span class="text-lg md:text-xl">Even more stuff</span>
+								</li>
+							</ul>
+							<button
+								class="mt-auto w-full rounded-full border-2 border-(--accent) bg-(--accent) py-1 font-medium text-white hover:opacity-90"
+							>
+								Contact
+							</button>
+						</div>
+					</div>
+				{:else if section.title === 'Contact'}
+					<footer class="flex h-full min-h-full flex-col justify-between gap-8 md:gap-10">
+						<div class="grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
+							<div class="flex min-w-0 flex-col gap-5">
+								<a
+									class="m-0 w-max font-sans text-4xl leading-none font-medium tracking-normal text-inherit no-underline md:text-6xl"
+									href={byroPath}
+								>
+									Byro
+								</a>
+								<p class="m-0 max-w-85 text-base font-medium text-(--muted) md:text-xl">
+									A cleaner workspace for briefs, drafts, and decisions.
+								</p>
+								<a
+									class="inline-flex w-max max-w-full items-center gap-2 font-semibold wrap-break-word text-(--ink) hover:opacity-80"
+									href="mailto:hello@byro.example"
+								>
+									<Mail class="shrink-0 text-(--accent)" size={20} />
+									hello@byro.example
+								</a>
+								<div class="flex flex-wrap gap-x-4 gap-y-2 pt-1">
+									{#each socialLinks as socialLink (socialLink)}
+										<a
+											class="text-sm font-semibold text-(--muted) no-underline hover:text-(--accent) md:text-base"
+											href="#contact"
+										>
+											{socialLink}
+										</a>
 									{/each}
 								</div>
 							</div>
 
-							<div
-								class="flex flex-col gap-4 border-t border-(--muted)/30 py-4 text-sm font-medium text-(--muted) sm:flex-row sm:items-center"
-							>
-								<div class="flex items-center gap-3">
-									<img src={byroLogoSrc} alt="Byro logo" class="aspect-square w-10 shrink-0" />
-									<span>© 2026 Byro. All rights reserved.</span>
-								</div>
+							<div class="grid gap-6 sm:grid-cols-3">
+								{#each footerColumns as column (column.title)}
+									<nav class="min-w-0" aria-label={column.title}>
+										<p class="m-0 text-xs font-bold tracking-normal text-(--accent) md:text-sm">
+											{column.title}
+										</p>
+										<ul class="mt-3 flex list-none flex-col gap-2 p-0">
+											{#each column.links as link (link)}
+												<li>
+													<a
+														class="text-base font-medium text-(--ink) no-underline hover:text-(--accent) md:text-lg"
+														href="#contact"
+													>
+														{link}
+													</a>
+												</li>
+											{/each}
+										</ul>
+									</nav>
+								{/each}
 							</div>
-						</footer>
-					{:else}
-						<p
-							class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+						</div>
+
+						<div
+							class="flex flex-col gap-4 border-t border-(--muted)/30 py-4 text-sm font-medium text-(--muted) sm:flex-row sm:items-center"
 						>
-							{placeholder}
-						</p>
-					{/if}
-				</div>
+							<div class="flex items-center gap-3">
+								<img src={byroLogoSrc} alt="Byro logo" class="aspect-square w-10 shrink-0" />
+								<span>© 2026 Byro. All rights reserved.</span>
+							</div>
+						</div>
+					</footer>
+				{:else}
+					<p
+						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+					>
+						{placeholder}
+					</p>
+				{/if}
 			</section>
 		{/each}
 	</div>
