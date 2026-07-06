@@ -15,11 +15,11 @@
 	const byroLogoSrc = resolveAsset('/byro/byro-logo.png');
 
 	const navItems = [
-		{ href: `${byroPath}#testimonials`, label: 'Testimonials' },
-		{ href: `${byroPath}#managing-your-image`, label: 'What?' },
-		{ href: `${byroPath}#how-it-works`, label: 'How?' },
-		{ href: `${byroPath}#pricing`, label: 'Pricing' },
-		{ href: `${byroPath}#contact`, label: 'Contact' }
+		{ id: 'testimonials', label: 'Testimonials' },
+		{ id: 'managing-your-image', label: 'What?' },
+		{ id: 'how-it-works', label: 'How?' },
+		{ id: 'pricing', label: 'Pricing' },
+		{ id: 'contact', label: 'Contact' }
 	];
 
 	const sections = [
@@ -49,6 +49,32 @@
 
 	const placeholder =
 		'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis nunc et mi varius eleifend. Nam varius felis non sapien pretium, ut gravida nulla tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut bibendum sit amet turpis at interdum. Pellentesque non diam ac ex commodo hendrerit eu sed nunc.';
+
+	const howItWorksSteps = [
+		{
+			title: 'Gathering info',
+			description:
+				'You share goals, audience notes, brand material, and the source files Byro should learn from.'
+		},
+		{
+			title: 'Quick interviews',
+			description:
+				'Short calls fill in the missing context, tone, edge cases, and founder-level details.'
+		},
+		{
+			title: 'A persona file',
+			description:
+				'Everything turns into a reusable profile that keeps posts consistent across the team.'
+		},
+		{
+			title: 'Posting and creating',
+			description:
+				'Byro drafts, schedules, and keeps the content flow moving while you review the important bits.'
+		}
+	];
+
+	const howItWorksDesktopRailDotCount = 28;
+	const howItWorksCompactRailDotCount = 20;
 
 	const testimonialBrands = [
 		{
@@ -312,10 +338,61 @@
 	});
 
 	let w = $state(0);
+	let viewportHeight = $state(0);
+	let scrollY = $state(0);
 	let menuOpen = $state(false);
+	let howItWorksSection: HTMLElement | undefined = $state();
+
+	function setHowItWorksSection(node: HTMLElement, id: string) {
+		if (id === 'how-it-works') howItWorksSection = node;
+
+		return {
+			update(nextId: string) {
+				if (nextId === 'how-it-works') howItWorksSection = node;
+				else if (howItWorksSection === node) howItWorksSection = undefined;
+			},
+			destroy() {
+				if (howItWorksSection === node) howItWorksSection = undefined;
+			}
+		};
+	}
+
+	function clamp(value: number, min = 0, max = 1) {
+		return Math.min(Math.max(value, min), max);
+	}
+
+	let howItWorksScrollProgress = $derived.by(() => {
+		if (!howItWorksSection || viewportHeight <= 0 || w <= 0) return 0;
+
+		const currentScrollY = scrollY;
+		const rect = howItWorksSection.getBoundingClientRect();
+		const sectionScrollStart = currentScrollY + rect.top;
+		const scrollableDistance = Math.max(rect.height - viewportHeight, 1);
+
+		return clamp((currentScrollY - sectionScrollStart) / scrollableDistance);
+	});
+
+	let howItWorksActiveIndex = $derived(
+		Math.min(
+			howItWorksSteps.length - 1,
+			Math.floor(Math.min(howItWorksScrollProgress, 0.999) * howItWorksSteps.length)
+		)
+	);
+
+	let howItWorksRailDotCount = $derived(
+		w > 0 && w < 1024 ? howItWorksCompactRailDotCount : howItWorksDesktopRailDotCount
+	);
+
+	let howItWorksRailDots = $derived(Array.from(Array(howItWorksRailDotCount).keys()));
+
+	let howItWorksActiveDotIndex = $derived(
+		Math.floor(howItWorksScrollProgress * (howItWorksRailDotCount - 1))
+	);
+
+	let activeHowItWorksStep = $derived(howItWorksSteps[howItWorksActiveIndex] ?? howItWorksSteps[0]);
 </script>
 
-<svelte:window bind:innerWidth={w} />
+<svelte:window bind:innerWidth={w} bind:innerHeight={viewportHeight} bind:scrollY />
 
 <div class="byro-page min-h-screen">
 	<div
@@ -334,10 +411,10 @@
 			Byro
 		</a>
 		{#if w >= 768}
-			{#each navItems as item (item.href)}
+			{#each navItems as item (item.id)}
 				<a
 					class="text-base font-semibold text-inherit no-underline decoration-(--accent) decoration-2 hover:underline hover:underline-offset-2"
-					href={item.href}
+					href={`#${item.id}`}
 				>
 					{item.label}
 				</a>
@@ -353,10 +430,10 @@
 		<div
 			class="byro-header fixed top-19 left-1/2 z-10 flex w-11/12 -translate-x-1/2 flex-col gap-2 rounded-lg p-4 text-lg"
 		>
-			{#each navItems as item (item.href)}
+			{#each navItems as item (item.id)}
 				<a
 					class="w-full text-lg font-semibold no-underline hover:text-(--muted) hover:underline hover:underline-offset-2"
-					href={item.href}
+					href={`#${item.id}`}
 				>
 					{item.label}
 				</a>
@@ -391,17 +468,22 @@
 
 	<section class="h-screen w-screen" aria-hidden="true"></section>
 
-	<div class="relative z-2 flex flex-col">
-		{#each sections as section, index (section.id)}
+	<div
+		class="landing-section relative z-2 flex flex-col rounded-t-3xl bg-white/20 backdrop-blur-2xl md:rounded-t-4xl"
+	>
+		{#each sections as section (section.id)}
 			<section
-				class={`landing-section flex min-h-[50dvh] w-full flex-col gap-3 rounded-t-3xl bg-white/20 px-6 pt-4 pb-15 shadow-2xl backdrop-blur-2xl sm:gap-5 sm:px-10 md:rounded-t-4xl md:px-20 md:pt-15 ${
-					index === 0 ? '' : '-mt-5'
+				use:setHowItWorksSection={section.id}
+				class={`flex w-full flex-col ${
+					section.title === 'How it works'
+						? 'min-h-[260dvh]'
+						: 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10'
 				}`}
 				id={section.id}
 			>
-				{#if section.title !== 'Contact'}
+				{#if section.title !== 'Contact' && section.title !== 'Managing your image' && section.title !== 'How it works'}
 					<h2
-						class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold tracking-normal text-balance wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+						class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
 					>
 						<span class="text-(--accent)">></span>
 						{section.title}
@@ -414,9 +496,9 @@
 						Managing the image of businesses. Results and ratings speak for themselves. Click a
 						brand to see more.
 					</p>
-					<div class={`grid w-full gap-6 pt-6 sm:py-10 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
+					<div class={`grid w-full gap-6 pt-6 sm:pt-10 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
 						<div
-							class={`relative flex min-h-[58dvh] w-full min-w-0 flex-col justify-center gap-7 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-10 lg:min-h-[60dvh] ${
+							class={`relative flex min-h-[45dvh] w-full min-w-0 flex-col justify-center gap-7 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-10 ${
 								selectedBrand ? 'lg:col-span-2' : ''
 							}`}
 							aria-label="Client brand marquee"
@@ -450,84 +532,181 @@
 
 						{#if selectedBrand}
 							<aside
-								class="flex min-h-70 min-w-0 flex-col justify-between gap-6 lg:min-h-[70dvh] lg:py-2"
+								class="flex min-h-[45vh] min-w-0 flex-col gap-6 lg:py-2"
 								style={`--brand-accent: ${selectedBrand.color};`}
 							>
-								<div class="grid gap-5">
-									<div class="flex items-start justify-between gap-4">
-										<div class="flex w-full min-w-0 items-center justify-between">
-											<h3
-												class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--brand-accent) sm:text-5xl"
-											>
-												{selectedBrand.name}
-											</h3>
-											<button
-												class="shrink-0 border-0 bg-transparent text-2xl text-(--muted) transition hover:text-(--ink) focus-visible:outline-2 focus-visible:outline-(--accent) sm:text-3xl"
-												aria-label="Close company stats"
-												onclick={() => (selectedBrand = null)}
-											>
-												Close
-											</button>
-										</div>
-									</div>
-
-									<dl class="m-0 grid gap-3">
-										{#each selectedBrand.stats as stat (stat.label)}
-											<div class="border-t border-(--muted)/20 pt-3">
-												<dt class="text-sm leading-tight font-bold text-(--muted)">
-													{stat.label}
-												</dt>
-												<dd
-													class="m-0 mt-1 text-3xl leading-none font-extrabold text-(--ink) sm:text-4xl"
-												>
-													{stat.value}
-												</dd>
-											</div>
-										{/each}
-									</dl>
+								<div class="flex w-full min-w-0 items-center justify-between gap-4">
+									<h3
+										class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--brand-accent) sm:text-5xl"
+									>
+										{selectedBrand.name}
+									</h3>
+									<button
+										class="shrink-0 border-0 bg-transparent text-2xl text-(--muted) transition hover:text-(--ink) focus-visible:outline-2 focus-visible:outline-(--accent) sm:text-3xl"
+										aria-label="Close company stats"
+										onclick={() => (selectedBrand = null)}
+									>
+										Close
+									</button>
 								</div>
 
-								<p class="m-0 text-base font-medium text-(--muted) md:text-lg">
+								<dl class="m-0 grid gap-3">
+									{#each selectedBrand.stats as stat (stat.label)}
+										<div class="border-t border-(--muted)/20 pt-3">
+											<dt class="text-sm leading-tight font-bold text-(--muted)">
+												{stat.label}
+											</dt>
+											<dd
+												class="m-0 mt-1 text-3xl leading-none font-extrabold text-(--ink) sm:text-4xl"
+											>
+												{stat.value}
+											</dd>
+										</div>
+									{/each}
+								</dl>
+
+								<p class="m-0 mt-auto text-base font-medium text-(--muted) md:text-lg">
 									LinkedIn performance created through Byro-managed content and positioning.
 								</p>
 							</aside>
 						{/if}
 					</div>
+				{:else if section.title === 'Managing your image'}
+					<div
+						class="relative grid min-h-0 w-full flex-1 grid-cols-2 gap-y-3 before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-px before:-translate-x-1/2 before:bg-(--muted)/40"
+					>
+						<div class="flex h-full w-full pr-4">
+							<h2
+								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+							>
+								Wihtout Byro
+							</h2>
+						</div>
+						<div class="flex h-full w-full pl-4">
+							<h2
+								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+							>
+								With Byro
+							</h2>
+						</div>
+						<div class="flex h-full w-full pr-4">
+							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+								<p
+									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
+								>
+									Product may be good, but the brand image isn't there. Because of that you can miss
+									out on investors, connections and more, since the credibility and trust isn't
+									there.
+								</p>
+							</div>
+						</div>
+						<div class="flex h-full w-full pl-4">
+							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+								<p
+									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
+								>
+									Together with an amazing product and an active brand image, your credibility,
+									trust and quality go up, leading to more opportunities and success.
+								</p>
+							</div>
+						</div>
+						<div class="flex h-full w-full pr-4">
+							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+								<p
+									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
+								>
+									Different members posting the same thing. It's hard to keep track of everybody.
+								</p>
+							</div>
+						</div>
+						<div class="flex h-full w-full pl-4">
+							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+								<p
+									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
+								>
+									A shared calendar and schedule between all members. Keep track of what others are
+									posting or will post and avoid the mess from before.
+								</p>
+							</div>
+						</div>
+						<div class="flex h-full w-full pr-4">
+							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+								<p
+									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
+								>
+									Writer's block - you don't know what to post, you're stuck on different topics or
+									something else, which can cause unmotivated and forced posts.
+								</p>
+							</div>
+						</div>
+						<div class="flex h-full w-full pl-4">
+							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+								<p
+									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
+								>
+									Let Byro do the work for you - based on the info and data you give us, we'll
+									create a persona of you and based on that Byro will generate posts for you. You
+									can just review the generated content and relax.
+								</p>
+							</div>
+						</div>
+					</div>
 				{:else if section.title === 'How it works'}
-					<div class="flex h-full w-full flex-col md:grid md:grid-cols-2 xl:grid-cols-4">
-						<div
-							class="flex flex-col border-b border-(--muted)/40 pb-2 md:gap-1 md:border-r md:border-b-0 md:pr-3 xl:py-0"
+					<div
+						class="sticky top-0 z-1 flex h-dvh w-full flex-col gap-3 overflow-hidden px-4 pt-24 pb-4 sm:gap-5 sm:px-10 sm:pb-6 md:px-20 md:pb-10"
+					>
+						<h2
+							class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
 						>
-							<span class="text-lg font-medium md:text-xl">
-								<span class="inline text-(--accent)">1.</span>
-								Gathering info
-							</span>
-							<p class="text-(--muted)">{placeholder}</p>
-						</div>
+							<span class="text-(--accent)">></span>
+							How it works
+						</h2>
+
 						<div
-							class="flex flex-col border-b border-(--muted)/40 py-2 md:gap-1 md:border-b-0 md:pt-0 md:pl-3 xl:border-r xl:py-0 xl:pr-3"
+							class="grid min-h-0 w-full flex-1 content-start items-start lg:grid-cols-2 lg:content-stretch lg:items-center lg:gap-16"
 						>
-							<span class="text-lg font-medium md:text-xl">
-								<span class="inline text-(--accent)">2.</span>
-								Quick interviews
-							</span>
-							<p class="text-(--muted)">{placeholder}</p>
-						</div>
-						<div
-							class="flex flex-col border-b border-(--muted)/40 py-2 md:gap-1 md:border-r md:border-b-0 md:pr-3 md:pb-0 xl:py-0 xl:pl-3"
-						>
-							<span class="text-lg font-medium md:text-xl">
-								<span class="inline text-(--accent)">3.</span>
-								A persona file
-							</span>
-							<p class="text-(--muted)">{placeholder}</p>
-						</div>
-						<div class="flex flex-col pt-2 md:gap-1 md:pl-3 xl:py-0">
-							<span class="text-lg font-medium md:text-xl">
-								<span class="inline text-(--accent)">4.</span>
-								Posting and creating
-							</span>
-							<p class="text-(--muted)">{placeholder}</p>
+							<div class="flex w-full items-center justify-center py-10 lg:py-0" aria-hidden="true">
+								<div
+									class="flex w-full items-center justify-between gap-1 py-1 lg:max-w-72 lg:flex-col lg:justify-center lg:gap-2"
+								>
+									{#each howItWorksRailDots as dotIndex (dotIndex)}
+										<span
+											class={`block aspect-square size-2.5 shrink-0 rounded-full transition duration-200 motion-reduce:transition-none sm:size-3 ${
+												dotIndex <= howItWorksActiveDotIndex
+													? 'bg-(--accent) shadow-[0_0_14px_color-mix(in_srgb,var(--accent)_24%,transparent)]'
+													: 'bg-(--muted)/24'
+											}`}
+										></span>
+									{/each}
+								</div>
+							</div>
+
+							<aside class="flex min-w-0 flex-col gap-4 lg:gap-6" aria-live="polite">
+								<div class="flex w-full min-w-0 items-center justify-between gap-4">
+									<h3
+										class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--ink) sm:text-5xl"
+									>
+										{activeHowItWorksStep.title}
+									</h3>
+									<span class="shrink-0 text-2xl leading-none font-bold text-(--muted) sm:text-3xl">
+										Step {howItWorksActiveIndex + 1}
+									</span>
+								</div>
+
+								<p
+									class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+								>
+									{activeHowItWorksStep.description}
+								</p>
+
+								<div class="aspect-video w-full rounded-lg bg-slate-900"></div>
+							</aside>
 						</div>
 					</div>
 				{:else if section.title === 'Pricing'}
@@ -668,9 +847,7 @@
 						</div>
 					</footer>
 				{:else}
-					<p
-						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
-					>
+					<p class="w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl">
 						{placeholder}
 					</p>
 				{/if}
