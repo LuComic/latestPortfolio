@@ -390,6 +390,8 @@
 	);
 
 	let activeHowItWorksStep = $derived(howItWorksSteps[howItWorksActiveIndex] ?? howItWorksSteps[0]);
+
+	let withByro = $state(true);
 </script>
 
 <svelte:window bind:innerWidth={w} bind:innerHeight={viewportHeight} bind:scrollY />
@@ -572,91 +574,152 @@
 						{/if}
 					</div>
 				{:else if section.title === 'Managing your image'}
-					<div
-						class="relative grid min-h-0 w-full flex-1 grid-cols-2 gap-y-3 before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-px before:-translate-x-1/2 before:bg-(--muted)/40"
-					>
-						<div class="flex h-full w-full pr-4">
+					{#if w <= 1024}
+						<div class="flex min-h-0 flex-1 flex-col gap-3">
 							<h2
 								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
 							>
-								Wihtout Byro
+								<span class="text-(--accent)">></span>
+								{#if withByro}
+									With Byro
+								{:else}
+									Without Byro
+								{/if}
 							</h2>
+							<div
+								class="sticky top-19 z-9 flex w-full items-center gap-1 rounded-full bg-(--paper)/50 p-1 backdrop-blur-md"
+							>
+								<button
+									class={`rounded-full p-1 ${withByro ? 'bg-(--accent) text-white' : 'text-(--ink)'}  w-full font-medium`}
+									onclick={() => (withByro = true)}
+								>
+									With Byro
+								</button>
+								<button
+									class={`rounded-full p-1 ${!withByro ? 'bg-(--accent) text-white' : 'text-(--ink)'}  w-full font-medium`}
+									onclick={() => (withByro = false)}
+								>
+									Without Byro
+								</button>
+							</div>
+							{#if withByro}
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
+										Together with an amazing product and an active brand image, your credibility,
+										trust and quality go up, leading to more opportunities and success.
+									</p>
+								</div>
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
+										A shared calendar and schedule between all members. Keep track of what others
+										are posting or will post and avoid the mess from before.
+									</p>
+								</div>
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
+										Let Byro do the work for you - based on the info and data you give us, we'll
+										create a persona of you and based on that Byro will generate posts for you. You
+										can just review the generated content and relax.
+									</p>
+								</div>
+							{:else}
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
+										Product may be good, but the brand image isn't there. Because of that you can
+										miss out on investors, connections and more, since the credibility and trust
+										isn't there.
+									</p>
+								</div>
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
+										Different members posting the same thing. It's hard to keep track of everybody.
+									</p>
+								</div>
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
+										Writer's block - you don't know what to post, you're stuck on different topics
+										or something else, which can cause unmotivated and forced posts.
+									</p>
+								</div>
+							{/if}
 						</div>
-						<div class="flex h-full w-full pl-4">
+					{:else}
+						<div
+							class="relative grid min-h-0 w-full flex-1 grid-cols-2 gap-y-3 before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-px before:-translate-x-1/2 before:bg-(--muted)/40"
+						>
 							<h2
-								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+								class="m-0 flex w-full max-w-full items-center gap-3 pr-4 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+							>
+								Without Byro
+							</h2>
+							<h2
+								class="m-0 flex w-full max-w-full items-center gap-3 pl-4 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
 							>
 								With Byro
 							</h2>
-						</div>
-						<div class="flex h-full w-full pr-4">
-							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
-								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-								<p
-									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
-								>
-									Product may be good, but the brand image isn't there. Because of that you can miss
-									out on investors, connections and more, since the credibility and trust isn't
-									there.
-								</p>
+							<div class="flex h-full w-full pr-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
+										Product may be good, but the brand image isn't there. Because of that you can
+										miss out on investors, connections and more, since the credibility and trust
+										isn't there.
+									</p>
+								</div>
+							</div>
+							<div class="flex h-full w-full pl-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
+										Together with an amazing product and an active brand image, your credibility,
+										trust and quality go up, leading to more opportunities and success.
+									</p>
+								</div>
+							</div>
+							<div class="flex h-full w-full pr-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
+										Different members posting the same thing. It's hard to keep track of everybody.
+									</p>
+								</div>
+							</div>
+							<div class="flex h-full w-full pl-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
+										A shared calendar and schedule between all members. Keep track of what others
+										are posting or will post and avoid the mess from before.
+									</p>
+								</div>
+							</div>
+							<div class="flex h-full w-full pr-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
+										Writer's block - you don't know what to post, you're stuck on different topics
+										or something else, which can cause unmotivated and forced posts.
+									</p>
+								</div>
+							</div>
+							<div class="flex h-full w-full pl-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
+										Let Byro do the work for you - based on the info and data you give us, we'll
+										create a persona of you and based on that Byro will generate posts for you. You
+										can just review the generated content and relax.
+									</p>
+								</div>
 							</div>
 						</div>
-						<div class="flex h-full w-full pl-4">
-							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
-								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-								<p
-									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
-								>
-									Together with an amazing product and an active brand image, your credibility,
-									trust and quality go up, leading to more opportunities and success.
-								</p>
-							</div>
-						</div>
-						<div class="flex h-full w-full pr-4">
-							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
-								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-								<p
-									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
-								>
-									Different members posting the same thing. It's hard to keep track of everybody.
-								</p>
-							</div>
-						</div>
-						<div class="flex h-full w-full pl-4">
-							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
-								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-								<p
-									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
-								>
-									A shared calendar and schedule between all members. Keep track of what others are
-									posting or will post and avoid the mess from before.
-								</p>
-							</div>
-						</div>
-						<div class="flex h-full w-full pr-4">
-							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
-								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-								<p
-									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
-								>
-									Writer's block - you don't know what to post, you're stuck on different topics or
-									something else, which can cause unmotivated and forced posts.
-								</p>
-							</div>
-						</div>
-						<div class="flex h-full w-full pl-4">
-							<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
-								<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-								<p
-									class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl xl:text-2xl"
-								>
-									Let Byro do the work for you - based on the info and data you give us, we'll
-									create a persona of you and based on that Byro will generate posts for you. You
-									can just review the generated content and relax.
-								</p>
-							</div>
-						</div>
-					</div>
+					{/if}
 				{:else if section.title === 'How it works'}
 					<div
 						class="sticky top-0 z-1 flex h-dvh w-full flex-col gap-3 overflow-hidden px-4 pt-24 pb-4 sm:gap-5 sm:px-10 sm:pb-6 md:px-20 md:pb-10"
@@ -909,7 +972,6 @@
 
 	.byro-header {
 		box-shadow: var(--header-shadow) 0 4px 12px;
-		border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
 	}
 
 	.landing-section {
