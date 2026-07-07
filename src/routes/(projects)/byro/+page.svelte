@@ -18,6 +18,7 @@
 		{ id: 'testimonials', label: 'Testimonials' },
 		{ id: 'managing-your-image', label: 'What?' },
 		{ id: 'how-it-works', label: 'How?' },
+		{ id: 'founder-led-teams', label: 'Who?' },
 		{ id: 'pricing', label: 'Pricing' },
 		{ id: 'contact', label: 'Contact' }
 	];
@@ -26,6 +27,7 @@
 		{ id: 'testimonials', title: 'Testimonials' },
 		{ id: 'managing-your-image', title: 'Managing your image' },
 		{ id: 'how-it-works', title: 'How it works' },
+		{ id: 'founder-led-teams', title: 'Built for specific founder-led teams' },
 		{ id: 'pricing', title: 'Pricing' },
 		{ id: 'contact', title: 'Contact' }
 	];
@@ -47,106 +49,132 @@
 		}
 	];
 
-	const placeholder =
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis nunc et mi varius eleifend. Nam varius felis non sapien pretium, ut gravida nulla tempus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut bibendum sit amet turpis at interdum. Pellentesque non diam ac ex commodo hendrerit eu sed nunc.';
+	const heroDescription =
+		'Byro helps founders and B2B teams create high-signal content for LinkedIn and X using their real voice, beliefs, and proof.';
 
 	const howItWorksSteps = [
 		{
-			title: 'Gathering info',
-			description:
-				'You share goals, audience notes, brand material, and the source files Byro should learn from.'
+			title: 'Persona research',
+			agent: 'Input Agent',
+			description: 'We read your interviews, posts and long-form to learn how you actually think.'
 		},
 		{
-			title: 'Quick interviews',
-			description:
-				'Short calls fill in the missing context, tone, edge cases, and founder-level details.'
+			title: 'Voice guide',
+			agent: 'Voice Agent',
+			description: 'Your tone, rhythm and rules - codified so every post sounds like you.'
 		},
 		{
-			title: 'A persona file',
-			description:
-				'Everything turns into a reusable profile that keeps posts consistent across the team.'
+			title: 'Positioning map',
+			agent: 'Positioning Agent',
+			description: 'Audience, beliefs, proof and pain points structured into one artifact.'
 		},
 		{
-			title: 'Posting and creating',
-			description:
-				'Byro drafts, schedules, and keeps the content flow moving while you review the important bits.'
+			title: 'Content creation',
+			agent: 'Draft Agent',
+			description: 'High-signal LinkedIn and X drafts, ready for you to review and approve.'
+		},
+		{
+			title: 'Visual matching',
+			agent: 'Visual Agent',
+			description: 'The right visual snaps beside each draft - quote cards, proof, screenshots.'
+		},
+		{
+			title: 'Feedback loop',
+			agent: 'Review Agent',
+			description: 'Your ratings refine the system, so every week reads more like you.'
 		}
 	];
 
-	const howItWorksDesktopRailDotCount = 28;
-	const howItWorksCompactRailDotCount = 20;
+	const howItWorksDesktopRailDotCount = 36;
+	const howItWorksCompactRailDotCount = 24;
 	const howItWorksStopPointSize = 1.5;
+
+	const audienceCards = [
+		{
+			title: 'Early-stage B2B founders in Europe',
+			description:
+				'You need credibility and distribution more than a big brand campaign. Byro turns your expertise into a presence that compounds - week after week.'
+		},
+		{
+			title: 'B2B SaaS GTM and marketing leaders',
+			description: 'Founder-led presence that supports pipeline and hiring.'
+		},
+		{
+			title: 'Founder-led agencies and studios',
+			description: 'Strong personal brands that help you close better clients.'
+		}
+	];
 
 	const testimonialBrands = [
 		{
-			name: 'Coca-Cola',
-			color: '#ef4444',
+			name: 'Northstar Labs',
+			color: '#6d62f0',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '428k' },
-				{ label: 'LinkedIn clicks', value: '18.6k' },
+				{ label: 'Qualified replies', value: '3.4x' },
+				{ label: 'Weekly founder posts', value: '12' },
 				{ label: 'Rating', value: '4.9/5' }
 			]
 		},
 		{
-			name: 'Spotify',
-			color: '#22c55e',
+			name: 'Vellum GTM',
+			color: '#475569',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '312k' },
-				{ label: 'LinkedIn clicks', value: '11.9k' },
+				{ label: 'Founder time saved', value: '7h/wk' },
+				{ label: 'Approved drafts', value: '86%' },
 				{ label: 'Rating', value: '4.8/5' }
 			]
 		},
 		{
-			name: 'Wise',
-			color: '#16a34a',
+			name: 'Fjord SaaS',
+			color: '#0f766e',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '196k' },
-				{ label: 'LinkedIn clicks', value: '8.4k' },
+				{ label: 'Inbound lift', value: '2.1x' },
+				{ label: 'Content lanes', value: '5' },
 				{ label: 'Rating', value: '4.7/5' }
 			]
 		},
 		{
-			name: 'Figma',
-			color: '#a855f7',
+			name: 'Orbit Studio',
+			color: '#7c3aed',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '251k' },
-				{ label: 'LinkedIn clicks', value: '13.2k' },
+				{ label: 'Review cycles', value: '6' },
+				{ label: 'Posts approved', value: '91%' },
 				{ label: 'Rating', value: '4.9/5' }
 			]
 		},
 		{
-			name: 'Airbnb',
-			color: '#f43f5e',
+			name: 'PipelineOS',
+			color: '#2563eb',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '379k' },
-				{ label: 'LinkedIn clicks', value: '15.1k' },
+				{ label: 'Narratives mapped', value: '9' },
+				{ label: 'Proof points used', value: '34' },
 				{ label: 'Rating', value: '4.8/5' }
 			]
 		},
 		{
-			name: 'Bolt',
-			color: '#84cc16',
+			name: 'Signal Foundry',
+			color: '#db2777',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '144k' },
-				{ label: 'LinkedIn clicks', value: '6.8k' },
+				{ label: 'Founder posts', value: '48' },
+				{ label: 'Visuals matched', value: '31' },
 				{ label: 'Rating', value: '4.6/5' }
 			]
 		},
 		{
-			name: 'Stripe',
-			color: '#6366f1',
+			name: 'Credo Works',
+			color: '#111827',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '286k' },
-				{ label: 'LinkedIn clicks', value: '10.7k' },
+				{ label: 'Positioning pillars', value: '6' },
+				{ label: 'Draft approval', value: '88%' },
 				{ label: 'Rating', value: '4.8/5' }
 			]
 		},
 		{
-			name: 'Notion',
-			color: '#11182b',
+			name: 'Arc B2B',
+			color: '#ea580c',
 			stats: [
-				{ label: 'LinkedIn impressions', value: '223k' },
-				{ label: 'LinkedIn clicks', value: '9.5k' },
+				{ label: 'Proof-backed posts', value: '39' },
+				{ label: 'Audience themes', value: '7' },
 				{ label: 'Rating', value: '4.7/5' }
 			]
 		}
@@ -493,14 +521,31 @@
 		class="fixed top-0 bottom-0 left-1/2 z-1 grid h-svh w-4/5 -translate-x-1/2 grid-cols-1 content-center items-center gap-10 overflow-hidden py-7 sm:py-10 md:grid-cols-2 md:gap-16 md:py-14 xl:gap-26 xl:py-18"
 	>
 		<section class="w-full">
-			<h1 class="m-0 w-max font-sans text-8xl leading-none font-medium tracking-normal md:text-9xl">
-				byro
+			<h1
+				class="m-0 max-w-155 font-sans text-5xl leading-none font-medium tracking-normal wrap-break-word sm:text-6xl lg:text-6xl xl:text-7xl"
+			>
+				Turn founder expertise into trust and inbound.
 			</h1>
 			<p
-				class="mt-6 max-w-105 text-lg font-medium underline decoration-(--accent)/60 underline-offset-4 md:mt-8 md:text-2xl xl:mt-9 xl:text-3xl"
+				class="mt-6 max-w-135 text-lg font-medium text-(--muted) md:mt-8 md:text-2xl xl:mt-9 xl:text-3xl"
 			>
-				A cleaner workspace for briefs, drafts, and decisions.
+				{heroDescription}
 			</p>
+			<div class="mt-8 flex flex-wrap items-center gap-4 md:mt-10">
+				<a
+					class="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--ink) bg-(--ink) pr-4 pl-6 text-lg font-medium text-white no-underline transition hover:opacity-90"
+					href="mailto:hello@byro.example?subject=Book%20a%20Byro%20call"
+				>
+					Book a call
+					<ArrowRight size={20} />
+				</a>
+				<a
+					class="inline-flex h-12 items-center justify-center text-lg font-medium text-(--accent) no-underline transition hover:opacity-80"
+					href="#how-it-works"
+				>
+					How Byro works
+				</a>
+			</div>
 		</section>
 
 		<section class="grid w-full min-w-0 items-center justify-items-center md:justify-items-end">
@@ -524,7 +569,7 @@
 				use:setHowItWorksSection={section.id}
 				class={`flex w-full flex-col ${
 					section.title === 'How it works'
-						? 'min-h-[260dvh]'
+						? 'min-h-[340dvh]'
 						: 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10'
 				}`}
 				id={section.id}
@@ -541,8 +586,8 @@
 					<p
 						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
 					>
-						Managing the image of businesses. Results and ratings speak for themselves. Click a
-						brand to see more.
+						Founder-led teams use Byro to turn real expertise into clearer public signal. Click a
+						team to see more.
 					</p>
 					<div class={`grid w-full gap-6 pt-6 sm:pt-10 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
 						<div
@@ -562,7 +607,7 @@
 									>
 										{#each [...row, ...row] as brand, brandIndex (`${rowIndex}-${brand.name}-${brandIndex}`)}
 											<button
-												class={`cursor-pointer border-0 bg-transparent px-2 py-1 text-center font-sans text-4xl leading-none font-semibold whitespace-nowrap text-(--ink) no-underline transition duration-150 hover:-translate-y-1 hover:text-(--brand-accent) focus-visible:-translate-y-1 focus-visible:text-(--brand-accent) focus-visible:outline-0 sm:text-5xl lg:text-6xl ${
+												class={`cursor-pointer border-0 bg-transparent px-2 py-1 text-center font-sans text-4xl leading-none font-semibold whitespace-nowrap text-(--ink) no-underline transition duration-150 hover:text-(--brand-accent) focus-visible:text-(--brand-accent) focus-visible:outline-0 sm:text-5xl lg:text-6xl ${
 													selectedBrand?.name === brand.name ? 'text-(--brand-accent)' : ''
 												}`}
 												style={`--brand-accent: ${brand.color};`}
@@ -649,48 +694,47 @@
 								</button>
 							</div>
 							{#if withByro}
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
-										Together with an amazing product and an active brand image, your credibility,
-										trust and quality go up, leading to more opportunities and success.
+									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
+										Clear founder positioning and narrative make the team look as credible as the
+										product actually is.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
-										A shared calendar and schedule between all members. Keep track of what others
-										are posting or will post and avoid the mess from before.
+									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
+										A repeatable system turns beliefs, proof, drafts, visuals, and review into a
+										steady LinkedIn and X workflow.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
-										Let Byro do the work for you - based on the info and data you give us, we'll
-										create a persona of you and based on that Byro will generate posts for you. You
-										can just review the generated content and relax.
+									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
+										A shared content calendar gives the team clarity on what is planned, drafted,
+										reviewed, and ready to publish.
 									</p>
 								</div>
 							{:else}
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
-										Product may be good, but the brand image isn't there. Because of that you can
-										miss out on investors, connections and more, since the credibility and trust
-										isn't there.
+									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
+										Plenty of teams have a strong product and real expertise, but their public
+										presence does not show it.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
-										Different members posting the same thing. It's hard to keep track of everybody.
+									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
+										Founder visibility stays chaotic: occasional posts, no system, and no clear
+										narrative.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base font-medium text-(--ink) md:text-xl">
-										Writer's block - you don't know what to post, you're stuck on different topics
-										or something else, which can cause unmotivated and forced posts.
+									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
+										People post on LinkedIn and X when they have time, without a shared plan,
+										calendar, or review flow.
 									</p>
 								</div>
 							{/if}
@@ -710,57 +754,56 @@
 								With Byro
 							</h2>
 							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
-										Product may be good, but the brand image isn't there. Because of that you can
-										miss out on investors, connections and more, since the credibility and trust
-										isn't there.
+									<p class="w-full max-w-none text-2xl text-(--muted)">
+										Plenty of teams have a strong product and real expertise, but their public
+										presence does not show it.
 									</p>
 								</div>
 							</div>
 							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
-										Together with an amazing product and an active brand image, your credibility,
-										trust and quality go up, leading to more opportunities and success.
+									<p class="w-full max-w-none text-2xl text-(--muted)">
+										Clear founder positioning and narrative make the team look as credible as the
+										product actually is.
 									</p>
 								</div>
 							</div>
 							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
-										Different members posting the same thing. It's hard to keep track of everybody.
+									<p class="w-full max-w-none text-2xl text-(--muted)">
+										Founder visibility stays chaotic: occasional posts, no system, and no clear
+										narrative.
 									</p>
 								</div>
 							</div>
 							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
-										A shared calendar and schedule between all members. Keep track of what others
-										are posting or will post and avoid the mess from before.
+									<p class="w-full max-w-none text-2xl text-(--muted)">
+										A repeatable system turns beliefs, proof, drafts, visuals, and review into a
+										steady LinkedIn and X workflow.
 									</p>
 								</div>
 							</div>
 							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
-										Writer's block - you don't know what to post, you're stuck on different topics
-										or something else, which can cause unmotivated and forced posts.
+									<p class="w-full max-w-none text-2xl text-(--muted)">
+										People post on LinkedIn and X when they have time, without a shared plan,
+										calendar, or review flow.
 									</p>
 								</div>
 							</div>
 							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-3 py-2">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl font-medium text-(--ink)">
-										Let Byro do the work for you - based on the info and data you give us, we'll
-										create a persona of you and based on that Byro will generate posts for you. You
-										can just review the generated content and relax.
+									<p class="w-full max-w-none text-2xl text-(--muted)">
+										A shared content calendar gives the team clarity on what is planned, drafted,
+										reviewed, and ready to publish.
 									</p>
 								</div>
 							</div>
@@ -774,7 +817,7 @@
 							class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
 						>
 							<span class="text-(--accent)">></span>
-							How it works
+							Inside the Byro system
 						</h2>
 
 						<div
@@ -808,6 +851,10 @@
 									</span>
 								</div>
 
+								<p class="m-0 font-medium text-(--accent) md:text-xl xl:text-2xl">
+									{activeHowItWorksStep.agent}
+								</p>
+
 								<p
 									class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
 								>
@@ -816,6 +863,39 @@
 
 								<div class="aspect-video w-full rounded-lg bg-slate-900"></div>
 							</aside>
+						</div>
+					</div>
+				{:else if section.title === 'Built for specific founder-led teams'}
+					<p class="m-0 max-w-210 text-base font-medium text-(--muted) md:text-xl xl:text-2xl">
+						Built from hands-on work with founder-led B2B teams that need trust and distribution
+						before they have a big brand.
+					</p>
+					<div
+						class="grid w-full gap-3 pt-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-stretch lg:gap-6"
+					>
+						<div
+							class="flex min-h-96 flex-col justify-center gap-7 rounded-lg bg-(--paper)/50 px-8 py-5"
+						>
+							<h3 class="m-0 max-w-170 text-4xl font-bold wrap-break-word text-(--ink) lg:text-5xl">
+								{audienceCards[0].title}
+							</h3>
+							<p class="m-0 max-w-160 text-xl font-medium text-(--muted) md:text-2xl">
+								{audienceCards[0].description}
+							</p>
+						</div>
+						<div class="grid gap-3 lg:gap-6">
+							{#each audienceCards.slice(1) as card (card.title)}
+								<div
+									class="flex flex-col justify-center gap-4 rounded-lg bg-(--paper)/50 px-7 py-5"
+								>
+									<h3 class="m-0 text-2xl font-bold wrap-break-word text-(--ink) lg:text-3xl">
+										{card.title}
+									</h3>
+									<p class="m-0 text-lg font-medium text-(--muted) md:text-xl">
+										{card.description}
+									</p>
+								</div>
+							{/each}
 						</div>
 					</div>
 				{:else if section.title === 'Pricing'}
@@ -875,7 +955,7 @@
 									Byro
 								</a>
 								<p class="m-0 max-w-85 text-base font-medium text-(--muted) md:text-xl">
-									A cleaner workspace for briefs, drafts, and decisions.
+									{heroDescription}
 								</p>
 								<a
 									class="inline-flex w-max max-w-full items-center gap-2 font-semibold wrap-break-word text-(--ink) hover:opacity-80"
@@ -930,7 +1010,7 @@
 					</footer>
 				{:else}
 					<p class="w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl">
-						{placeholder}
+						{heroDescription}
 					</p>
 				{/if}
 			</section>
