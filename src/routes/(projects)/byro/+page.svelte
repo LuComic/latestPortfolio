@@ -75,6 +75,7 @@
 
 	const howItWorksDesktopRailDotCount = 28;
 	const howItWorksCompactRailDotCount = 20;
+	const howItWorksStopPointSize = 1.5;
 
 	const testimonialBrands = [
 		{
@@ -361,7 +362,44 @@
 		return Math.min(Math.max(value, min), max);
 	}
 
-	let howItWorksScrollProgress = $derived.by(() => {
+	function applyStepStopPoints(progress: number, stepCount: number, stopPointSize: number) {
+		if (stepCount <= 1) return progress;
+
+		const transitionStopPointCount = stepCount - 1;
+		const stopPointCount = stepCount;
+		const effectiveStopPointSize = Math.min(stopPointSize, 0.6 / stopPointCount);
+		const totalStopPointSize = effectiveStopPointSize * stopPointCount;
+		const scrollSegmentSize = (1 - totalStopPointSize) / stepCount;
+		const progressSegmentSize = 1 / stepCount;
+		let scrollCursor = effectiveStopPointSize;
+
+		if (progress <= scrollCursor) return 0;
+
+		for (let stepIndex = 0; stepIndex < stepCount; stepIndex += 1) {
+			const segmentEnd = scrollCursor + scrollSegmentSize;
+			const progressStart = stepIndex * progressSegmentSize;
+			const progressEnd = Math.min((stepIndex + 1) * progressSegmentSize, 1);
+
+			if (progress <= segmentEnd) {
+				const segmentProgress = clamp((progress - scrollCursor) / scrollSegmentSize);
+				return progressStart + segmentProgress * (progressEnd - progressStart);
+			}
+
+			scrollCursor = segmentEnd;
+
+			if (stepIndex < transitionStopPointCount) {
+				const stopPointEnd = scrollCursor + effectiveStopPointSize;
+
+				if (progress <= stopPointEnd) return progressEnd;
+
+				scrollCursor = stopPointEnd;
+			}
+		}
+
+		return 1;
+	}
+
+	let rawHowItWorksScrollProgress = $derived.by(() => {
 		if (!howItWorksSection || viewportHeight <= 0 || w <= 0) return 0;
 
 		const currentScrollY = scrollY;
@@ -371,6 +409,14 @@
 
 		return clamp((currentScrollY - sectionScrollStart) / scrollableDistance);
 	});
+
+	let howItWorksScrollProgress = $derived(
+		applyStepStopPoints(
+			rawHowItWorksScrollProgress,
+			howItWorksSteps.length,
+			howItWorksStopPointSize
+		)
+	);
 
 	let howItWorksActiveIndex = $derived(
 		Math.min(
@@ -386,7 +432,7 @@
 	let howItWorksRailDots = $derived(Array.from(Array(howItWorksRailDotCount).keys()));
 
 	let howItWorksActiveDotIndex = $derived(
-		Math.floor(howItWorksScrollProgress * (howItWorksRailDotCount - 1))
+		Math.round(howItWorksScrollProgress * (howItWorksRailDotCount - 1))
 	);
 
 	let activeHowItWorksStep = $derived(howItWorksSteps[howItWorksActiveIndex] ?? howItWorksSteps[0]);
