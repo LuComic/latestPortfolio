@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
-	import { Asterisk, Mail, Menu } from '@lucide/svelte';
+	import { ArrowRight, Mail, Menu } from '@lucide/svelte';
 
 	const dotSize = 5;
 	const dotGap = 2;
@@ -471,7 +471,7 @@
 	<section class="h-screen w-screen" aria-hidden="true"></section>
 
 	<div
-		class="landing-section relative z-2 flex flex-col rounded-t-3xl bg-white/20 backdrop-blur-2xl md:rounded-t-4xl"
+		class="landing-section relative z-2 flex flex-col rounded-t-3xl bg-white/10 backdrop-blur-xl md:rounded-t-4xl"
 	>
 		{#each sections as section (section.id)}
 			<section
@@ -773,76 +773,49 @@
 						</div>
 					</div>
 				{:else if section.title === 'Pricing'}
-					<div class="flex min-h-0 w-full flex-1 flex-col md:grid md:grid-cols-3">
-						<div
-							class="flex h-full flex-col gap-3 border-b border-(--muted)/40 py-4 pr-3 md:border-r md:border-b-0 md:py-0"
-						>
-							<span class="text-xl font-medium md:text-2xl">Small Start Up</span>
-							<ul class="flex flex-col gap-1">
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">5-10 member teams</span>
-								</li>
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">Something else</span>
-								</li>
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">Even more stuff</span>
-								</li>
-							</ul>
-							<button
-								class="mt-auto w-full rounded-full border-2 border-(--accent) bg-(--accent) py-1 font-medium text-white hover:opacity-90"
+					<div
+						class="flex min-h-0 w-full flex-1 items-center justify-center px-2 py-16 text-center md:py-24"
+					>
+						<div class="flex w-full max-w-3xl flex-col items-center gap-8">
+							<h2
+								class="m-0 max-w-2xl font-sans text-4xl leading-tight font-bold wrap-break-word text-(--ink) sm:text-5xl md:text-6xl"
 							>
-								XX€ / month
-							</button>
-						</div>
-						<div
-							class="flex h-full flex-col gap-3 border-b border-(--muted)/40 px-3 py-4 md:border-r md:border-b-0 md:py-0"
-						>
-							<span class="text-xl font-medium md:text-2xl">Large enterprise</span>
-							<ul class="flex flex-col gap-1">
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">5-10 member teams</span>
-								</li>
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">Something else</span>
-								</li>
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">Even more stuff</span>
-								</li>
-							</ul>
-							<button
-								class="mt-auto w-full rounded-full border-2 border-(--accent) bg-(--accent) py-1 font-medium text-white hover:opacity-90"
+								Want Byro-level reputation for your team?
+							</h2>
+
+							<form
+								class="flex w-full max-w-xl flex-col gap-3 sm:flex-row"
+								action="mailto:hello@byro.example?subject=Join%20the%20Byro%20mailing%20list"
+								method="post"
+								enctype="text/plain"
 							>
-								XX€ / month
-							</button>
-						</div>
-						<div class="flex h-full flex-col gap-3 pt-4 pb-0 pl-3 md:py-0">
-							<span class="text-xl font-medium md:text-2xl">Something else</span>
-							<ul class="flex flex-col gap-1">
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">5-10 member teams</span>
-								</li>
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">Something else</span>
-								</li>
-								<li class="-ml-1 flex items-center">
-									<Asterisk class="text-(--accent)" />
-									<span class="text-lg md:text-xl">Even more stuff</span>
-								</li>
-							</ul>
-							<button
-								class="mt-auto w-full rounded-full border-2 border-(--accent) bg-(--accent) py-1 font-medium text-white hover:opacity-90"
-							>
-								Contact
-							</button>
+								<label class="sr-only" for="pricing-email">Email address</label>
+								<input
+									id="pricing-email"
+									name="email"
+									type="email"
+									required
+									placeholder="Your email"
+									class="h-12 flex-1 rounded-full border-2 border-(--muted)/40 bg-(--paper)/50 px-5 text-lg font-medium text-(--ink) transition outline-none placeholder:text-(--muted) focus:border-(--accent)"
+								/>
+								<button
+									class="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--accent) bg-(--accent) pr-4 pl-6 text-lg font-medium text-white transition hover:opacity-90"
+									type="submit"
+								>
+									Join mailing
+									<ArrowRight size={20} />
+								</button>
+							</form>
+
+							<p class="m-0 text-base font-medium text-(--muted) md:text-lg">
+								Or
+								<a
+									class="font-semibold wrap-break-word text-(--accent) no-underline hover:opacity-80"
+									href="mailto:hello@byro.example?subject=Byro%20early%20access"
+								>
+									email us for early access
+								</a>.
+							</p>
 						</div>
 					</div>
 				{:else if section.title === 'Contact'}
@@ -947,10 +920,10 @@
 
 	.byro-page {
 		--paper: #ffffff;
-		--ink: #11182b;
+		--ink: #0b111f;
 		--icon-paper: #f5f5f2;
 		--muted: #666c76;
-		--accent: #0ea5e9;
+		--accent: #6d62f0;
 		--dot: rgb(17 24 43 / 0.2);
 		--header-shadow: rgb(0 0 0 / 0.1);
 		--section-shadow: rgb(0 0 0 / 0.35);
