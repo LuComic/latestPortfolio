@@ -324,7 +324,8 @@
 			pixelCard.style.transform = '';
 
 			const maxSize = Math.min(window.innerHeight * 0.76, window.innerWidth * 0.38, 560);
-			const ledColumns = Math.max(42, Math.floor((maxSize + dotGap) / pitch));
+			const minLedColumns = window.innerWidth < 480 ? 28 : 42;
+			const ledColumns = Math.max(minLedColumns, Math.floor((maxSize + dotGap) / pitch));
 			const size = ledColumns * pitch - dotGap;
 
 			pixelCard.style.width = `${size}px`;
@@ -518,29 +519,29 @@
 	{/if}
 
 	<main
-		class="fixed top-0 bottom-0 left-1/2 z-1 grid h-svh w-4/5 -translate-x-1/2 grid-cols-1 content-center items-center gap-10 overflow-hidden py-7 sm:py-10 md:grid-cols-2 md:gap-16 md:py-14 xl:gap-26 xl:py-18"
+		class="fixed top-0 bottom-0 left-1/2 z-1 grid h-svh w-4/5 -translate-x-1/2 grid-cols-1 content-start items-center gap-7 overflow-hidden pt-28 pb-6 sm:content-center sm:gap-10 sm:py-10 md:grid-cols-2 md:gap-16 md:py-14 xl:gap-26 xl:py-18"
 	>
-		<section class="w-full">
+		<section class="flex w-full flex-col gap-5 md:gap-8 xl:gap-9">
 			<h1
-				class="m-0 max-w-155 font-sans text-5xl leading-none font-medium tracking-normal wrap-break-word sm:text-6xl lg:text-6xl xl:text-7xl"
+				class="m-0 max-w-155 font-sans text-4xl leading-none font-medium tracking-normal wrap-break-word sm:text-6xl lg:text-6xl xl:text-7xl"
 			>
 				Turn founder expertise into trust and inbound.
 			</h1>
 			<p
-				class="mt-6 max-w-135 text-lg font-medium text-(--muted) md:mt-8 md:text-2xl xl:mt-9 xl:text-3xl"
+				class="m-0 max-w-135 text-base font-medium text-(--muted) sm:text-lg md:text-2xl xl:text-3xl"
 			>
 				{heroDescription}
 			</p>
-			<div class="mt-8 flex flex-wrap items-center gap-4 md:mt-10">
+			<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
 				<a
-					class="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--ink) bg-(--ink) pr-4 pl-6 text-lg font-medium text-white no-underline transition hover:opacity-90"
+					class="inline-flex h-11 min-h-11 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--ink) bg-(--ink) pr-4 pl-6 text-base font-medium text-white no-underline transition hover:opacity-90 sm:text-lg"
 					href="mailto:hello@byro.example?subject=Book%20a%20Byro%20call"
 				>
 					Book a call
 					<ArrowRight size={20} />
 				</a>
 				<a
-					class="inline-flex h-12 items-center justify-center text-lg font-medium text-(--accent) no-underline transition hover:opacity-80"
+					class="inline-flex h-11 items-center justify-center text-base font-medium text-(--accent) no-underline transition hover:opacity-80 sm:text-lg"
 					href="#how-it-works"
 				>
 					How Byro works
@@ -548,7 +549,9 @@
 			</div>
 		</section>
 
-		<section class="grid w-full min-w-0 items-center justify-items-center md:justify-items-end">
+		<section
+			class="hero-visual grid w-full min-w-0 items-center justify-items-center md:justify-items-end"
+		>
 			<div bind:this={pixelCard} class="pixel-card relative overflow-hidden">
 				<div
 					bind:this={panelDots}
@@ -922,10 +925,10 @@
 									type="email"
 									required
 									placeholder="Your email"
-									class="h-12 flex-1 rounded-full border-2 border-(--muted)/40 bg-(--paper)/50 px-5 text-lg font-medium text-(--ink) transition outline-none placeholder:text-(--muted) focus:border-(--accent)"
+									class="h-11 min-h-11 flex-1 rounded-full border-2 border-(--muted)/40 bg-(--paper)/50 px-5 text-lg font-medium text-(--ink) transition outline-none placeholder:text-(--muted) focus:border-(--accent)"
 								/>
 								<button
-									class="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--accent) bg-(--accent) pr-4 pl-6 text-lg font-medium text-white transition hover:opacity-90"
+									class="inline-flex h-12 min-h-12 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--accent) bg-(--accent) pr-4 pl-6 text-lg font-medium text-white transition hover:opacity-90"
 									type="submit"
 								>
 									Join mailing
@@ -1075,6 +1078,12 @@
 
 	.landing-section {
 		box-shadow: var(--section-shadow) 0 5px 15px;
+	}
+
+	@media (width < 480px) and (height < 720px) {
+		.hero-visual {
+			display: none;
+		}
 	}
 
 	@keyframes -global-brand-marquee {
