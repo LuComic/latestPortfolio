@@ -90,6 +90,27 @@
 	const howItWorksCompactRailDotCount = 24;
 	const howItWorksStopPointSize = 1.5;
 
+	const comparisonSteps = [
+		{
+			label: 'Credibility',
+			without:
+				'Plenty of teams have a strong product and real expertise, but their public presence does not show it.',
+			with: 'Clear founder positioning and narrative make the team look as credible as the product actually is.'
+		},
+		{
+			label: 'System',
+			without:
+				'Founder visibility stays chaotic: occasional posts, no system, and no clear narrative.',
+			with: 'A repeatable system turns beliefs, proof, drafts, visuals, and review into a steady LinkedIn and X workflow.'
+		},
+		{
+			label: 'Clarity',
+			without:
+				'People post on LinkedIn and X when they have time, without a shared plan, calendar, or review flow.',
+			with: 'A shared content calendar gives the team clarity on what is planned, drafted, reviewed, and ready to publish.'
+		}
+	];
+
 	const audienceCards = [
 		{
 			label: 'Primary fit',
@@ -397,17 +418,23 @@
 	let scrollY = $state(0);
 	let menuOpen = $state(false);
 	let howItWorksSection: HTMLElement | undefined = $state();
+	let managingYourImageSection: HTMLElement | undefined = $state();
 
-	function setHowItWorksSection(node: HTMLElement, id: string) {
+	function setTrackedSection(node: HTMLElement, id: string) {
 		if (id === 'how-it-works') howItWorksSection = node;
+		if (id === 'managing-your-image') managingYourImageSection = node;
 
 		return {
 			update(nextId: string) {
 				if (nextId === 'how-it-works') howItWorksSection = node;
 				else if (howItWorksSection === node) howItWorksSection = undefined;
+
+				if (nextId === 'managing-your-image') managingYourImageSection = node;
+				else if (managingYourImageSection === node) managingYourImageSection = undefined;
 			},
 			destroy() {
 				if (howItWorksSection === node) howItWorksSection = undefined;
+				if (managingYourImageSection === node) managingYourImageSection = undefined;
 			}
 		};
 	}
@@ -490,6 +517,34 @@
 	);
 
 	let activeHowItWorksStep = $derived(howItWorksSteps[howItWorksActiveIndex] ?? howItWorksSteps[0]);
+
+	let rawComparisonScrollProgress = $derived.by(() => {
+		if (!managingYourImageSection || viewportHeight <= 0 || w < 1024) return 0;
+
+		const currentScrollY = scrollY;
+		const rect = managingYourImageSection.getBoundingClientRect();
+		const sectionScrollStart = currentScrollY + rect.top;
+		const scrollableDistance = Math.max(rect.height - viewportHeight, 1);
+
+		return clamp((currentScrollY - sectionScrollStart) / scrollableDistance);
+	});
+
+	let comparisonScrollProgress = $derived(
+		applyStepStopPoints(
+			rawComparisonScrollProgress,
+			comparisonSteps.length,
+			howItWorksStopPointSize
+		)
+	);
+
+	let comparisonActiveIndex = $derived(
+		Math.min(
+			comparisonSteps.length - 1,
+			Math.floor(Math.min(comparisonScrollProgress, 0.999) * comparisonSteps.length)
+		)
+	);
+
+	let activeComparisonStep = $derived(comparisonSteps[comparisonActiveIndex] ?? comparisonSteps[0]);
 
 	let withByro = $state(true);
 </script>
@@ -594,11 +649,13 @@
 	>
 		{#each sections as section (section.id)}
 			<section
-				use:setHowItWorksSection={section.id}
+				use:setTrackedSection={section.id}
 				class={`flex w-full flex-col ${
 					section.title === 'How it works'
 						? 'min-h-[340dvh]'
-						: 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10'
+						: section.title === 'Managing your image'
+							? 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10 lg:min-h-[240dvh] lg:gap-0 lg:p-0'
+							: 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10'
 				}`}
 				id={section.id}
 			>
@@ -617,7 +674,7 @@
 						Founder-led teams use Byro to turn real expertise into clearer public signal. Click a
 						team to see more.
 					</p>
-					<div class={`grid w-full gap-6 py-16 sm:py-24 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
+					<div class={`grid w-full gap-6 py-16 sm:py-20 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
 						<div
 							class={`relative flex min-h-[45dvh] w-full min-w-0 flex-col justify-center gap-7 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-10 ${
 								selectedBrand ? 'lg:col-span-2' : ''
@@ -693,7 +750,7 @@
 						{/if}
 					</div>
 				{:else if section.title === 'Managing your image'}
-					{#if w <= 1024}
+					{#if w < 1024}
 						<div class="flex min-h-0 flex-1 flex-col gap-3">
 							<h2
 								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
@@ -721,117 +778,65 @@
 									Without Byro
 								</button>
 							</div>
-							{#if withByro}
+							{#each comparisonSteps as comparisonStep (comparisonStep.label)}
 								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
+										{comparisonStep.label}
+									</p>
 									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
-										Clear founder positioning and narrative make the team look as credible as the
-										product actually is.
+										{withByro ? comparisonStep.with : comparisonStep.without}
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
-										A repeatable system turns beliefs, proof, drafts, visuals, and review into a
-										steady LinkedIn and X workflow.
-									</p>
-								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
-										A shared content calendar gives the team clarity on what is planned, drafted,
-										reviewed, and ready to publish.
-									</p>
-								</div>
-							{:else}
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
-										Plenty of teams have a strong product and real expertise, but their public
-										presence does not show it.
-									</p>
-								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
-										Founder visibility stays chaotic: occasional posts, no system, and no clear
-										narrative.
-									</p>
-								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
-										People post on LinkedIn and X when they have time, without a shared plan,
-										calendar, or review flow.
-									</p>
-								</div>
-							{/if}
+							{/each}
 						</div>
 					{:else}
 						<div
-							class="relative grid min-h-0 w-full flex-1 grid-cols-2 gap-y-3 before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-px before:-translate-x-1/2 before:bg-(--muted)/40"
+							class="sticky top-0 z-1 flex h-dvh w-full flex-col gap-5 overflow-hidden px-4 pt-24 pb-4 sm:px-10 sm:pb-6 md:px-20 md:pb-10"
 						>
 							<h2
-								class="m-0 flex w-full max-w-full items-center gap-3 pr-4 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
 							>
-								Without Byro
+								<span class="text-(--accent)">></span>
+								Managing your image
 							</h2>
-							<h2
-								class="m-0 flex w-full max-w-full items-center gap-3 pl-4 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
-							>
-								With Byro
-							</h2>
-							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl text-(--muted)">
-										Plenty of teams have a strong product and real expertise, but their public
-										presence does not show it.
-									</p>
+
+							<div class="flex w-full items-center justify-between gap-4">
+								<p class="m-0 text-base font-medium text-(--accent) md:text-xl">
+									{activeComparisonStep.label}
+								</p>
+								<div
+									class="flex items-center gap-2"
+									aria-label={`Comparison step ${comparisonActiveIndex + 1} of ${comparisonSteps.length}`}
+								>
+									{#each comparisonSteps as comparisonStep, stepIndex (comparisonStep.label)}
+										<span
+											class={`block h-2.5 rounded-full transition-all duration-200 motion-reduce:transition-none ${
+												stepIndex === comparisonActiveIndex
+													? 'w-8 bg-(--accent)'
+													: 'w-2.5 bg-(--muted)/24'
+											}`}
+										></span>
+									{/each}
 								</div>
 							</div>
-							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
+
+							<div class="grid min-h-0 w-full flex-1 gap-6 lg:grid-cols-2 lg:items-stretch">
+								<div
+									class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+								>
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl text-(--muted)">
-										Clear founder positioning and narrative make the team look as credible as the
-										product actually is.
+									<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
+										{activeComparisonStep.without}
 									</p>
 								</div>
-							</div>
-							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
+
+								<div
+									class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+								>
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl text-(--muted)">
-										Founder visibility stays chaotic: occasional posts, no system, and no clear
-										narrative.
-									</p>
-								</div>
-							</div>
-							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl text-(--muted)">
-										A repeatable system turns beliefs, proof, drafts, visuals, and review into a
-										steady LinkedIn and X workflow.
-									</p>
-								</div>
-							</div>
-							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl text-(--muted)">
-										People post on LinkedIn and X when they have time, without a shared plan,
-										calendar, or review flow.
-									</p>
-								</div>
-							</div>
-							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
-									<p class="w-full max-w-none text-2xl text-(--muted)">
-										A shared content calendar gives the team clarity on what is planned, drafted,
-										reviewed, and ready to publish.
+									<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
+										{activeComparisonStep.with}
 									</p>
 								</div>
 							</div>
@@ -901,7 +906,7 @@
 						big brand campaign.
 					</p>
 					<div
-						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-24"
+						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-20"
 					>
 						{#each audienceCards as card (card.title)}
 							<div
@@ -929,7 +934,7 @@
 						work, not generic content advice.
 					</p>
 					<div
-						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-24"
+						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-20"
 					>
 						{#each founderLedSystemCards as card (card.title)}
 							<div
@@ -951,7 +956,7 @@
 					</div>
 				{:else if section.title === 'Pricing'}
 					<div
-						class="flex min-h-0 w-full flex-1 items-center justify-center py-16 text-center md:py-24"
+						class="flex min-h-0 w-full flex-1 items-center justify-center py-16 text-center md:py-20"
 					>
 						<div class="flex w-full max-w-3xl flex-col items-center gap-8">
 							<h2
