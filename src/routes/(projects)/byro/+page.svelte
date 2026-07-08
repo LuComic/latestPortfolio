@@ -27,7 +27,8 @@
 		{ id: 'testimonials', title: 'Testimonials' },
 		{ id: 'managing-your-image', title: 'Managing your image' },
 		{ id: 'how-it-works', title: 'How it works' },
-		{ id: 'founder-led-teams', title: 'Built for specific founder-led teams' },
+		{ id: 'founder-led-teams', title: "Who it's for" },
+		{ id: 'founder-led-system', title: 'Built from hands-on work with founder-led B2B teams' },
 		{ id: 'pricing', title: 'Pricing' },
 		{ id: 'contact', title: 'Contact' }
 	];
@@ -91,17 +92,41 @@
 
 	const audienceCards = [
 		{
+			label: 'Primary fit',
 			title: 'Early-stage B2B founders in Europe',
 			description:
 				'You need credibility and distribution more than a big brand campaign. Byro turns your expertise into a presence that compounds - week after week.'
 		},
 		{
+			label: 'GTM teams',
 			title: 'B2B SaaS GTM and marketing leaders',
 			description: 'Founder-led presence that supports pipeline and hiring.'
 		},
 		{
+			label: 'Agencies',
 			title: 'Founder-led agencies and studios',
 			description: 'Strong personal brands that help you close better clients.'
+		}
+	];
+
+	const founderLedSystemCards = [
+		{
+			label: 'Grounded',
+			title: 'Not theory, not borrowed playbooks.',
+			description:
+				'Byro is built from hands-on work running reputation and content systems for B2B founders.'
+		},
+		{
+			label: 'Systematic',
+			title: 'Pillars, narratives, and proof',
+			description:
+				'A repeatable system for turning what you know, believe, and can prove into consistent public signal.'
+		},
+		{
+			label: 'Outcome',
+			title: 'More signal per post',
+			description:
+				'Visibility designed to support the things founder-led teams actually need: sales, hiring, and fundraising.'
 		}
 	];
 
@@ -592,7 +617,7 @@
 						Founder-led teams use Byro to turn real expertise into clearer public signal. Click a
 						team to see more.
 					</p>
-					<div class={`grid w-full gap-6 pt-6 sm:pt-10 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
+					<div class={`grid w-full gap-6 py-16 sm:py-24 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
 						<div
 							class={`relative flex min-h-[45dvh] w-full min-w-0 flex-col justify-center gap-7 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-10 ${
 								selectedBrand ? 'lg:col-span-2' : ''
@@ -697,21 +722,21 @@
 								</button>
 							</div>
 							{#if withByro}
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
 										Clear founder positioning and narrative make the team look as credible as the
 										product actually is.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
 										A repeatable system turns beliefs, proof, drafts, visuals, and review into a
 										steady LinkedIn and X workflow.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
 										A shared content calendar gives the team clarity on what is planned, drafted,
@@ -719,21 +744,21 @@
 									</p>
 								</div>
 							{:else}
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
 										Plenty of teams have a strong product and real expertise, but their public
 										presence does not show it.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
 										Founder visibility stays chaotic: occasional posts, no system, and no clear
 										narrative.
 									</p>
 								</div>
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
 										People post on LinkedIn and X when they have time, without a shared plan,
@@ -757,7 +782,7 @@
 								With Byro
 							</h2>
 							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-2xl text-(--muted)">
 										Plenty of teams have a strong product and real expertise, but their public
@@ -766,7 +791,7 @@
 								</div>
 							</div>
 							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-2xl text-(--muted)">
 										Clear founder positioning and narrative make the team look as credible as the
@@ -775,7 +800,7 @@
 								</div>
 							</div>
 							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-2xl text-(--muted)">
 										Founder visibility stays chaotic: occasional posts, no system, and no clear
@@ -784,7 +809,7 @@
 								</div>
 							</div>
 							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-2xl text-(--muted)">
 										A repeatable system turns beliefs, proof, drafts, visuals, and review into a
@@ -793,7 +818,7 @@
 								</div>
 							</div>
 							<div class="flex h-full w-full pr-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-2xl text-(--muted)">
 										People post on LinkedIn and X when they have time, without a shared plan,
@@ -802,7 +827,7 @@
 								</div>
 							</div>
 							<div class="flex h-full w-full pl-4">
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-4">
+								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
 									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
 									<p class="w-full max-w-none text-2xl text-(--muted)">
 										A shared content calendar gives the team clarity on what is planned, drafted,
@@ -868,42 +893,65 @@
 							</aside>
 						</div>
 					</div>
-				{:else if section.title === 'Built for specific founder-led teams'}
-					<p class="m-0 max-w-210 text-base font-medium text-(--muted) md:text-xl xl:text-2xl">
-						Built from hands-on work with founder-led B2B teams that need trust and distribution
-						before they have a big brand.
+				{:else if section.id === 'founder-led-teams'}
+					<p
+						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+					>
+						Built for founder-led teams that need credibility and distribution before they have a
+						big brand campaign.
 					</p>
 					<div
-						class="grid w-full gap-3 pt-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-stretch lg:gap-6"
+						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-24"
 					>
-						<div
-							class="flex min-h-96 flex-col justify-center gap-7 rounded-lg bg-(--paper)/50 px-8 py-5"
-						>
-							<h3 class="m-0 max-w-170 text-4xl font-bold wrap-break-word text-(--ink) lg:text-5xl">
-								{audienceCards[0].title}
-							</h3>
-							<p class="m-0 max-w-160 text-xl font-medium text-(--muted) md:text-2xl">
-								{audienceCards[0].description}
-							</p>
-						</div>
-						<div class="grid gap-3 lg:gap-6">
-							{#each audienceCards.slice(1) as card (card.title)}
-								<div
-									class="flex flex-col justify-center gap-4 rounded-lg bg-(--paper)/50 px-7 py-5"
-								>
-									<h3 class="m-0 text-2xl font-bold wrap-break-word text-(--ink) lg:text-3xl">
+						{#each audienceCards as card (card.title)}
+							<div
+								class="flex min-h-70 flex-col justify-between gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
+							>
+								<div class="flex flex-col gap-6">
+									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
+										{card.label}
+									</p>
+									<h3 class="m-0 text-3xl font-bold wrap-break-word text-(--ink) lg:text-4xl">
 										{card.title}
 									</h3>
-									<p class="m-0 text-lg font-medium text-(--muted) md:text-xl">
-										{card.description}
-									</p>
 								</div>
-							{/each}
-						</div>
+								<p class="m-0 text-lg font-medium text-(--muted) md:text-xl">
+									{card.description}
+								</p>
+							</div>
+						{/each}
+					</div>
+				{:else if section.id === 'founder-led-system'}
+					<p
+						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+					>
+						Byro turns real expertise into a repeatable presence system - grounded in practical
+						work, not generic content advice.
+					</p>
+					<div
+						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-24"
+					>
+						{#each founderLedSystemCards as card (card.title)}
+							<div
+								class="flex min-h-70 flex-col justify-between gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
+							>
+								<div class="flex flex-col gap-6">
+									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
+										{card.label}
+									</p>
+									<h3 class="m-0 text-3xl font-bold wrap-break-word text-(--ink) lg:text-4xl">
+										{card.title}
+									</h3>
+								</div>
+								<p class="m-0 text-lg font-medium text-(--muted) md:text-xl">
+									{card.description}
+								</p>
+							</div>
+						{/each}
 					</div>
 				{:else if section.title === 'Pricing'}
 					<div
-						class="flex min-h-0 w-full flex-1 items-center justify-center px-2 py-16 text-center md:py-24"
+						class="flex min-h-0 w-full flex-1 items-center justify-center py-16 text-center md:py-24"
 					>
 						<div class="flex w-full max-w-3xl flex-col items-center gap-8">
 							<h2
