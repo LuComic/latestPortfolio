@@ -652,7 +652,7 @@
 				use:setTrackedSection={section.id}
 				class={`flex w-full flex-col ${
 					section.title === 'How it works'
-						? 'min-h-[340dvh]'
+						? 'min-h-[340svh] lg:min-h-[340dvh]'
 						: section.title === 'Managing your image'
 							? 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10 lg:min-h-[240dvh] lg:gap-0 lg:p-0'
 							: 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10'
@@ -784,7 +784,7 @@
 									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
 										{comparisonStep.label}
 									</p>
-									<p class="w-full max-w-none text-base text-(--muted) md:text-xl">
+									<p class="w-full max-w-none text-base font-medium text-(--muted) md:text-xl">
 										{withByro ? comparisonStep.with : comparisonStep.without}
 									</p>
 								</div>
@@ -844,7 +844,7 @@
 					{/if}
 				{:else if section.title === 'How it works'}
 					<div
-						class="sticky top-0 z-1 flex h-dvh w-full flex-col gap-3 overflow-hidden px-4 pt-24 pb-4 sm:gap-5 sm:px-10 sm:pb-6 md:px-20 md:pb-10"
+						class="sticky top-0 z-1 flex h-svh w-full flex-col gap-3 overflow-hidden px-4 pt-24 pb-4 sm:gap-5 sm:px-10 sm:pb-6 md:px-20 md:pb-10 lg:h-dvh"
 					>
 						<h2
 							class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
@@ -908,9 +908,9 @@
 					>
 						{#each audienceCards as card (card.title)}
 							<div
-								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96 lg:justify-between"
+								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
 							>
-								<div class="flex flex-col gap-6">
+								<div class="flex flex-col gap-4">
 									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
 										{card.label}
 									</p>
@@ -936,9 +936,9 @@
 					>
 						{#each founderLedSystemCards as card (card.title)}
 							<div
-								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96 lg:justify-between"
+								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
 							>
-								<div class="flex flex-col gap-6">
+								<div class="flex flex-col gap-4">
 									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
 										{card.label}
 									</p>
