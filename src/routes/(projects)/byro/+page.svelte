@@ -813,7 +813,7 @@
 										<span
 											class={`block h-2.5 rounded-full transition-all duration-200 motion-reduce:transition-none ${
 												stepIndex === comparisonActiveIndex
-													? 'w-8 bg-(--accent)'
+													? 'w-2.5 bg-(--accent)'
 													: 'w-2.5 bg-(--muted)/24'
 											}`}
 										></span>
@@ -863,9 +863,7 @@
 									{#each howItWorksRailDots as dotIndex (dotIndex)}
 										<span
 											class={`block aspect-square size-2.5 shrink-0 rounded-full transition duration-200 motion-reduce:transition-none sm:size-3 ${
-												dotIndex <= howItWorksActiveDotIndex
-													? 'bg-(--accent) shadow-[0_0_14px_color-mix(in_srgb,var(--accent)_24%,transparent)]'
-													: 'bg-(--muted)/24'
+												dotIndex <= howItWorksActiveDotIndex ? 'bg-(--accent)' : 'bg-(--muted)/24'
 											}`}
 										></span>
 									{/each}
@@ -910,7 +908,7 @@
 					>
 						{#each audienceCards as card (card.title)}
 							<div
-								class="flex min-h-70 flex-col justify-between gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
+								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96 lg:justify-between"
 							>
 								<div class="flex flex-col gap-6">
 									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
@@ -938,7 +936,7 @@
 					>
 						{#each founderLedSystemCards as card (card.title)}
 							<div
-								class="flex min-h-70 flex-col justify-between gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
+								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96 lg:justify-between"
 							>
 								<div class="flex flex-col gap-6">
 									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
