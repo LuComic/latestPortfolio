@@ -9,10 +9,9 @@
 	const inkColor = 'var(--ink)';
 	const iconPaperColor = 'var(--icon-paper)';
 	const dotColor = 'var(--dot)';
-	const resolveAsset = resolve as unknown as (path: string) => string;
 	const byroPath = resolve('/(projects)/byro');
-	const logoSrc = resolveAsset('/byro/byro-image.jpeg');
-	const byroLogoSrc = resolveAsset('/byro/byro-logo.png');
+	const logoSrc = '/byro/byro-image.jpeg';
+	const byroLogoSrc = '/byro/byro-logo.png';
 
 	const navItems = [
 		{ id: 'testimonials', label: 'Testimonials' },
@@ -57,31 +56,37 @@
 		{
 			title: 'Persona research',
 			agent: 'Input Agent',
+			image: '/byro/how-it-works/persona-research.png',
 			description: 'We read your interviews, posts and long-form to learn how you actually think.'
 		},
 		{
 			title: 'Voice guide',
 			agent: 'Voice Agent',
+			image: '/byro/how-it-works/voice-guide.png',
 			description: 'Your tone, rhythm and rules - codified so every post sounds like you.'
 		},
 		{
 			title: 'Positioning map',
 			agent: 'Positioning Agent',
+			image: '/byro/how-it-works/positioning-map.png',
 			description: 'Audience, beliefs, proof and pain points structured into one artifact.'
 		},
 		{
 			title: 'Content creation',
 			agent: 'Draft Agent',
+			image: '/byro/how-it-works/content-creation.png',
 			description: 'High-signal LinkedIn and X drafts, ready for you to review and approve.'
 		},
 		{
 			title: 'Visual matching',
 			agent: 'Visual Agent',
+			image: '/byro/how-it-works/visual-matching.png',
 			description: 'The right visual snaps beside each draft - quote cards, proof, screenshots.'
 		},
 		{
 			title: 'Feedback loop',
 			agent: 'Review Agent',
+			image: '/byro/how-it-works/feedback-loop.png',
 			description: 'Your ratings refine the system, so every week reads more like you.'
 		}
 	];
@@ -93,24 +98,24 @@
 	const comparisonSteps = [
 		{
 			label: 'Credibility',
-			withoutImage: resolveAsset('/byro/comparison/credibility-without.png'),
-			withImage: resolveAsset('/byro/comparison/credibility-with.png'),
+			withoutImage: '/byro/comparison/credibility-without.png',
+			withImage: '/byro/comparison/credibility-with.png',
 			without:
 				'Plenty of teams have a strong product and real expertise, but their public presence does not show it.',
 			with: 'Clear founder positioning and narrative make the team look as credible as the product actually is.'
 		},
 		{
 			label: 'System',
-			withoutImage: resolveAsset('/byro/comparison/system-without.png'),
-			withImage: resolveAsset('/byro/comparison/system-with.png'),
+			withoutImage: '/byro/comparison/system-without.png',
+			withImage: '/byro/comparison/system-with.png',
 			without:
 				'Founder visibility stays chaotic: occasional posts, no system, and no clear narrative.',
 			with: 'A repeatable system turns beliefs, proof, drafts, visuals, and review into a steady LinkedIn and X workflow.'
 		},
 		{
 			label: 'Clarity',
-			withoutImage: resolveAsset('/byro/comparison/clarity-without.png'),
-			withImage: resolveAsset('/byro/comparison/clarity-with.png'),
+			withoutImage: '/byro/comparison/clarity-without.png',
+			withImage: '/byro/comparison/clarity-with.png',
 			without:
 				'People post on LinkedIn and X when they have time, without a shared plan, calendar, or review flow.',
 			with: 'A shared content calendar gives the team clarity on what is planned, drafted, reviewed, and ready to publish.'
@@ -911,7 +916,11 @@
 									{activeHowItWorksStep.description}
 								</p>
 
-								<div class="aspect-video w-full rounded-lg bg-slate-900"></div>
+								<img
+									src={activeHowItWorksStep.image}
+									alt={`${activeHowItWorksStep.title} dashboard illustration`}
+									class="aspect-video w-full rounded-lg object-cover"
+								/>
 							</aside>
 						</div>
 					</div>
