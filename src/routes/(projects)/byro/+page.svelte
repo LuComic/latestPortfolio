@@ -585,12 +585,13 @@
 
 	{#if menuOpen}
 		<div
-			class="byro-header fixed top-19 left-1/2 z-10 flex w-11/12 -translate-x-1/2 flex-col gap-2 rounded-lg p-4 text-lg"
+			class="byro-header fixed top-19 left-1/2 z-10 flex w-11/12 -translate-x-1/2 flex-col gap-2 rounded-lg bg-white/20 px-4 py-2 text-lg backdrop-blur-md"
 		>
 			{#each navItems as item (item.id)}
 				<a
 					class="w-full text-lg font-semibold no-underline hover:text-(--muted) hover:underline hover:underline-offset-2"
 					href={`#${item.id}`}
+					onclick={() => (menuOpen = false)}
 				>
 					{item.label}
 				</a>
@@ -650,7 +651,7 @@
 		{#each sections as section (section.id)}
 			<section
 				use:setTrackedSection={section.id}
-				class={`flex w-full flex-col ${
+				class={`flex w-full scroll-mt-15 flex-col ${
 					section.title === 'How it works'
 						? 'min-h-[340svh] lg:min-h-[340dvh]'
 						: section.title === 'Managing your image'
