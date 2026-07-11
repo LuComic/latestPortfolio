@@ -93,18 +93,24 @@
 	const comparisonSteps = [
 		{
 			label: 'Credibility',
+			withoutImage: resolveAsset('/byro/comparison/credibility-without.png'),
+			withImage: resolveAsset('/byro/comparison/credibility-with.png'),
 			without:
 				'Plenty of teams have a strong product and real expertise, but their public presence does not show it.',
 			with: 'Clear founder positioning and narrative make the team look as credible as the product actually is.'
 		},
 		{
 			label: 'System',
+			withoutImage: resolveAsset('/byro/comparison/system-without.png'),
+			withImage: resolveAsset('/byro/comparison/system-with.png'),
 			without:
 				'Founder visibility stays chaotic: occasional posts, no system, and no clear narrative.',
 			with: 'A repeatable system turns beliefs, proof, drafts, visuals, and review into a steady LinkedIn and X workflow.'
 		},
 		{
 			label: 'Clarity',
+			withoutImage: resolveAsset('/byro/comparison/clarity-without.png'),
+			withImage: resolveAsset('/byro/comparison/clarity-with.png'),
 			without:
 				'People post on LinkedIn and X when they have time, without a shared plan, calendar, or review flow.',
 			with: 'A shared content calendar gives the team clarity on what is planned, drafted, reviewed, and ready to publish.'
@@ -781,7 +787,11 @@
 							</div>
 							{#each comparisonSteps as comparisonStep (comparisonStep.label)}
 								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<img
+										src={withByro ? comparisonStep.withImage : comparisonStep.withoutImage}
+										alt={`${withByro ? 'With Byro' : 'Without Byro'} illustration for ${comparisonStep.label.toLowerCase()}`}
+										class="aspect-video w-full rounded-md object-cover"
+									/>
 									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
 										{comparisonStep.label}
 									</p>
@@ -826,7 +836,11 @@
 								<div
 									class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<img
+										src={activeComparisonStep.withoutImage}
+										alt={`Without Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
+										class="aspect-video w-full rounded-md object-cover"
+									/>
 									<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
 										{activeComparisonStep.without}
 									</p>
@@ -835,7 +849,11 @@
 								<div
 									class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
-									<div class="aspect-video w-full rounded-md bg-slate-900"></div>
+									<img
+										src={activeComparisonStep.withImage}
+										alt={`With Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
+										class="aspect-video w-full rounded-md object-cover"
+									/>
 									<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
 										{activeComparisonStep.with}
 									</p>
