@@ -14,12 +14,13 @@
 	const byroLogoSrc = '/byro/byro-logo.png';
 
 	const navItems = [
-		{ id: 'testimonials', label: 'Testimonials' },
-		{ id: 'managing-your-image', label: 'What?' },
-		{ id: 'how-it-works', label: 'How?' },
-		{ id: 'founder-led-teams', label: 'Who?' },
-		{ id: 'pricing', label: 'Pricing' },
-		{ id: 'contact', label: 'Contact' }
+		{ id: 'testimonials', label: 'Testimonials', mobileLabel: 'Trusted by many' },
+		{ id: 'managing-your-image', label: 'What?', mobileLabel: 'With vs without Byro' },
+		{ id: 'how-it-works', label: 'How?', mobileLabel: 'How does Byro work?' },
+		{ id: 'founder-led-teams', label: 'Who?', mobileLabel: "Who's it for?" },
+		{ id: 'founder-led-system', label: 'Why?', mobileLabel: 'Built from real work' },
+		{ id: 'pricing', label: 'Pricing', mobileLabel: 'Interested? Email us' },
+		{ id: 'contact', label: 'Contact', mobileLabel: 'Contact' }
 	];
 
 	const sections = [
@@ -120,6 +121,13 @@
 				'People post on LinkedIn and X when they have time, without a shared plan, calendar, or review flow.',
 			with: 'A shared content calendar gives the team clarity on what is planned, drafted, reviewed, and ready to publish.'
 		}
+	];
+
+	const imageSources = [
+		logoSrc,
+		byroLogoSrc,
+		...howItWorksSteps.map((step) => step.image),
+		...comparisonSteps.flatMap((step) => [step.withoutImage, step.withImage])
 	];
 
 	const audienceCards = [
@@ -246,6 +254,13 @@
 	let pageDots: HTMLDivElement;
 	let panelDots: HTMLDivElement;
 	let pixelCard: HTMLDivElement;
+
+	onMount(() => {
+		imageSources.forEach((src) => {
+			const image = new Image();
+			image.src = src;
+		});
+	});
 
 	onMount(() => {
 		const logoImage = new Image();
@@ -604,7 +619,7 @@
 					href={`#${item.id}`}
 					onclick={() => (menuOpen = false)}
 				>
-					{item.label}
+					{item.mobileLabel}
 				</a>
 			{/each}
 		</div>
@@ -808,7 +823,7 @@
 						</div>
 					{:else}
 						<div
-							class="sticky top-0 z-1 flex h-dvh w-full flex-col gap-5 overflow-hidden px-4 pt-24 pb-4 sm:px-10 sm:pb-6 md:px-20 md:pb-10"
+							class="sticky top-0 z-1 flex min-h-dvh w-full flex-col gap-5 overflow-hidden px-4 pt-24 pb-4 sm:px-10 sm:pb-6 md:px-20 md:pb-10"
 						>
 							<h2
 								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
@@ -868,7 +883,7 @@
 					{/if}
 				{:else if section.title === 'How it works'}
 					<div
-						class="sticky top-0 z-1 flex h-svh w-full flex-col gap-3 overflow-hidden px-4 pt-24 pb-4 sm:gap-5 sm:px-10 sm:pb-6 md:px-20 md:pb-10 lg:h-dvh"
+						class="sticky top-0 z-1 flex min-h-svh w-full flex-col gap-3 px-4 pt-24 pb-4 sm:gap-5 sm:px-10 sm:pb-6 md:px-20 md:pb-10 lg:min-h-dvh"
 					>
 						<h2
 							class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
@@ -878,7 +893,7 @@
 						</h2>
 
 						<div
-							class="grid min-h-0 w-full flex-1 content-start items-start lg:grid-cols-2 lg:content-stretch lg:items-center lg:gap-16"
+							class="grid w-full flex-1 content-start items-start lg:grid-cols-2 lg:content-stretch lg:items-center lg:gap-16"
 						>
 							<div class="flex w-full items-center justify-center py-10 lg:py-0" aria-hidden="true">
 								<div
@@ -936,17 +951,17 @@
 					>
 						{#each audienceCards as card (card.title)}
 							<div
-								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
+								class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
 							>
-								<div class="flex flex-col gap-4">
-									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
+								<div class="flex flex-col gap-5">
+									<p class="m-0 text-base font-medium text-(--accent) md:text-xl">
 										{card.label}
 									</p>
-									<h3 class="m-0 text-3xl font-bold wrap-break-word text-(--ink) lg:text-4xl">
+									<h3 class="m-0 text-2xl font-semibold wrap-break-word text-(--ink)">
 										{card.title}
 									</h3>
 								</div>
-								<p class="m-0 text-lg font-medium text-(--muted) md:text-xl">
+								<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
 									{card.description}
 								</p>
 							</div>
@@ -964,17 +979,17 @@
 					>
 						{#each founderLedSystemCards as card (card.title)}
 							<div
-								class="flex min-h-70 flex-col justify-start gap-8 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
+								class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
 							>
-								<div class="flex flex-col gap-4">
-									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
+								<div class="flex flex-col gap-5">
+									<p class="m-0 text-base font-medium text-(--accent) md:text-xl">
 										{card.label}
 									</p>
-									<h3 class="m-0 text-3xl font-bold wrap-break-word text-(--ink) lg:text-4xl">
+									<h3 class="m-0 text-2xl font-semibold wrap-break-word text-(--ink)">
 										{card.title}
 									</h3>
 								</div>
-								<p class="m-0 text-lg font-medium text-(--muted) md:text-xl">
+								<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
 									{card.description}
 								</p>
 							</div>
