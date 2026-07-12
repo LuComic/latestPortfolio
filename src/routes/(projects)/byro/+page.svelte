@@ -99,24 +99,24 @@
 	const comparisonSteps = [
 		{
 			label: 'Credibility',
-			withoutImage: '/byro/comparison/credibility-without.png',
-			withImage: '/byro/comparison/credibility-with.png',
+			withoutImage: '/byro/comparison/credibility-without-4x3.png',
+			withImage: '/byro/comparison/credibility-with-4x3.png',
 			without:
 				'Plenty of teams have a strong product and real expertise, but their public presence does not show it.',
 			with: 'Clear founder positioning and narrative make the team look as credible as the product actually is.'
 		},
 		{
 			label: 'System',
-			withoutImage: '/byro/comparison/system-without.png',
-			withImage: '/byro/comparison/system-with.png',
+			withoutImage: '/byro/comparison/system-without-4x3.png',
+			withImage: '/byro/comparison/system-with-4x3.png',
 			without:
 				'Founder visibility stays chaotic: occasional posts, no system, and no clear narrative.',
 			with: 'A repeatable system turns beliefs, proof, drafts, visuals, and review into a steady LinkedIn and X workflow.'
 		},
 		{
 			label: 'Clarity',
-			withoutImage: '/byro/comparison/clarity-without.png',
-			withImage: '/byro/comparison/clarity-with.png',
+			withoutImage: '/byro/comparison/clarity-without-4x3.png',
+			withImage: '/byro/comparison/clarity-with-4x3.png',
 			without:
 				'People post on LinkedIn and X when they have time, without a shared plan, calendar, or review flow.',
 			with: 'A shared content calendar gives the team clarity on what is planned, drafted, reviewed, and ready to publish.'
@@ -806,18 +806,26 @@
 								</button>
 							</div>
 							{#each comparisonSteps as comparisonStep (comparisonStep.label)}
-								<div class="flex h-full w-full flex-col gap-2 rounded-lg bg-(--paper)/50 px-5 py-3">
-									<img
-										src={withByro ? comparisonStep.withImage : comparisonStep.withoutImage}
-										alt={`${withByro ? 'With Byro' : 'Without Byro'} illustration for ${comparisonStep.label.toLowerCase()}`}
-										class="aspect-video w-full rounded-md object-cover"
-									/>
-									<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
-										{comparisonStep.label}
-									</p>
-									<p class="w-full max-w-none text-base font-medium text-(--muted) md:text-xl">
-										{withByro ? comparisonStep.with : comparisonStep.without}
-									</p>
+								<div
+									class="flex h-full w-full flex-col overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_16px_50px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10"
+								>
+									<div class="relative overflow-hidden rounded-lg">
+										<img
+											src={withByro ? comparisonStep.withImage : comparisonStep.withoutImage}
+											alt={`${withByro ? 'With Byro' : 'Without Byro'} illustration for ${comparisonStep.label.toLowerCase()}`}
+											class="aspect-4/3 w-full object-cover"
+										/>
+									</div>
+									<div class="flex flex-col gap-2 px-3 pt-4 pb-3">
+										<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
+											{comparisonStep.label}
+										</p>
+										<p
+											class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl"
+										>
+											{withByro ? comparisonStep.with : comparisonStep.without}
+										</p>
+									</div>
 								</div>
 							{/each}
 						</div>
@@ -854,27 +862,45 @@
 
 							<div class="grid min-h-0 w-full flex-1 gap-6 lg:grid-cols-2 lg:items-stretch">
 								<div
-									class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+									class="grid min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
-									<img
-										src={activeComparisonStep.withoutImage}
-										alt={`Without Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
-										class="aspect-video w-full rounded-md object-cover"
-									/>
-									<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
+									<div class="relative min-h-0 overflow-hidden rounded-lg">
+										<img
+											src={activeComparisonStep.withoutImage}
+											alt={`Without Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
+											class="h-full w-full object-contain"
+										/>
+										<span
+											class="absolute top-4 left-4 rounded-full bg-(--paper)/90 px-3 py-1.5 text-base font-semibold text-(--ink) shadow-sm backdrop-blur-md"
+										>
+											Without Byro
+										</span>
+									</div>
+									<p
+										class="m-0 w-full max-w-none px-5 pt-5 pb-4 text-2xl font-medium text-(--muted)"
+									>
 										{activeComparisonStep.without}
 									</p>
 								</div>
 
 								<div
-									class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+									class="grid min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
-									<img
-										src={activeComparisonStep.withImage}
-										alt={`With Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
-										class="aspect-video w-full rounded-md object-cover"
-									/>
-									<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
+									<div class="relative min-h-0 overflow-hidden rounded-lg">
+										<img
+											src={activeComparisonStep.withImage}
+											alt={`With Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
+											class="h-full w-full object-contain"
+										/>
+										<span
+											class="absolute top-4 left-4 rounded-full bg-(--accent) px-3 py-1.5 text-base font-semibold text-white shadow-sm"
+										>
+											With Byro
+										</span>
+									</div>
+									<p
+										class="m-0 w-full max-w-none px-5 pt-5 pb-4 text-2xl font-medium text-(--muted)"
+									>
 										{activeComparisonStep.with}
 									</p>
 								</div>
@@ -893,11 +919,14 @@
 						</h2>
 
 						<div
-							class="grid w-full flex-1 content-start items-start lg:grid-cols-2 lg:content-stretch lg:items-center lg:gap-16"
+							class="grid w-full flex-1 content-start items-start lg:grid-cols-[auto_minmax(0,1fr)] lg:content-stretch lg:items-center lg:gap-8"
 						>
-							<div class="flex w-full items-center justify-center py-10 lg:py-0" aria-hidden="true">
+							<div
+								class="flex w-full items-center justify-center py-10 lg:w-12 lg:py-0"
+								aria-hidden="true"
+							>
 								<div
-									class="flex w-full items-center justify-between gap-1 py-1 lg:max-w-72 lg:flex-col lg:justify-center lg:gap-2"
+									class="flex w-full items-center justify-between gap-1 py-1 lg:flex-col lg:justify-center lg:gap-2"
 								>
 									{#each howItWorksRailDots as dotIndex (dotIndex)}
 										<span
@@ -909,33 +938,44 @@
 								</div>
 							</div>
 
-							<aside class="flex min-w-0 flex-col gap-4 lg:gap-6" aria-live="polite">
-								<div class="flex w-full min-w-0 items-center justify-between gap-4">
-									<h3
-										class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--ink) sm:text-5xl"
+							<aside
+								class="grid min-w-0 gap-4 lg:grid-cols-[minmax(0,1.55fr)_minmax(18rem,0.65fr)] lg:items-center lg:gap-10"
+								aria-live="polite"
+							>
+								<div class="flex min-w-0 flex-col gap-4 lg:order-2 lg:gap-6">
+									<div class="flex w-full min-w-0 items-center justify-between gap-4">
+										<h3
+											class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--ink) sm:text-5xl"
+										>
+											{activeHowItWorksStep.title}
+										</h3>
+										<span
+											class="shrink-0 text-2xl leading-none font-bold text-(--muted) sm:text-3xl"
+										>
+											Step {howItWorksActiveIndex + 1}
+										</span>
+									</div>
+
+									<p class="m-0 font-semibold text-(--accent) md:text-xl xl:text-2xl">
+										{activeHowItWorksStep.agent}
+									</p>
+
+									<p
+										class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
 									>
-										{activeHowItWorksStep.title}
-									</h3>
-									<span class="shrink-0 text-2xl leading-none font-bold text-(--muted) sm:text-3xl">
-										Step {howItWorksActiveIndex + 1}
-									</span>
+										{activeHowItWorksStep.description}
+									</p>
 								</div>
 
-								<p class="m-0 font-medium text-(--accent) md:text-xl xl:text-2xl">
-									{activeHowItWorksStep.agent}
-								</p>
-
-								<p
-									class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+								<div
+									class="min-w-0 rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_60px_rgb(11_17_31/0.1)] ring-1 ring-(--muted)/10 lg:order-1"
 								>
-									{activeHowItWorksStep.description}
-								</p>
-
-								<img
-									src={activeHowItWorksStep.image}
-									alt={`${activeHowItWorksStep.title} dashboard illustration`}
-									class="aspect-video w-full rounded-lg object-cover"
-								/>
+									<img
+										src={activeHowItWorksStep.image}
+										alt={`${activeHowItWorksStep.title} dashboard illustration`}
+										class="aspect-video w-full rounded-lg object-cover"
+									/>
+								</div>
 							</aside>
 						</div>
 					</div>
