@@ -585,7 +585,7 @@
 	></div>
 
 	<header
-		class="byro-header fixed top-4 left-1/2 z-10 flex w-11/12 -translate-x-1/2 items-center gap-2 rounded-xl bg-white/20 px-4 py-2 backdrop-blur-md sm:w-4/5 sm:gap-8"
+		class="byro-header fixed top-4 left-1/2 z-10 flex w-11/12 -translate-x-1/2 items-center gap-2 rounded-xl bg-white/20 py-2 pr-8 pl-4 backdrop-blur-md sm:w-4/5 sm:gap-8"
 	>
 		<a
 			class="brand mr-auto text-xl font-semibold text-inherit no-underline sm:text-2xl"
@@ -596,10 +596,15 @@
 		{#if w >= 768}
 			{#each navItems as item (item.id)}
 				<a
-					class="text-base font-semibold text-inherit no-underline decoration-(--accent) decoration-2 hover:underline hover:underline-offset-2"
+					class="group relative text-base font-semibold text-inherit no-underline"
 					href={`#${item.id}`}
 				>
 					{item.label}
+					<ArrowUpRight
+						class="pointer-events-none absolute top-1/2 left-full ml-1 -translate-x-1 -translate-y-1/2 text-(--accent) opacity-0 transition duration-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+						size={18}
+						aria-hidden="true"
+					/>
 				</a>
 			{/each}
 		{:else}
