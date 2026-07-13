@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
-	import { ArrowRight, Mail, Menu } from '@lucide/svelte';
+	import { ArrowRight, ArrowUpRight, Mail, Menu } from '@lucide/svelte';
 
 	const dotSize = 5;
 	const dotGap = 2;
@@ -611,24 +611,25 @@
 
 	{#if menuOpen}
 		<div
-			class="byro-header fixed top-19 left-1/2 z-10 flex w-11/12 -translate-x-1/2 flex-col gap-2 rounded-lg bg-white/20 px-4 py-2 text-lg backdrop-blur-md"
+			class="byro-header fixed top-19 left-1/2 z-10 flex w-11/12 -translate-x-1/2 flex-col gap-2 rounded-lg bg-white/20 px-4 py-2 text-lg backdrop-blur-md sm:w-4/5"
 		>
 			{#each navItems as item (item.id)}
 				<a
-					class="w-full text-lg font-semibold no-underline hover:text-(--muted) hover:underline hover:underline-offset-2"
+					class="flex w-full items-center justify-start gap-2 text-lg font-semibold no-underline hover:text-(--muted) hover:underline hover:underline-offset-2"
 					href={`#${item.id}`}
 					onclick={() => (menuOpen = false)}
 				>
 					{item.mobileLabel}
+					<ArrowUpRight class="text-(--accent)" size={18} />
 				</a>
 			{/each}
 		</div>
 	{/if}
 
 	<main
-		class="fixed top-0 bottom-0 left-1/2 z-1 grid h-svh w-4/5 -translate-x-1/2 grid-cols-1 content-start items-center gap-7 overflow-hidden pt-28 pb-6 sm:content-center sm:gap-10 sm:py-10 md:grid-cols-2 md:gap-16 md:py-14 xl:gap-26 xl:py-18"
+		class="fixed top-0 bottom-0 left-1/2 z-1 grid h-svh w-4/5 -translate-x-1/2 grid-cols-1 content-start items-center gap-6 overflow-hidden pt-24 pb-5 sm:content-center sm:gap-8 sm:py-8 md:grid-cols-2 md:gap-14 md:py-12 xl:gap-20 xl:py-14"
 	>
-		<section class="flex w-full flex-col gap-5 md:gap-8 xl:gap-9">
+		<section class="flex w-full flex-col gap-4 md:gap-6 xl:gap-8">
 			<h1
 				class="m-0 max-w-155 font-sans text-4xl leading-none font-medium tracking-normal wrap-break-word sm:text-6xl lg:text-6xl xl:text-7xl"
 			>
@@ -648,7 +649,7 @@
 					<ArrowRight size={20} />
 				</a>
 				<a
-					class="inline-flex h-11 items-center justify-center text-base font-medium text-(--accent) no-underline transition hover:opacity-80 sm:text-lg"
+					class="inline-flex h-11 items-center justify-center text-base font-semibold text-(--accent) no-underline transition hover:opacity-80 sm:text-lg"
 					href="#how-it-works"
 				>
 					How Byro works
@@ -672,7 +673,7 @@
 	<section class="h-screen w-screen" aria-hidden="true"></section>
 
 	<div
-		class="landing-section relative z-2 flex flex-col rounded-t-3xl bg-white/10 backdrop-blur-xl md:rounded-t-4xl"
+		class="landing-section relative z-2 flex flex-col rounded-t-3xl bg-white/50 backdrop-blur-xl md:rounded-t-4xl"
 	>
 		{#each sections as section (section.id)}
 			<section
@@ -681,29 +682,27 @@
 					section.title === 'How it works'
 						? 'min-h-[340svh] lg:min-h-[340dvh]'
 						: section.title === 'Managing your image'
-							? 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10 lg:min-h-[240dvh] lg:gap-0 lg:p-0'
-							: 'min-h-[30dvh] gap-3 p-4 sm:gap-5 sm:px-10 sm:py-6 md:px-20 md:py-10'
+							? 'min-h-[30dvh] gap-2 p-3 sm:gap-4 sm:px-8 sm:py-5 md:px-16 md:py-8 lg:min-h-[240dvh] lg:gap-0 lg:p-0'
+							: 'min-h-[30dvh] gap-2 p-3 sm:gap-4 sm:px-8 sm:py-5 md:px-16 md:py-8'
 				}`}
 				id={section.id}
 			>
 				{#if section.title !== 'Contact' && section.title !== 'Managing your image' && section.title !== 'How it works'}
 					<h2
-						class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+						class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-2xl font-bold wrap-break-word whitespace-normal sm:text-3xl lg:text-4xl"
 					>
 						<span class="text-(--accent)">></span>
 						{section.title}
 					</h2>
 				{/if}
 				{#if section.title === 'Testimonials'}
-					<p
-						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
-					>
+					<p class="m-0 w-full max-w-none text-sm font-medium text-(--muted) md:text-lg xl:text-xl">
 						Founder-led teams use Byro to turn real expertise into clearer public signal. Click a
 						team to see more.
 					</p>
-					<div class={`grid w-full gap-6 py-16 sm:py-20 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
+					<div class={`grid w-full gap-5 py-12 sm:py-16 ${selectedBrand ? 'lg:grid-cols-3' : ''}`}>
 						<div
-							class={`relative flex min-h-[45dvh] w-full min-w-0 flex-col justify-center gap-7 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-10 ${
+							class={`relative flex min-h-[45dvh] w-full min-w-0 flex-col justify-center gap-6 overflow-hidden mask-[linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_9%,black_91%,transparent)] sm:gap-8 ${
 								selectedBrand ? 'lg:col-span-2' : ''
 							}`}
 							aria-label="Client brand marquee"
@@ -711,7 +710,7 @@
 							{#each marqueeRows as row, rowIndex (row)}
 								<div class="flex min-w-max overflow-visible">
 									<div
-										class={`flex min-w-max items-center gap-8 motion-reduce:animate-none sm:gap-12 ${
+										class={`flex min-w-max items-center gap-6 motion-reduce:animate-none sm:gap-10 ${
 											rowIndex === 0
 												? 'animate-[brand-marquee_26s_linear_infinite]'
 												: 'animate-[brand-marquee-reverse_30s_linear_infinite]'
@@ -719,7 +718,7 @@
 									>
 										{#each [...row, ...row] as brand, brandIndex (`${rowIndex}-${brand.name}-${brandIndex}`)}
 											<button
-												class={`cursor-pointer border-0 bg-transparent px-2 py-1 text-center font-sans text-4xl leading-none font-semibold whitespace-nowrap text-(--ink) no-underline transition duration-150 hover:text-(--brand-accent) focus-visible:text-(--brand-accent) focus-visible:outline-0 sm:text-5xl lg:text-6xl ${
+												class={`cursor-pointer border-0 bg-transparent px-2 py-1 text-center font-sans text-3xl leading-none font-semibold whitespace-nowrap text-(--ink) no-underline transition duration-150 hover:text-(--brand-accent) focus-visible:text-(--brand-accent) focus-visible:outline-0 sm:text-4xl lg:text-5xl ${
 													selectedBrand?.name === brand.name ? 'text-(--brand-accent)' : ''
 												}`}
 												style={`--brand-accent: ${brand.color};`}
@@ -737,17 +736,17 @@
 
 						{#if selectedBrand}
 							<aside
-								class="flex min-h-[45vh] min-w-0 flex-col gap-6 lg:py-2"
+								class="flex min-h-[45vh] min-w-0 flex-col gap-5 lg:py-2"
 								style={`--brand-accent: ${selectedBrand.color};`}
 							>
 								<div class="flex w-full min-w-0 items-center justify-between gap-4">
 									<h3
-										class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--brand-accent) sm:text-5xl"
+										class="m-0 font-sans text-3xl leading-none font-bold wrap-break-word text-(--brand-accent) sm:text-4xl"
 									>
 										{selectedBrand.name}
 									</h3>
 									<button
-										class="shrink-0 border-0 bg-transparent text-2xl text-(--muted) transition hover:text-(--ink) focus-visible:outline-2 focus-visible:outline-(--accent) sm:text-3xl"
+										class="shrink-0 border-0 bg-transparent text-xl text-(--muted) transition hover:text-(--ink) focus-visible:outline-2 focus-visible:outline-(--accent) sm:text-2xl"
 										aria-label="Close company stats"
 										onclick={() => (selectedBrand = null)}
 									>
@@ -755,14 +754,14 @@
 									</button>
 								</div>
 
-								<dl class="m-0 grid gap-3">
+								<dl class="m-0 grid gap-2">
 									{#each selectedBrand.stats as stat (stat.label)}
 										<div class="border-t border-(--muted)/20 pt-3">
-											<dt class="text-sm leading-tight font-bold text-(--muted)">
+											<dt class="text-xs leading-tight font-bold text-(--muted)">
 												{stat.label}
 											</dt>
 											<dd
-												class="m-0 mt-1 text-3xl leading-none font-extrabold text-(--ink) sm:text-4xl"
+												class="m-0 mt-1 text-2xl leading-none font-extrabold text-(--ink) sm:text-3xl"
 											>
 												{stat.value}
 											</dd>
@@ -770,7 +769,7 @@
 									{/each}
 								</dl>
 
-								<p class="m-0 mt-auto text-base font-medium text-(--muted) md:text-lg">
+								<p class="m-0 mt-auto text-sm font-medium text-(--muted) md:text-base">
 									LinkedIn performance created through Byro-managed content and positioning.
 								</p>
 							</aside>
@@ -778,9 +777,9 @@
 					</div>
 				{:else if section.title === 'Managing your image'}
 					{#if w < 1024}
-						<div class="flex min-h-0 flex-1 flex-col gap-3">
+						<div class="flex min-h-0 flex-1 flex-col gap-2">
 							<h2
-								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-2xl font-bold wrap-break-word whitespace-normal sm:text-3xl lg:text-4xl"
 							>
 								<span class="text-(--accent)">></span>
 								{#if withByro}
@@ -817,12 +816,10 @@
 										/>
 									</div>
 									<div class="flex flex-col gap-2 px-3 pt-4 pb-3">
-										<p class="m-0 text-base font-medium text-(--accent) md:text-lg">
+										<p class="m-0 text-sm font-medium text-(--accent) md:text-base">
 											{comparisonStep.label}
 										</p>
-										<p
-											class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl"
-										>
+										<p class="m-0 w-full max-w-none text-sm font-medium text-(--muted) md:text-lg">
 											{withByro ? comparisonStep.with : comparisonStep.without}
 										</p>
 									</div>
@@ -831,17 +828,17 @@
 						</div>
 					{:else}
 						<div
-							class="sticky top-0 z-1 flex min-h-dvh w-full flex-col gap-5 overflow-hidden px-4 pt-24 pb-4 sm:px-10 sm:pb-6 md:px-20 md:pb-10"
+							class="sticky top-0 z-1 flex min-h-dvh w-full flex-col gap-4 px-4 pt-20 pb-3 sm:px-8 sm:pb-5 md:px-16 md:pb-8"
 						>
 							<h2
-								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-2xl font-bold wrap-break-word whitespace-normal sm:text-3xl lg:text-4xl"
 							>
 								<span class="text-(--accent)">></span>
 								Managing your image
 							</h2>
 
-							<div class="flex w-full items-center justify-between gap-4">
-								<p class="m-0 text-base font-medium text-(--accent) md:text-xl">
+							<div class="flex w-full items-center justify-between gap-3">
+								<p class="m-0 text-sm font-medium text-(--accent) md:text-lg">
 									{activeComparisonStep.label}
 								</p>
 								<div
@@ -860,9 +857,9 @@
 								</div>
 							</div>
 
-							<div class="grid min-h-0 w-full flex-1 gap-6 lg:grid-cols-2 lg:items-stretch">
+							<div class="grid min-h-0 w-full flex-1 gap-5 lg:grid-cols-2 lg:items-stretch">
 								<div
-									class="grid min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+									class="grid h-max min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
 									<div class="relative min-h-0 overflow-hidden rounded-lg">
 										<img
@@ -871,20 +868,20 @@
 											class="h-full w-full object-contain"
 										/>
 										<span
-											class="absolute top-4 left-4 rounded-full bg-(--paper)/90 px-3 py-1.5 text-base font-semibold text-(--ink) shadow-sm backdrop-blur-md"
+											class="absolute top-4 left-4 rounded-full bg-(--paper)/90 px-3 py-1.5 text-sm font-semibold text-(--ink) shadow-sm backdrop-blur-md"
 										>
 											Without Byro
 										</span>
 									</div>
 									<p
-										class="m-0 w-full max-w-none px-5 pt-5 pb-4 text-2xl font-medium text-(--muted)"
+										class="m-0 w-full max-w-none px-5 pt-5 pb-4 text-xl font-medium text-(--muted)"
 									>
 										{activeComparisonStep.without}
 									</p>
 								</div>
 
 								<div
-									class="grid min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+									class="grid h-max min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
 									<div class="relative min-h-0 overflow-hidden rounded-lg">
 										<img
@@ -893,13 +890,13 @@
 											class="h-full w-full object-contain"
 										/>
 										<span
-											class="absolute top-4 left-4 rounded-full bg-(--accent) px-3 py-1.5 text-base font-semibold text-white shadow-sm"
+											class="absolute top-4 left-4 rounded-full bg-(--accent) px-3 py-1.5 text-sm font-semibold text-white shadow-sm"
 										>
 											With Byro
 										</span>
 									</div>
 									<p
-										class="m-0 w-full max-w-none px-5 pt-5 pb-4 text-2xl font-medium text-(--muted)"
+										class="m-0 w-full max-w-none px-5 pt-5 pb-4 text-xl font-medium text-(--muted)"
 									>
 										{activeComparisonStep.with}
 									</p>
@@ -909,24 +906,24 @@
 					{/if}
 				{:else if section.title === 'How it works'}
 					<div
-						class="sticky top-0 z-1 flex min-h-svh w-full flex-col gap-3 px-4 pt-24 pb-4 sm:gap-5 sm:px-10 sm:pb-6 md:px-20 md:pb-10 lg:min-h-dvh"
+						class="sticky top-0 z-1 flex min-h-svh w-full flex-col gap-2 px-4 pt-20 pb-3 sm:gap-4 sm:px-8 sm:pb-5 md:px-16 md:pb-8 lg:min-h-dvh"
 					>
 						<h2
-							class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-3xl font-bold wrap-break-word whitespace-normal sm:text-4xl lg:text-5xl"
+							class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-2xl font-bold wrap-break-word whitespace-normal sm:text-3xl lg:text-4xl"
 						>
 							<span class="text-(--accent)">></span>
 							Inside the Byro system
 						</h2>
 
 						<div
-							class="grid w-full flex-1 content-start items-start lg:grid-cols-[auto_minmax(0,1fr)] lg:content-stretch lg:items-center lg:gap-8"
+							class="grid w-full flex-1 content-start items-start lg:grid-cols-[auto_minmax(0,1fr)] lg:content-stretch lg:items-center lg:gap-6"
 						>
 							<div
-								class="flex w-full items-center justify-center py-10 lg:w-12 lg:py-0"
+								class="flex w-full items-center justify-center py-8 lg:w-12 lg:py-0"
 								aria-hidden="true"
 							>
 								<div
-									class="flex w-full items-center justify-between gap-1 py-1 lg:flex-col lg:justify-center lg:gap-2"
+									class="flex w-full items-center justify-between gap-1 py-0.5 lg:flex-col lg:justify-center lg:gap-2"
 								>
 									{#each howItWorksRailDots as dotIndex (dotIndex)}
 										<span
@@ -939,29 +936,29 @@
 							</div>
 
 							<aside
-								class="grid min-w-0 gap-4 lg:grid-cols-[minmax(0,1.55fr)_minmax(18rem,0.65fr)] lg:items-center lg:gap-10"
+								class="grid min-w-0 gap-3 lg:grid-cols-[minmax(0,1.55fr)_minmax(18rem,0.65fr)] lg:items-center lg:gap-8"
 								aria-live="polite"
 							>
-								<div class="flex min-w-0 flex-col gap-4 lg:order-2 lg:gap-6">
-									<div class="flex w-full min-w-0 items-center justify-between gap-4">
+								<div class="flex min-w-0 flex-col gap-3 lg:order-2 lg:gap-5">
+									<div class="flex w-full min-w-0 items-center justify-between gap-3">
 										<h3
-											class="m-0 font-sans text-4xl leading-none font-bold wrap-break-word text-(--ink) sm:text-5xl"
+											class="m-0 font-sans text-3xl leading-none font-bold wrap-break-word text-(--ink) sm:text-4xl"
 										>
 											{activeHowItWorksStep.title}
 										</h3>
 										<span
-											class="shrink-0 text-2xl leading-none font-bold text-(--muted) sm:text-3xl"
+											class="shrink-0 text-xl leading-none font-bold text-(--muted) sm:text-2xl"
 										>
 											Step {howItWorksActiveIndex + 1}
 										</span>
 									</div>
 
-									<p class="m-0 font-semibold text-(--accent) md:text-xl xl:text-2xl">
+									<p class="m-0 font-semibold text-(--accent) md:text-lg xl:text-xl">
 										{activeHowItWorksStep.agent}
 									</p>
 
 									<p
-										class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
+										class="m-0 w-full max-w-none text-sm font-medium text-(--muted) md:text-lg xl:text-xl"
 									>
 										{activeHowItWorksStep.description}
 									</p>
@@ -980,56 +977,44 @@
 						</div>
 					</div>
 				{:else if section.id === 'founder-led-teams'}
-					<p
-						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
-					>
-						Built for founder-led teams that need credibility and distribution before they have a
-						big brand campaign.
-					</p>
 					<div
-						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-20"
+						class="grid w-full gap-2 py-0 md:py-12 lg:grid-cols-3 lg:items-stretch lg:gap-5 lg:py-16"
 					>
 						{#each audienceCards as card (card.title)}
 							<div
 								class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
 							>
 								<div class="flex flex-col gap-5">
-									<p class="m-0 text-base font-medium text-(--accent) md:text-xl">
+									<p class="m-0 text-sm font-medium text-(--accent) md:text-lg">
 										{card.label}
 									</p>
-									<h3 class="m-0 text-2xl font-semibold wrap-break-word text-(--ink)">
+									<h3 class="m-0 text-xl font-semibold wrap-break-word text-(--ink)">
 										{card.title}
 									</h3>
 								</div>
-								<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
+								<p class="m-0 w-full max-w-none text-xl font-medium text-(--muted)">
 									{card.description}
 								</p>
 							</div>
 						{/each}
 					</div>
 				{:else if section.id === 'founder-led-system'}
-					<p
-						class="m-0 w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl"
-					>
-						Byro turns real expertise into a repeatable presence system - grounded in practical
-						work, not generic content advice.
-					</p>
 					<div
-						class="grid w-full gap-3 py-0 md:py-14 lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:py-20"
+						class="grid w-full gap-2 py-0 md:py-12 lg:grid-cols-3 lg:items-stretch lg:gap-5 lg:py-16"
 					>
 						{#each founderLedSystemCards as card (card.title)}
 							<div
 								class="flex min-h-70 w-full flex-col gap-5 rounded-lg bg-(--paper)/50 px-8 py-7 lg:min-h-96"
 							>
 								<div class="flex flex-col gap-5">
-									<p class="m-0 text-base font-medium text-(--accent) md:text-xl">
+									<p class="m-0 text-sm font-medium text-(--accent) md:text-lg">
 										{card.label}
 									</p>
-									<h3 class="m-0 text-2xl font-semibold wrap-break-word text-(--ink)">
+									<h3 class="m-0 text-xl font-semibold wrap-break-word text-(--ink)">
 										{card.title}
 									</h3>
 								</div>
-								<p class="m-0 w-full max-w-none text-2xl font-medium text-(--muted)">
+								<p class="m-0 w-full max-w-none text-xl font-medium text-(--muted)">
 									{card.description}
 								</p>
 							</div>
@@ -1037,17 +1022,17 @@
 					</div>
 				{:else if section.title === 'Pricing'}
 					<div
-						class="flex min-h-0 w-full flex-1 items-center justify-center py-16 text-center md:py-20"
+						class="flex min-h-0 w-full flex-1 items-center justify-center py-18 text-center md:py-22"
 					>
-						<div class="flex w-full max-w-3xl flex-col items-center gap-8">
+						<div class="flex w-full max-w-3xl flex-col items-center gap-6">
 							<h2
-								class="m-0 max-w-2xl font-sans text-4xl leading-tight font-bold wrap-break-word text-(--ink) sm:text-5xl md:text-6xl"
+								class="m-0 max-w-2xl font-sans text-3xl leading-tight font-bold wrap-break-word text-(--ink) sm:text-4xl md:text-5xl"
 							>
 								Want Byro-level reputation for your team?
 							</h2>
 
 							<form
-								class="flex w-full max-w-xl flex-col gap-3 sm:flex-row"
+								class="flex w-full max-w-xl flex-col gap-2 sm:flex-row"
 								action="mailto:hello@byro.example?subject=Join%20the%20Byro%20mailing%20list"
 								method="post"
 								enctype="text/plain"
@@ -1059,10 +1044,10 @@
 									type="email"
 									required
 									placeholder="Your email"
-									class="h-11 min-h-11 flex-1 rounded-full border-2 border-(--muted)/40 bg-(--paper)/50 px-5 text-lg font-medium text-(--ink) transition outline-none placeholder:text-(--muted) focus:border-(--accent)"
+									class="h-11 min-h-11 flex-1 rounded-full border-2 border-(--muted)/40 bg-(--paper)/50 px-5 text-base font-medium text-(--ink) transition outline-none placeholder:text-(--muted) focus:border-(--accent)"
 								/>
 								<button
-									class="inline-flex h-12 min-h-12 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--accent) bg-(--accent) pr-4 pl-6 text-lg font-medium text-white transition hover:opacity-90"
+									class="inline-flex h-12 min-h-12 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-(--accent) bg-(--accent) pr-4 pl-6 text-base font-medium text-white transition hover:opacity-90"
 									type="submit"
 								>
 									Join mailing
@@ -1070,7 +1055,7 @@
 								</button>
 							</form>
 
-							<p class="m-0 text-base font-medium text-(--muted) md:text-lg">
+							<p class="m-0 text-sm font-medium text-(--muted) md:text-base">
 								Or
 								<a
 									class="font-semibold wrap-break-word text-(--accent) no-underline hover:opacity-80"
@@ -1083,15 +1068,15 @@
 					</div>
 				{:else if section.title === 'Contact'}
 					<footer class="flex h-full min-h-full flex-col justify-between gap-8 md:gap-10">
-						<div class="grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
-							<div class="flex min-w-0 flex-col gap-5">
+						<div class="grid gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
+							<div class="flex min-w-0 flex-col gap-4">
 								<a
-									class="m-0 w-max font-sans text-4xl leading-none font-medium tracking-normal text-inherit no-underline md:text-6xl"
+									class="m-0 w-max font-sans text-3xl leading-none font-medium tracking-normal text-inherit no-underline md:text-5xl"
 									href={byroPath}
 								>
 									Byro
 								</a>
-								<p class="m-0 max-w-85 text-base font-medium text-(--muted) md:text-xl">
+								<p class="m-0 max-w-85 text-sm font-medium text-(--muted) md:text-lg">
 									{heroDescription}
 								</p>
 								<a
@@ -1101,10 +1086,10 @@
 									<Mail class="shrink-0 text-(--accent)" size={20} />
 									hello@byro.example
 								</a>
-								<div class="flex flex-wrap gap-x-4 gap-y-2 pt-1">
+								<div class="flex flex-wrap gap-x-3 gap-y-1 pt-0">
 									{#each socialLinks as socialLink (socialLink)}
 										<a
-											class="text-sm font-semibold text-(--muted) no-underline hover:text-(--accent) md:text-base"
+											class="text-xs font-semibold text-(--muted) no-underline hover:text-(--accent) md:text-sm"
 											href="#contact"
 										>
 											{socialLink}
@@ -1113,17 +1098,17 @@
 								</div>
 							</div>
 
-							<div class="grid gap-6 sm:grid-cols-3">
+							<div class="grid gap-5 sm:grid-cols-3">
 								{#each footerColumns as column (column.title)}
 									<nav class="min-w-0" aria-label={column.title}>
-										<p class="m-0 text-xs font-bold tracking-normal text-(--accent) md:text-sm">
+										<p class="m-0 text-xs font-bold tracking-normal text-(--accent) md:text-xs">
 											{column.title}
 										</p>
 										<ul class="mt-3 flex list-none flex-col gap-2 p-0">
 											{#each column.links as link (link)}
 												<li>
 													<a
-														class="text-base font-medium text-(--ink) no-underline hover:text-(--accent) md:text-lg"
+														class="text-sm font-medium text-(--ink) no-underline hover:text-(--accent) md:text-base"
 														href="#contact"
 													>
 														{link}
@@ -1137,7 +1122,7 @@
 						</div>
 
 						<div
-							class="flex flex-col gap-4 border-t border-(--muted)/30 py-4 text-sm font-medium text-(--muted) sm:flex-row sm:items-center"
+							class="flex flex-col gap-3 border-t border-(--muted)/30 py-3 text-xs font-medium text-(--muted) sm:flex-row sm:items-center"
 						>
 							<div class="flex items-center gap-3">
 								<img src={byroLogoSrc} alt="Byro logo" class="aspect-square w-10 shrink-0" />
@@ -1146,7 +1131,7 @@
 						</div>
 					</footer>
 				{:else}
-					<p class="w-full max-w-none text-base font-medium text-(--muted) md:text-xl xl:text-2xl">
+					<p class="w-full max-w-none text-sm font-medium text-(--muted) md:text-lg xl:text-xl">
 						{heroDescription}
 					</p>
 				{/if}
