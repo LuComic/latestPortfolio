@@ -585,7 +585,7 @@
 	></div>
 
 	<header
-		class="byro-header fixed top-4 left-1/2 z-10 flex w-11/12 -translate-x-1/2 items-center gap-2 rounded-xl bg-white/20 py-2 pr-8 pl-4 backdrop-blur-md sm:w-4/5 sm:gap-8"
+		class="byro-header fixed top-4 left-1/2 z-10 flex w-11/12 -translate-x-1/2 items-center gap-2 rounded-full bg-white/20 py-2 pr-8 pl-6 backdrop-blur-md sm:w-4/5 sm:gap-8"
 	>
 		<a
 			class="brand mr-auto text-xl font-semibold text-inherit no-underline sm:text-2xl"
@@ -683,7 +683,7 @@
 		{#each sections as section (section.id)}
 			<section
 				use:setTrackedSection={section.id}
-				class={`flex w-full scroll-mt-15 flex-col ${
+				class={`flex w-full scroll-mt-15 flex-col md:mx-auto md:max-w-3xl lg:max-w-5xl xl:max-w-7xl ${
 					section.title === 'How it works'
 						? 'min-h-[340svh] lg:min-h-[340dvh]'
 						: section.title === 'Managing your image'
@@ -862,15 +862,15 @@
 								</div>
 							</div>
 
-							<div class="grid min-h-0 w-full flex-1 gap-5 lg:grid-cols-2 lg:items-stretch">
+							<div class="grid h-max min-h-0 w-full items-stretch gap-5 lg:grid-cols-2">
 								<div
-									class="grid h-max min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+									class="grid min-h-70 w-full grid-rows-[auto_1fr] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
-									<div class="relative min-h-0 overflow-hidden rounded-lg">
+									<div class="relative aspect-4/3 w-full overflow-hidden rounded-lg">
 										<img
 											src={activeComparisonStep.withoutImage}
 											alt={`Without Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
-											class="h-full w-full object-contain"
+											class="h-full w-full rounded-lg object-contain"
 										/>
 										<span
 											class="absolute top-4 left-4 rounded-full bg-(--paper)/90 px-3 py-1.5 text-sm font-semibold text-(--ink) shadow-sm backdrop-blur-md"
@@ -886,13 +886,13 @@
 								</div>
 
 								<div
-									class="grid h-max min-h-70 w-full grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
+									class="grid min-h-70 w-full grid-rows-[auto_1fr] overflow-hidden rounded-xl bg-(--paper)/50 p-2 shadow-[0_18px_55px_rgb(11_17_31/0.08)] ring-1 ring-(--muted)/10 transition duration-200 motion-reduce:transition-none lg:min-h-96"
 								>
-									<div class="relative min-h-0 overflow-hidden rounded-lg">
+									<div class="relative aspect-4/3 w-full overflow-hidden rounded-lg">
 										<img
 											src={activeComparisonStep.withImage}
 											alt={`With Byro illustration for ${activeComparisonStep.label.toLowerCase()}`}
-											class="h-full w-full object-contain"
+											class="h-full w-full rounded-lg object-contain"
 										/>
 										<span
 											class="absolute top-4 left-4 rounded-full bg-(--accent) px-3 py-1.5 text-sm font-semibold text-white shadow-sm"
