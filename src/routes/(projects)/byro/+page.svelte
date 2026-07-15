@@ -25,9 +25,9 @@
 
 	const sections = [
 		{ id: 'testimonials', title: 'Testimonials' },
+		{ id: 'founder-led-teams', title: "Who it's for" },
 		{ id: 'managing-your-image', title: 'Managing your image' },
 		{ id: 'how-it-works', title: 'How it works' },
-		{ id: 'founder-led-teams', title: "Who it's for" },
 		{ id: 'founder-led-system', title: 'Built from hands-on work with founder-led B2B teams' },
 		{ id: 'pricing', title: 'Pricing' },
 		{ id: 'contact', title: 'Contact' }
@@ -678,7 +678,7 @@
 	<section class="h-screen w-screen" aria-hidden="true"></section>
 
 	<div
-		class="landing-section relative z-2 flex flex-col rounded-t-3xl bg-white/50 backdrop-blur-xl md:rounded-t-4xl"
+		class="landing-section relative z-2 flex flex-col rounded-t-3xl bg-white/75 backdrop-blur-xl md:rounded-t-4xl"
 	>
 		{#each sections as section (section.id)}
 			<section
@@ -833,7 +833,7 @@
 						</div>
 					{:else}
 						<div
-							class="sticky top-0 z-1 flex min-h-dvh w-full flex-col gap-4 px-4 pt-20 pb-3 sm:px-8 sm:pb-5 md:px-16 md:pb-8"
+							class="sticky top-0 z-1 flex min-h-dvh w-full flex-col gap-4 px-4 pt-30 pb-3 sm:px-8 sm:pb-5 md:px-16 md:pb-8"
 						>
 							<h2
 								class="m-0 flex w-full max-w-full items-center gap-3 font-sans text-2xl font-bold wrap-break-word whitespace-normal sm:text-3xl lg:text-4xl"
@@ -983,7 +983,7 @@
 					</div>
 				{:else if section.id === 'founder-led-teams'}
 					<div
-						class="grid w-full gap-2 py-0 md:py-12 lg:grid-cols-3 lg:items-stretch lg:gap-5 lg:py-16"
+						class="grid w-full gap-2 py-0 md:pt-9 md:pb-12 lg:grid-cols-3 lg:items-stretch lg:gap-5 lg:pt-13 lg:pb-16"
 					>
 						{#each audienceCards as card (card.title)}
 							<div
@@ -1005,7 +1005,7 @@
 					</div>
 				{:else if section.id === 'founder-led-system'}
 					<div
-						class="grid w-full gap-2 py-0 md:py-12 lg:grid-cols-3 lg:items-stretch lg:gap-5 lg:py-16"
+						class="grid w-full gap-2 py-0 md:pt-9 md:pb-12 lg:grid-cols-3 lg:items-stretch lg:gap-5 lg:pt-13 lg:pb-16"
 					>
 						{#each founderLedSystemCards as card (card.title)}
 							<div
