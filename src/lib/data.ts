@@ -42,7 +42,7 @@ export type contactType = {
 export const experience: experienceType[] = [
 	{
 		id: 1,
-		header: 'Frontend (Primary focus over the last 2 years)',
+		header: 'Frontend (Primary focus over the last 3 years)',
 		info: ['Svelte 5', 'Next.js', 'HTML, CSS, JS and TS'],
 		links: [{ name: 'Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }]
 	},

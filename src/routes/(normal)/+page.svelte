@@ -11,14 +11,15 @@
 
 <h2 class="text-xl font-medium text-(--headings) md:text-2xl">About</h2>
 <p class="text-base md:text-lg 2xl:text-xl">
-	High school student based in Estonia. I'm constantly learning web development, mainly frontend, in
-	my free time but learned Python in school <a
+	19yo university student based in Estonia. I'm constantly learning web development (mainly
+	frontend) in my free time and learned Python in school <a
 		href="/experience"
 		class="text-(--purple-text) transition hover:text-(--purple-hover)">(Certificates)</a
 	>. I also do track and field and am really interested in music.
 	<br />
 	<br />
-	I'm currently in 12th grade, so the end of high school is near.
+	I have just finished 12th grade and will continue my studies at TalTech, studying Informatics and Artificial
+	Intelligence.
 	<a class="text-(--purple-text) transition hover:text-(--purple-hover)" href="/experience">
 		Python programming
 	</a>
