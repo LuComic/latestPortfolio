@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import '@fontsource/libre-baskerville';
 	import { fly } from 'svelte/transition';
-	import { ArrowUpRight, Menu, Minimize2, X, Maximize2 } from '@lucide/svelte';
+	import { Menu, X } from '@lucide/svelte';
 	import ThoughtSidebar from './ThoughtSidebar.svelte';
 	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
 
@@ -20,10 +20,7 @@
 	});
 
 	let width = $state(0);
-	let thoughts = $state(false);
-	const closeThoughts = () => (thoughts = false);
 
-	const toggleThoughts = () => (thoughts = !thoughts);
 	const toggleSize = () => (thoughtsExpanded.open = !thoughtsExpanded.open);
 
 	const expandable = $derived(width >= 1024 && page.url.pathname.includes('/thoughts/'));
@@ -33,24 +30,13 @@
 
 <!--Nav for desktop-->
 {#if width >= 1024}
-	{#if thoughtBigScreen && thoughts}
-		<ThoughtSidebar {percent} {toggleThoughts} {toggleSize} {closeThoughts} />
+	{#if thoughtBigScreen}
+		<ThoughtSidebar {percent} {toggleSize} />
 	{:else}
 		<nav
-			class={`sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium ${thoughtBigScreen ? 'pt-4' : null}`}
+			class="sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium"
 		>
-			{#if thoughtBigScreen}
-				<button class="special" onclick={() => toggleThoughts()}>Open thought</button>
-				<button
-					class="special"
-					onclick={() => {
-						toggleSize();
-						closeThoughts();
-					}}
-				>
-					Minimize
-				</button>
-			{:else if expandable}
+			{#if expandable}
 				<button class="special" onclick={() => (thoughtsExpanded.open = true)}> Maximize </button>
 			{/if}
 			<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>

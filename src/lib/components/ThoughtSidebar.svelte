@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
-	import { ChevronRight, CornerDownLeft, Minimize2 } from '@lucide/svelte';
+	import { ChevronRight, Minimize2 } from '@lucide/svelte';
 	import {
 		getOtherThoughtItems,
 		getThoughtTocItems,
@@ -12,14 +12,10 @@
 
 	let {
 		percent,
-		toggleThoughts,
-		toggleSize,
-		closeThoughts
+		toggleSize
 	}: {
 		percent: number;
-		toggleThoughts: () => void;
 		toggleSize: () => void;
-		closeThoughts: () => void;
 	} = $props();
 
 	let tocOpen = $state(false);
@@ -122,17 +118,7 @@
 	<div class="flex w-full flex-col gap-2">
 		<button
 			class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-left text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
-			onclick={() => toggleThoughts()}
-		>
-			<CornerDownLeft size={22} />
-			Back
-		</button>
-		<button
-			class="flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-2 py-1 text-left text-lg hover:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
-			onclick={() => {
-				toggleSize();
-				closeThoughts();
-			}}
+			onclick={toggleSize}
 		>
 			<Minimize2 size={22} />
 			Minimize

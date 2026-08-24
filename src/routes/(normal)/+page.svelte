@@ -30,34 +30,48 @@
 	>.
 </p>
 
-<p class="mt-6 text-xl font-medium text-(--headings) md:text-2xl">Check out next</p>
-<div class="flex flex-col items-start justify-start gap-2 text-base md:text-lg 2xl:text-xl">
-	<a
-		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-		href="/experience"
+<nav aria-labelledby="check-out-next" class="mt-6 flex flex-col items-start justify-start gap-6">
+	<h2 id="check-out-next" class="text-xl font-medium text-(--headings) md:text-2xl">
+		Check out next
+	</h2>
+	<ul
+		class="m-0 flex list-none flex-col items-start justify-start gap-2 p-0 text-base md:text-lg 2xl:text-xl"
 	>
-		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-		Experience
-	</a>
-	<a
-		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-		href="/projects"
-	>
-		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-		Projects
-	</a>
-	<a
-		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-		href="/contact"
-	>
-		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-		Contact
-	</a>
-	<a
-		class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-		href="/thoughts"
-	>
-		<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-		My thoughts
-	</a>
-</div>
+		<li>
+			<a
+				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+				href="/experience"
+			>
+				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+				Experience
+			</a>
+		</li>
+		<li>
+			<a
+				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+				href="/projects"
+			>
+				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+				Projects
+			</a>
+		</li>
+		<li>
+			<a
+				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+				href="/contact"
+			>
+				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+				Contact
+			</a>
+		</li>
+		<li>
+			<a
+				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+				href="/thoughts"
+			>
+				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+				My thoughts
+			</a>
+		</li>
+	</ul>
+</nav>
