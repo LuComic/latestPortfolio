@@ -2,6 +2,7 @@
 	import './layout.css';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import PortfolioPopUp from '$lib/components/PortfolioPopUp.svelte';
+	import WorkhalPopUp from '$lib/components/WorkhalPopUp.svelte';
 	import { page } from '$app/state';
 	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
 
@@ -34,6 +35,7 @@
 	<link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
 </svelte:head>
 <svelte:window bind:innerWidth={width} />
+<WorkhalPopUp />
 <PortfolioPopUp />
 
 <div class="scrollable flex h-dvh w-screen flex-col items-center justify-center">

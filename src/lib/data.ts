@@ -58,7 +58,10 @@ export const experience: experienceType[] = [
 	{
 		id: 4,
 		header: 'Other work',
-		info: ['In summer of 2024 worked at Nike', 'From summer of 2025 -> current work at Mikkeller']
+		info: [
+			'In summer of 2024 worked at Nike',
+			'From summer of 2025 -> current work at Mikkeller Old Town'
+		]
 	}
 ];
 
