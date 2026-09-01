@@ -18,7 +18,7 @@
 			class="fixed right-0 bottom-0 z-20 flex w-full flex-col items-start justify-start gap-2 border-t border-dashed border-(--gray-text) bg-(--background) p-4 md:right-7 md:bottom-7 md:max-w-sm md:border"
 		>
 			<div class="flex w-full items-start justify-between text-(--headings)">
-				<p class="name-header text-base md:text-lg">The current project I'm working on</p>
+				<p class="name-header text-lg md:text-xl">The current project I'm working on</p>
 				<button
 					onclick={() => (popUp = false)}
 					class="cursor-pointer transition hover:text-(--gray-text)"
