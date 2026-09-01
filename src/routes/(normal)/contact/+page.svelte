@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '@fontsource/libre-baskerville';
 	import { socials } from '$lib/data';
 	import { Instagram, Facebook, Github, Bird } from '@lucide/svelte';
 	import SvelteSeo from 'svelte-seo';

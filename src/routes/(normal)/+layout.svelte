@@ -1,7 +1,6 @@
 <script lang="ts">
 	import './layout.css';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import '@fontsource/libre-baskerville';
 	import PortfolioPopUp from '$lib/components/PortfolioPopUp.svelte';
 	import { page } from '$app/state';
 	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
@@ -56,7 +55,7 @@
 					class="name-header mb-4 w-full bg-(--background) py-4 text-2xl text-(--headings) lg:py-0 lg:text-3xl"
 				>
 					<h1>
-						Lukas Jääger, <span class="text-(--gray-text)">Frontend Developer</span>
+						Lukas Jääger, <span class="text-(--gray-text)">Web Developer</span>
 					</h1>
 				</a>
 			{:else if !thoughtBigScreen}
@@ -77,7 +76,7 @@
 
 <style>
 	.name-header {
-		font-family: 'Libre Baskerville', serif;
+		font-family: 'Argesta', serif;
 		font-weight: 700;
 	}
 

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import '@fontsource/libre-baskerville';
 	import { X } from '@lucide/svelte';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
@@ -44,7 +43,7 @@
 
 		<style>
 			.name-header {
-				font-family: 'Libre Baskerville', serif;
+				font-family: 'Argesta', serif;
 				font-weight: 700;
 			}
 		</style>

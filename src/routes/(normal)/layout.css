@@ -1,6 +1,14 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/rubik';
 
+@font-face {
+	font-family: 'Argesta';
+	src: url('/fonts/argestadisplay-regular-webfont.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
 :root {
 	--gray-text: #737272;
 	--purple-text: #6e66f8;

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import '@fontsource/libre-baskerville';
 	import { fly } from 'svelte/transition';
 	import { Menu, X } from '@lucide/svelte';
 	import ThoughtSidebar from './ThoughtSidebar.svelte';
@@ -129,7 +128,7 @@
 
 <style>
 	a[aria-current='true'] {
-		font-family: 'Libre Baskerville', serif;
+		font-family: 'Argesta', serif;
 		text-decoration: underline;
 		text-underline-offset: 6px;
 		font-weight: 700;
@@ -148,7 +147,7 @@
 
 	a:hover,
 	.special:hover {
-		font-family: 'Libre Baskerville', serif;
+		font-family: 'Argesta', serif;
 		color: var(--headings);
 	}
 </style>

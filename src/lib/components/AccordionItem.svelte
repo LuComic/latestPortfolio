@@ -2,7 +2,6 @@
 	import type { projectType } from '$lib/data';
 	import { ChevronRight } from '@lucide/svelte';
 	import Carousel from './Carousel.svelte';
-	import '@fontsource/libre-baskerville';
 
 	let { prj }: { prj: projectType } = $props();
 

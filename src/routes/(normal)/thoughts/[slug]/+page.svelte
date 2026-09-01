@@ -110,7 +110,7 @@
 
 <style>
 	.name-header {
-		font-family: 'Libre Baskerville', serif;
+		font-family: 'Argesta', serif;
 		font-weight: 700;
 	}
 </style>
