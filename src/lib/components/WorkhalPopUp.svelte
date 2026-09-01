@@ -28,9 +28,9 @@
 			</div>
 			<span class="text-sm md:text-lg">
 				<a
-					href="/workhal"
+					href="https://www.workhal.com/en"
 					target="_blank"
-					class=" text-(--purple-text) transition hover:text-(--purple-hover)"
+					class="text-(--purple-text) transition hover:text-(--purple-hover)"
 				>
 					workhal,
 				</a>
