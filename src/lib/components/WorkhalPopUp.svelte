@@ -41,7 +41,7 @@
 
 		<style>
 			.name-header {
-				font-family: 'Argesta', serif;
+				font-family: 'Safiro', serif;
 				font-weight: 700;
 			}
 		</style>

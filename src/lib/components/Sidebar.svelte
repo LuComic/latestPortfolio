@@ -128,7 +128,7 @@
 
 <style>
 	a[aria-current='true'] {
-		font-family: 'Argesta', serif;
+		font-family: 'Safiro', serif;
 		text-decoration: underline;
 		text-underline-offset: 6px;
 		font-weight: 700;
@@ -147,7 +147,7 @@
 
 	a:hover,
 	.special:hover {
-		font-family: 'Argesta', serif;
+		font-family: 'Safiro', serif;
 		color: var(--headings);
 	}
 </style>
