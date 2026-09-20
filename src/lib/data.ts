@@ -42,13 +42,13 @@ export type contactType = {
 export const experience: experienceType[] = [
 	{
 		id: 1,
-		header: 'Frontend (Primary focus over the last 3 years)',
+		header: 'Web development (Primary focus)',
 		info: ['Svelte 5', 'Next.js', 'HTML, CSS, JS and TS'],
 		links: [{ name: 'Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }]
 	},
 	{
 		id: 2,
-		header: 'School (with TalTech)',
+		header: 'School (TalTech)',
 		info: ['Python'],
 		links: [
 			{ name: 'Object Oriented Programming', link: '/certificates/oop-cert.pdf' },
@@ -58,10 +58,7 @@ export const experience: experienceType[] = [
 	{
 		id: 4,
 		header: 'Other work',
-		info: [
-			'In summer of 2024 worked at Nike',
-			'From summer of 2025 -> current work at Mikkeller Old Town'
-		]
+		info: ['From 2025 summer -> current work at Mikkeller Old Town', '2024 summer worked at Nike']
 	}
 ];
 

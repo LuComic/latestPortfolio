@@ -57,7 +57,7 @@
 					class="name-header w-full bg-(--background) pt-4 pb-2 text-3xl text-(--headings) lg:mb-4 lg:py-0 lg:text-4xl"
 				>
 					<h1>
-						Lukas Jääger, <span class="pr-8 text-(--gray-text)">Web Developer</span>
+						Lukas Jääger <span class="pr-8 text-(--gray-text)">Web Developer</span>
 					</h1>
 				</a>
 			{:else if !thoughtBigScreen}

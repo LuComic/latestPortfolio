@@ -27,7 +27,7 @@
 	interested in web development, which led to the student business
 	<a class="text-(--purple-text) transition hover:text-(--purple-hover)" href="/projects"
 		>NoorteKunst</a
-	>.
+	> and other projects.
 </p>
 
 <nav aria-labelledby="check-out-next" class="mt-6 flex flex-col items-start justify-start gap-6">
