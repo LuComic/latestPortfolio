@@ -239,5 +239,10 @@ export const thoughts: thoughtType[] = [
 		href: 'creating-and-testing-my-project',
 		date: '10.05.2026',
 		content: 'creating-and-testing-my-project.md'
+	},
+	{
+		href: 'the-importance-of-universities',
+		date: '25.09.2026',
+		content: 'the-importance-of-unis.md'
 	}
 ];
