@@ -59,7 +59,7 @@ export const experience: experienceType[] = [
 		id: 4,
 		header: 'Hackathons and other events',
 		info: [
-			'NewWorkTech – 3rd Place: Redesigned and prototyped a new application flow for diverse applicants, earning an award for accessibility and UX design.'
+			'NewWorkTech - 3rd Place: Redesigned and prototyped a new application flow for diverse applicants, earning an award for accessibility and UX design.'
 		],
 		links: [{ name: 'NewWorktech UX award', link: '/certificates/newworktech.pdf' }]
 	},
