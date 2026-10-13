@@ -42,7 +42,7 @@ export type contactType = {
 export const experience: experienceType[] = [
 	{
 		id: 1,
-		header: 'Web development (Primary focus)',
+		header: 'Web development',
 		info: ['Svelte 5', 'Next.js', 'HTML, CSS, JS and TS'],
 		links: [{ name: 'Project Course (StreamList project)', link: '/certificates/project-cert.pdf' }]
 	},
@@ -57,6 +57,14 @@ export const experience: experienceType[] = [
 	},
 	{
 		id: 4,
+		header: 'Hackathons and other events',
+		info: [
+			'NewWorkTech – 3rd Place: Redesigned and prototyped a new application flow for diverse applicants, earning an award for accessibility and UX design.'
+		],
+		links: [{ name: 'NewWorktech UX award', link: '/certificates/newworktech.pdf' }]
+	},
+	{
+		id: 5,
 		header: 'Other work',
 		info: ['From 2025 summer -> current work at Mikkeller Old Town', '2024 summer worked at Nike']
 	}

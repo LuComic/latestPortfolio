@@ -30,48 +30,51 @@
 	> and other projects.
 </p>
 
-<nav aria-labelledby="check-out-next" class="mt-6 flex flex-col items-start justify-start gap-6">
-	<h2 id="check-out-next" class="text-xl font-medium text-(--headings) md:text-2xl">
-		Check out next
-	</h2>
-	<ul
-		class="m-0 flex list-none flex-col items-start justify-start gap-2 p-0 text-base md:text-lg 2xl:text-xl"
-	>
-		<li>
-			<a
-				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-				href="/experience"
-			>
-				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-				Experience
-			</a>
-		</li>
-		<li>
-			<a
-				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-				href="/projects"
-			>
-				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-				Projects
-			</a>
-		</li>
-		<li>
-			<a
-				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-				href="/contact"
-			>
-				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-				Contact
-			</a>
-		</li>
-		<li>
-			<a
-				class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
-				href="/thoughts"
-			>
-				<SquareArrowOutUpRight class="text-(--headings)" size={20} />
-				My thoughts
-			</a>
-		</li>
-	</ul>
-</nav>
+<div class="mt-6 flex w-full grid-cols-2 flex-col items-start gap-10 md:grid">
+	<img src="/pictures/about_image.JPG" alt="Me graduating" class="w-100" />
+	<nav aria-labelledby="check-out-next" class="flex flex-col items-start justify-start gap-6">
+		<h2 id="check-out-next" class="text-xl font-medium text-(--headings) md:text-2xl">
+			Check out next
+		</h2>
+		<ul
+			class="m-0 flex list-none flex-col items-start justify-start gap-2 p-0 text-base md:text-lg 2xl:text-xl"
+		>
+			<li>
+				<a
+					class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+					href="/experience"
+				>
+					<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+					Experience
+				</a>
+			</li>
+			<li>
+				<a
+					class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+					href="/projects"
+				>
+					<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+					Projects
+				</a>
+			</li>
+			<li>
+				<a
+					class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+					href="/contact"
+				>
+					<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+					Contact
+				</a>
+			</li>
+			<li>
+				<a
+					class="flex items-center justify-start gap-2 transition hover:text-(--purple-text)"
+					href="/thoughts"
+				>
+					<SquareArrowOutUpRight class="text-(--headings)" size={20} />
+					My thoughts
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>
