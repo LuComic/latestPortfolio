@@ -9,6 +9,10 @@
 	keywords="portfolio, dev, lukas, jaager, coding"
 />
 
+<svelte:head>
+	<link rel="preload" as="image" href="/pictures/about_image.JPG" />
+</svelte:head>
+
 <h2 class="text-xl font-medium text-(--headings) md:text-2xl">About</h2>
 <p class="text-base md:text-lg 2xl:text-xl">
 	19yo university student based in Estonia. I'm constantly learning web development (mainly
