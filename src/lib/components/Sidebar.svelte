@@ -57,13 +57,6 @@
 				Contact
 			</a>
 			<a
-				href="/portfolio"
-				class="w-full transition"
-				aria-current={page.url.pathname === '/portfolio'}
-			>
-				For You
-			</a>
-			<a
 				href="/thoughts"
 				class="w-full transition"
 				aria-current={page.url.pathname.includes('/thoughts')}
@@ -107,13 +100,6 @@
 			</a>
 			<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
 				Contact
-			</a>
-			<a
-				href="/portfolio"
-				class="w-full transition"
-				aria-current={page.url.pathname === '/portfolio'}
-			>
-				For You
 			</a>
 			<a
 				href="/thoughts"

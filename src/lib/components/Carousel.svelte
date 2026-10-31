@@ -64,7 +64,7 @@
 		</button>
 		{#if small}
 			<button
-				class="transiton cursor-pointer outline-none select-none hover:text-(--purple-text)"
+				class="transiton hidden cursor-pointer outline-none select-none hover:text-(--purple-text) lg:inline"
 				onclick={() => (fullScreen = true)}
 			>
 				<Maximize />
@@ -100,12 +100,12 @@
 	</div>
 {/if}
 
-<div class="h-auto w-full flex-col items-center justify-center md:w-1/2 md:max-w-1/2 md:min-w-1/2">
+<div class="h-auto w-full flex-col items-center justify-center lg:w-2/3">
 	<button onclick={() => (fullScreen = true)} class="outline-none select-none">
 		<img
 			src={pics[imageCounter]}
 			alt="project pic"
-			class="aspect-video h-auto w-full cursor-pointer object-contain"
+			class="h-auto w-full cursor-pointer object-contain"
 		/>
 	</button>
 	{@render moveButtons(true)}

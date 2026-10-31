@@ -22,11 +22,11 @@ You can still say, "But I can learn all that from the internet and AI," but let'
 
 Also, from a career perspective, in a future world full of engineers who actually don't know anything, having the degree could already raise your status and the position on the career ladder you're on. E.g.:
 
-**you who know the fundamentals and how things work**
+you who know the fundamentals and how things work
 |
 | overseeing
 ⌄
-**the AI engineers doing the basic work**
+the AI engineers doing the basic work
 
 ## TL;DR
 

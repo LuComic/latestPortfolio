@@ -1,7 +1,6 @@
 <script lang="ts">
 	import './layout.css';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import PortfolioPopUp from '$lib/components/PortfolioPopUp.svelte';
 	import WorkhalPopUp from '$lib/components/WorkhalPopUp.svelte';
 	import { page } from '$app/state';
 	import { thoughtsExpanded } from '$lib/thoughtState.svelte';
@@ -36,7 +35,6 @@
 </svelte:head>
 <svelte:window bind:innerWidth={width} />
 <WorkhalPopUp />
-<PortfolioPopUp />
 
 <div class="scrollable flex h-dvh w-screen flex-col items-center justify-center">
 	<div

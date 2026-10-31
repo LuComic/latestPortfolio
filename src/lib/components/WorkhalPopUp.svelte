@@ -34,7 +34,7 @@
 				>
 					workhal,
 				</a>
-				simplify the daily work at bars, shops, restaurants etc. Coming from my experience at Mikkeller
+				simplifying daily work at bars, shops and restaurants. Inspired by my experience at Mikkeller
 				Old Town.
 			</span>
 		</div>

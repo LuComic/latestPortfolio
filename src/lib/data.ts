@@ -48,12 +48,8 @@ export const experience: experienceType[] = [
 	},
 	{
 		id: 2,
-		header: 'School (TalTech)',
-		info: ['Python'],
-		links: [
-			{ name: 'Object Oriented Programming', link: '/certificates/oop-cert.pdf' },
-			{ name: 'Python Main Course', link: '/certificates/overall-cert.pdf' }
-		]
+		header: 'Other skills',
+		info: ['Python', 'Git', 'Figma']
 	},
 	{
 		id: 4,
@@ -65,8 +61,8 @@ export const experience: experienceType[] = [
 	},
 	{
 		id: 5,
-		header: 'Other work',
-		info: ['From 2025 summer -> current work at Mikkeller Old Town', '2024 summer worked at Nike']
+		header: 'Jobs',
+		info: ['2025 summer -> present work at Mikkeller Old Town', '2024 summer worked at Nike']
 	}
 ];
 
@@ -89,7 +85,7 @@ export const projects: projectType[] = [
 		id: 1,
 		name: 'NoorteKunst',
 		stack: ['Vanilla HTML', 'CSS', 'JS'],
-		disclaimer: 'I made only the frontend; domain has expired',
+		disclaimer: 'I developed the frontend; domain has expired',
 		description:
 			"noorteKunst is a web gallery combined with social media aspects for young starting artists to start or boost their art jounrey. A simple way to stand out (which is basically impossible in social media), grow your portfolio and find fans. Also if you're interested in art, noorteKunst is a great way to find young artists and do things that you can do on every social media platform - like posts, save them and follow artists. (site is only in estonian)",
 		pics: [
@@ -102,7 +98,7 @@ export const projects: projectType[] = [
 		id: 2,
 		name: 'StreamList',
 		stack: ['Next.js', 'Tailwind'],
-		disclaimer: "I made only the frontend and connected the movie DB; TalTech's project",
+		disclaimer: "I developed the frontend and connected the movie DB; TalTech's project",
 		description:
 			"A site similar to Letterboxd, but with a new intuitive UI and a more userfriendly alternative, with analytics and more. Add movies AND SHOWS (which isn't possible in Letterboxd) to either 'Watched' or 'Watchlist', rate them, leave an overview etc. You can even create your own groups which you can share with friends, to share what each of you likes.",
 		pics: [
