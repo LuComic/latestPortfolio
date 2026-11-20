@@ -68,6 +68,19 @@ export const experience: experienceType[] = [
 
 export const projects: projectType[] = [
 	{
+		id: 5,
+		name: 'workhal',
+		stack: ['Next.js', 'Convex', 'Clerk', 'Tailwind'],
+		siteLink: 'https://workhal.com',
+		description:
+			'workhal is my take on an employee relationship management (ERM) platform. It gives staff one place to check today’s schedule and announcements, follow step-by-step guides, and search for workplace documents, events, and answers to common questions. In a separate area, managers can draft and preview guides before publishing, post announcements, schedule calendar events, and decide who can view or edit content. Teams can also use join codes or private links to give staff access on shared devices without requiring everyone to create an account.',
+		pics: [
+			'/pictures/workhal-today.png',
+			'/pictures/workhal-guide.png',
+			'/pictures/workhal-calendar.png'
+		]
+	},
+	{
 		id: 4,
 		name: 'Pageboard',
 		stack: ['Next.js', 'Convex', 'Tailwind'],
