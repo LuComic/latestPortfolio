@@ -3,26 +3,37 @@
 
 	type Swatch = (typeof colors)[number][number];
 	let selected = $state.raw<Swatch | null>(null);
+	let readyToClose = $state(false);
 	let hovered = $state.raw<Swatch | null>(null);
 	let focused = $state.raw<Swatch | null>(null);
 	let active = $derived(hovered ?? focused ?? selected);
+	let copyPressed = $state.raw<Swatch | null>(null);
 	let clipboardStatus = $state('');
 
 	async function activateSwatch(color: Swatch, event: MouseEvent) {
-		const wasActive = active === color;
-		const isMouseClick =
-			event instanceof PointerEvent
-				? event.pointerType === 'mouse'
-				: event.detail > 0 && hovered === color;
-		if (!isMouseClick) {
-			selected = selected === color ? null : color;
+		const isTouch = 'pointerType' in event && event.pointerType === 'touch';
+		const isHoverClick = !isTouch && event.detail > 0 && hovered === color;
+		const shouldCopy =
+			isHoverClick || selected === color || (!isTouch && event.detail === 0 && active === color);
+		if (!isHoverClick) {
+			hovered = null;
+			if (selected === color && readyToClose) {
+				selected = null;
+				focused = null;
+				readyToClose = false;
+				clipboardStatus = '';
+				return;
+			}
+			readyToClose = false;
+			selected = color;
 		}
 		clipboardStatus = '';
 
-		if (!wasActive) return;
+		if (!shouldCopy) return;
 
 		try {
 			await navigator.clipboard.writeText(color.code);
+			if (!isHoverClick && selected === color) readyToClose = true;
 			clipboardStatus = `Copied ${color.code} to clipboard.`;
 		} catch {
 			clipboardStatus = `Could not copy ${color.code} to clipboard.`;
@@ -64,15 +75,29 @@
 				>
 					<button
 						type="button"
-						class="swatch relative block h-14 w-full cursor-pointer text-left focus-visible:outline-none"
+						class="swatch relative block h-14 w-full cursor-pointer touch-manipulation text-left focus-visible:outline-none"
 						aria-label={`${color.name}, ${color.code}`}
 						aria-pressed={selected === color}
 						onclick={(event) => activateSwatch(color, event)}
 						onpointerenter={(event) => {
-							if (event.pointerType === 'mouse') hovered = color;
+							if (event.pointerType === 'mouse' && matchMedia('(any-hover: hover)').matches) {
+								hovered = color;
+							}
 						}}
+						onpointerdown={(event) => {
+							if (
+								event.button === 0 &&
+								((selected === color && !readyToClose) ||
+									(event.pointerType === 'mouse' && hovered === color))
+							) {
+								copyPressed = color;
+							}
+						}}
+						onpointerup={() => (copyPressed = null)}
+						onpointercancel={() => (copyPressed = null)}
 						onpointerleave={() => {
 							if (hovered === color) hovered = null;
+							if (copyPressed === color) copyPressed = null;
 						}}
 						onfocus={(event) => {
 							if (event.currentTarget.matches(':focus-visible')) focused = color;
@@ -80,9 +105,10 @@
 						onblur={() => (focused = null)}
 						style:--swatch-color={color.code}
 						style:--swatch-text={labelColor(color.code)}
+						style:--flash={copyPressed === color ? '20%' : undefined}
 					>
 						<span
-							class="swatch-face absolute inset-x-0 top-0 px-1.5 py-2 text-(--swatch-text) motion-safe:transition-[translate] motion-safe:duration-450 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-3"
+							class="swatch-face absolute inset-x-0 top-0 px-1.5 py-2 text-(--swatch-text) motion-safe:transition-[translate] motion-safe:duration-450 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:before:transition-colors motion-safe:before:duration-75 sm:px-3"
 							aria-hidden="true"
 						>
 							<span
@@ -116,7 +142,8 @@
 		position: absolute;
 		inset: 0 calc(-1 * var(--swatch-overlap)) 0 0;
 		border-radius: var(--swatch-radius) var(--swatch-radius) 0 0;
-		background: var(--swatch-color);
+		background-color: var(--swatch-color);
+		background-color: color-mix(in srgb, var(--swatch-color), white var(--flash, 0%));
 		pointer-events: none;
 		content: '';
 	}
