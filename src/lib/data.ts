@@ -1,3 +1,8 @@
+export type palette = {
+	name: string;
+	code: string;
+}[];
+
 export type thoughtType = {
 	href: string;
 	date: string;
@@ -262,4 +267,105 @@ export const thoughts: thoughtType[] = [
 		date: '25.09.2026',
 		content: 'the-importance-of-unis.md'
 	}
+];
+
+export const colors: palette[] = [
+	[
+		{
+			name: 'Firey Coral',
+			code: '#EF4A55'
+		},
+		{
+			name: 'Midnight N?',
+			code: '#323E4D'
+		},
+		{
+			name: 'Cloud Cream',
+			code: '#E5DAC1'
+		}
+	],
+	[
+		{
+			name: 'Soft Cream',
+			code: '#F2F1E9'
+		},
+		{
+			name: 'Forest + bright green',
+			code: '#123125'
+		}
+	],
+	[
+		{
+			name: 'Warm White',
+			code: '#F5F5EF'
+		},
+		{
+			name: 'Periwinkle + blur',
+			code: '#BBC7FC'
+		}
+	],
+	[
+		{
+			name: 'Some green',
+			code: '#4D624D'
+		},
+		{
+			name: 'Some red',
+			code: '#E84237'
+		},
+		{
+			name: 'Some white',
+			code: '#F3F2F0'
+		}
+	],
+	[
+		{
+			name: 'Warm Ivory',
+			code: '#EAE6DE'
+		},
+		{
+			name: 'Deep Editoral Blue',
+			code: '#226192'
+		},
+		{
+			name: 'Coral Orange',
+			code: '#EF8557'
+		}
+	],
+	[
+		{
+			name: 'Background',
+			code: '#090E17'
+		},
+		{
+			name: 'Surface',
+			code: '#18283D'
+		},
+		{
+			name: 'Accent',
+			code: '#454363'
+		},
+		{
+			name: 'Text',
+			code: '#C9C9D5'
+		}
+	],
+	[
+		{
+			name: 'Background',
+			code: '#0B1013'
+		},
+		{
+			name: 'Surface',
+			code: '#1B3037'
+		},
+		{
+			name: 'Accent',
+			code: '#D83A50'
+		},
+		{
+			name: 'Text',
+			code: '#D2C4CD'
+		}
+	]
 ];
