@@ -18,98 +18,84 @@
 		return () => document.removeEventListener('click', handleClick);
 	});
 
-	let width = $state(0);
-
 	const toggleSize = () => (thoughtsExpanded.open = !thoughtsExpanded.open);
 
-	const expandable = $derived(width >= 1024 && page.url.pathname.includes('/thoughts/'));
+	const expandable = $derived(page.url.pathname.includes('/thoughts/'));
 </script>
 
-<svelte:window bind:innerWidth={width} />
-
 <!--Nav for desktop-->
-{#if width >= 1024}
-	{#if thoughtBigScreen}
-		<ThoughtSidebar {percent} {toggleSize} />
-	{:else}
-		<nav
-			class="sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium"
-		>
-			{#if expandable}
-				<button class="special" onclick={() => (thoughtsExpanded.open = true)}> Maximize </button>
-			{/if}
-			<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
-			<a
-				href="/experience"
-				class="w-full transition"
-				aria-current={page.url.pathname === '/experience'}
-			>
-				Experience
-			</a>
-			<a
-				href="/projects"
-				class="w-full transition"
-				aria-current={page.url.pathname === '/projects'}
-			>
-				Projects
-			</a>
-			<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
-				Contact
-			</a>
-			<a
-				href="/thoughts"
-				class="w-full transition"
-				aria-current={page.url.pathname.includes('/thoughts')}
-			>
-				Thoughts
-			</a>
-		</nav>
-	{/if}
+{#if thoughtBigScreen}
+	<ThoughtSidebar {percent} {toggleSize} />
 {:else}
-	<!--Nav for mobile-->
-	<button
-		class="fixed top-3 right-3 z-10 block cursor-pointer p-2"
-		onclick={(e) => {
-			isOpen = !isOpen;
-			e.stopPropagation();
-		}}
+	<nav
+		class="sticky top-0 left-0 hidden h-max w-full flex-col items-center justify-between gap-4 pr-4 text-2xl font-medium lg:flex"
 	>
-		<Menu />
-	</button>
-
-	{#if isOpen}
-		<nav
-			class="fixed top-0 left-0 z-20 flex h-full w-2/3 flex-col items-center justify-center gap-8 border-r-2 border-dashed border-(--gray-text) bg-(--background) px-4 text-xl font-medium"
-			transition:fly={{ x: '-100%', duration: 300 }}
+		{#if expandable}
+			<button class="special" onclick={() => (thoughtsExpanded.open = true)}> Maximize </button>
+		{/if}
+		<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
+		<a
+			href="/experience"
+			class="w-full transition"
+			aria-current={page.url.pathname === '/experience'}
 		>
-			<button class="fixed top-5 left-5" onclick={() => (isOpen = false)}>
-				<X />
-			</button>
-			<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
-			<a
-				href="/experience"
-				class="w-full transition"
-				aria-current={page.url.pathname === '/experience'}>Experience</a
-			>
-			<a
-				href="/projects"
-				class="w-full transition"
-				aria-current={page.url.pathname === '/projects'}
-			>
-				Projects
-			</a>
-			<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
-				Contact
-			</a>
-			<a
-				href="/thoughts"
-				class="w-full transition"
-				aria-current={page.url.pathname.includes('/thoughts')}
-			>
-				Thoughts
-			</a>
-		</nav>
-	{/if}
+			Experience
+		</a>
+		<a href="/projects" class="w-full transition" aria-current={page.url.pathname === '/projects'}>
+			Projects
+		</a>
+		<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
+			Contact
+		</a>
+		<a
+			href="/thoughts"
+			class="w-full transition"
+			aria-current={page.url.pathname.includes('/thoughts')}
+		>
+			Thoughts
+		</a>
+	</nav>
+{/if}
+
+<!--Nav for mobile-->
+<button
+	class="fixed top-3 right-3 z-10 block cursor-pointer p-2 lg:hidden"
+	onclick={(e) => {
+		isOpen = !isOpen;
+		e.stopPropagation();
+	}}
+>
+	<Menu />
+</button>
+
+{#if isOpen}
+	<nav
+		class="fixed top-0 left-0 z-20 flex h-full w-2/3 flex-col items-center justify-center gap-8 border-r-2 border-dashed border-(--gray-text) bg-(--background) px-4 text-xl font-medium lg:hidden"
+		transition:fly={{ x: '-100%', duration: 300 }}
+	>
+		<button class="fixed top-5 left-5" onclick={() => (isOpen = false)}>
+			<X />
+		</button>
+		<a href="/" class="w-full transition" aria-current={page.url.pathname === '/'}>About</a>
+		<a
+			href="/experience"
+			class="w-full transition"
+			aria-current={page.url.pathname === '/experience'}>Experience</a
+		>
+		<a href="/projects" class="w-full transition" aria-current={page.url.pathname === '/projects'}>
+			Projects
+		</a>
+		<a href="/contact" class="w-full transition" aria-current={page.url.pathname === '/contact'}>
+			Contact
+		</a>
+		<a
+			href="/thoughts"
+			class="w-full transition"
+			aria-current={page.url.pathname.includes('/thoughts')}
+		>
+			Thoughts
+		</a>
+	</nav>
 {/if}
 
 <style>

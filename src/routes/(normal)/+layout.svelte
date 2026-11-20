@@ -21,10 +21,8 @@
 
 	let percent = $derived(height > 0 ? Math.max(0, Math.min(100, (scroll / height) * 100)) : 0);
 
-	let width = $state(0);
-	let bigScreen = $derived(thoughtsExpanded.open);
 	const thoughtBigScreen = $derived(
-		width >= 1024 && bigScreen && page.url.pathname.includes('/thoughts/')
+		thoughtsExpanded.open && page.url.pathname.includes('/thoughts/')
 	);
 </script>
 
@@ -33,7 +31,6 @@
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
 </svelte:head>
-<svelte:window bind:innerWidth={width} />
 <WorkhalPopUp />
 
 <div class="scrollable flex h-dvh w-screen flex-col items-center justify-center">
@@ -47,7 +44,7 @@
 	>
 		<Sidebar {percent} {thoughtBigScreen} />
 		<div
-			class={`flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) lg:border-l-2 lg:pl-4 ${thoughtBigScreen ? 'col-span-5' : 'col-span-4'}`}
+			class={`flex h-full w-full flex-col items-start justify-start gap-2 border-dashed border-(--gray-text) lg:border-l-2 lg:pl-4 ${thoughtBigScreen ? 'lg:col-span-5' : 'lg:col-span-4'}`}
 		>
 			{#if !page.url.pathname.includes('/thoughts/')}
 				<a
@@ -58,9 +55,9 @@
 						Lukas Jääger <span class="pr-8 text-(--gray-text)">Web Developer</span>
 					</h1>
 				</a>
-			{:else if !thoughtBigScreen}
+			{:else}
 				<div
-					class="fixed top-0 left-0 z-20 h-1 bg-(--purple-text)/65 lg:sticky"
+					class={`fixed top-0 left-0 z-20 h-1 bg-(--purple-text)/65 lg:sticky ${thoughtBigScreen ? 'lg:hidden' : ''}`}
 					style={`width: ${percent}%`}
 				></div>
 			{/if}

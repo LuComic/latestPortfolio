@@ -113,7 +113,7 @@
 {/snippet}
 
 <aside
-	class="sticky top-0 left-0 flex h-max w-full flex-col items-center justify-between gap-4 pt-4 pr-4 text-2xl"
+	class="sticky top-0 left-0 hidden h-max w-full flex-col items-center justify-between gap-4 pt-4 pr-4 text-2xl lg:flex"
 >
 	<div class="flex w-full flex-col gap-2">
 		<button
