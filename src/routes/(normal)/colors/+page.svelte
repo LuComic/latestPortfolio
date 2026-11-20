@@ -6,6 +6,28 @@
 	let hovered = $state.raw<Swatch | null>(null);
 	let focused = $state.raw<Swatch | null>(null);
 	let active = $derived(hovered ?? focused ?? selected);
+	let clipboardStatus = $state('');
+
+	async function activateSwatch(color: Swatch, event: MouseEvent) {
+		const wasActive = active === color;
+		const isMouseClick =
+			event instanceof PointerEvent
+				? event.pointerType === 'mouse'
+				: event.detail > 0 && hovered === color;
+		if (!isMouseClick) {
+			selected = selected === color ? null : color;
+		}
+		clipboardStatus = '';
+
+		if (!wasActive) return;
+
+		try {
+			await navigator.clipboard.writeText(color.code);
+			clipboardStatus = `Copied ${color.code} to clipboard.`;
+		} catch {
+			clipboardStatus = `Could not copy ${color.code} to clipboard.`;
+		}
+	}
 
 	function labelColor(hex: string) {
 		const rgb = [1, 3, 5].map((start) => {
@@ -24,8 +46,10 @@
 	<title>Colors | Lukas Jääger</title>
 </svelte:head>
 
-<section class="w-full" aria-labelledby="colors-heading">
-	<h2 id="colors-heading" class="text-2xl font-medium text-(--headings)">Colors</h2>
+<section class="w-full" aria-label="Colors">
+	<p class="text-left text-sm text-(--foreground)" role="status">
+		{clipboardStatus || 'Click to copy'}
+	</p>
 
 	{#each colors as palette, index (palette)}
 		<ul
@@ -43,7 +67,7 @@
 						class="swatch relative block h-14 w-full cursor-pointer text-left focus-visible:outline-none"
 						aria-label={`${color.name}, ${color.code}`}
 						aria-pressed={selected === color}
-						onclick={() => (selected = selected === color ? null : color)}
+						onclick={(event) => activateSwatch(color, event)}
 						onpointerenter={(event) => {
 							if (event.pointerType === 'mouse') hovered = color;
 						}}

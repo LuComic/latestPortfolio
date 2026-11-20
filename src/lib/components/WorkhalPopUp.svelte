@@ -2,8 +2,9 @@
 	import { fly } from 'svelte/transition';
 	import { X } from '@lucide/svelte';
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
 
-	let popUp = $state(true);
+	let popUp = $derived(page.url.pathname !== '/colors');
 	let mounted = $state(false);
 
 	onMount(() => {
