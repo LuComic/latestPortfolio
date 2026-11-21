@@ -1,5 +1,36 @@
 <script lang="ts">
 	import { colors } from '$lib/data';
+	import ColorTuning from './ColorTuning.svelte';
+	import { labelColor } from './color';
+
+	const sections = [
+		{ id: 'saved', name: 'My colors' },
+		{ id: 'tuning', name: 'Color tuning' }
+	];
+	let selectedSection = $state('saved');
+
+	function moveTab(event: KeyboardEvent, index: number) {
+		let next: number;
+		switch (event.key) {
+			case 'ArrowLeft':
+				next = (index + sections.length - 1) % sections.length;
+				break;
+			case 'ArrowRight':
+				next = (index + 1) % sections.length;
+				break;
+			case 'Home':
+				next = 0;
+				break;
+			case 'End':
+				next = sections.length - 1;
+				break;
+			default:
+				return;
+		}
+		event.preventDefault();
+		selectedSection = sections[next].id;
+		document.getElementById(`colors-tab-${selectedSection}`)?.focus();
+	}
 
 	type Swatch = (typeof colors)[number][number];
 	let selected = $state.raw<Swatch | null>(null);
@@ -39,38 +70,52 @@
 			clipboardStatus = `Could not copy ${color.code} to clipboard.`;
 		}
 	}
-
-	function labelColor(hex: string) {
-		const rgb = [1, 3, 5].map((start) => {
-			const channel = parseInt(hex.slice(start, start + 2), 16) / 255;
-			return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
-		});
-		const luminance = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
-		const blackContrast = (luminance + 0.05) / 0.05;
-		const whiteContrast = 1.05 / (luminance + 0.05);
-
-		return blackContrast > whiteContrast ? '#000' : '#fff';
-	}
 </script>
 
 <svelte:head>
 	<title>Colors | Lukas Jääger</title>
 </svelte:head>
 
-<section class="w-full" aria-label="Colors">
+<div class="flex flex-wrap gap-2" role="tablist" aria-label="Colors">
+	{#each sections as section, index (section.id)}
+		<button
+			type="button"
+			role="tab"
+			id={`colors-tab-${section.id}`}
+			aria-selected={selectedSection === section.id}
+			aria-controls={`colors-panel-${section.id}`}
+			tabindex={selectedSection === section.id ? 0 : -1}
+			class="cursor-pointer rounded-lg px-2 py-1 text-left text-lg hover:bg-(--gray-text)/15 aria-selected:bg-(--gray-text)/15 lg:text-xl 2xl:text-2xl"
+			onclick={() => (selectedSection = section.id)}
+			onkeydown={(event) => moveTab(event, index)}
+		>
+			{section.name}
+		</button>
+	{/each}
+</div>
+
+<div
+	id="colors-panel-saved"
+	class="w-full"
+	role="tabpanel"
+	tabindex="0"
+	aria-labelledby="colors-tab-saved"
+	hidden={selectedSection !== 'saved'}
+>
 	<p class="text-left text-sm text-(--foreground)" role="status">
 		{clipboardStatus || 'Click to copy'}
 	</p>
 
 	{#each colors as palette, index (palette)}
 		<ul
-			class="palette mt-2 grid auto-cols-fr grid-flow-col overflow-clip pt-(--swatch-rise)"
+			class="palette isolate mt-2 grid auto-cols-fr grid-flow-col overflow-clip pt-(--swatch-rise)"
 			aria-label={`Color set ${index + 1}`}
 		>
 			{#each palette as color, position (color.code)}
 				{@const isNeighbor = active === palette[position - 1] || active === palette[position + 1]}
 				<li
-					class="swatch-slot min-w-0"
+					class="swatch-slot relative min-w-0"
+					style:z-index={position}
 					data-lift={active === color ? 'full' : isNeighbor ? 'neighbor' : undefined}
 				>
 					<button
@@ -108,7 +153,7 @@
 						style:--flash={copyPressed === color ? '20%' : undefined}
 					>
 						<span
-							class="swatch-face absolute inset-x-0 top-0 px-1.5 py-2 text-(--swatch-text) motion-safe:transition-[translate] motion-safe:duration-450 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:before:transition-colors motion-safe:before:duration-75 sm:px-3"
+							class="swatch-face absolute inset-x-0 px-1.5 py-2 text-(--swatch-text) motion-safe:transition-[top] motion-safe:duration-450 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:before:transition-colors motion-safe:before:duration-75 sm:px-3"
 							aria-hidden="true"
 						>
 							<span
@@ -123,7 +168,18 @@
 			{/each}
 		</ul>
 	{/each}
-</section>
+</div>
+
+<div
+	id="colors-panel-tuning"
+	class="w-full"
+	role="tabpanel"
+	tabindex="0"
+	aria-labelledby="colors-tab-tuning"
+	hidden={selectedSection !== 'tuning'}
+>
+	<ColorTuning />
+</div>
 
 <style>
 	.palette {
@@ -132,9 +188,10 @@
 		--swatch-overlap: calc(2 * var(--swatch-radius));
 	}
 
+	/* Keep the lift in the slot's paint layer throughout the animation. */
 	.swatch-face {
 		height: calc(100% + var(--swatch-rise));
-		translate: 0 calc(-1 * var(--lift, 0rem));
+		top: calc(-1 * var(--lift, 0rem));
 	}
 
 	/* Extend the paint under the next corner while keeping the button's hit area fixed. */
