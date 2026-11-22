@@ -290,7 +290,11 @@ export const colors: palette[] = [
 			code: '#F2F1E9'
 		},
 		{
-			name: 'Forest + bright green',
+			name: 'Bright green',
+			code: '#83FA8D'
+		},
+		{
+			name: 'Forest green',
 			code: '#123125'
 		}
 	],
@@ -302,6 +306,10 @@ export const colors: palette[] = [
 		{
 			name: 'Periwinkle + blur',
 			code: '#BBC7FC'
+		},
+		{
+			name: 'Darker blue',
+			code: '#1442ED'
 		}
 	],
 	[
